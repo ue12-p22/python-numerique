@@ -335,8 +335,6 @@ print(f'matplotlib version {mpl.__version__}')
 #     
 # * ce format est aussi une table en 2 dimensions de données hétérogènes  
 # (dates, identificateurs, réels...)
-#  
-# </div>
 
 # %% [markdown]
 # ***
@@ -415,8 +413,6 @@ print(f'matplotlib version {mpl.__version__}')
 # <br>
 #     
 # il faut leur trouver une **forme commune**
-#     
-# </div>
 
 # %% [markdown]
 # ***

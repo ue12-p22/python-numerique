@@ -64,8 +64,6 @@ import numpy as np
 # | `np.linalg.solve` | résolution de système linéaire |
 # | `np.eye`       |matrice identité  |
 # | `np.diag`      | matrice diagonale|
-#     
-# </div>
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ##  introduction et contexte
@@ -283,9 +281,7 @@ print(A.dot(V))
 #     [334, 356, 378]
 #     [566, 604, 642]]
 # ```
-#     
 #
-# </div>
 
 # %%
 # le code
@@ -658,8 +654,6 @@ np.diag(l)
 # np.sum(np.diag(A))
 # -> 12
 # ```
-#     
-# </div>
 
 # %%
 # le code

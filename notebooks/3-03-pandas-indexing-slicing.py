@@ -558,8 +558,6 @@ df.loc[ 638:261, 'Pclass': 'Age']
 # df.loc[:, 'Survived'].shape
 # -> (891,)
 # ```
-#
-# </div>
 
 # %%
 # le code

@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -242,9 +242,6 @@ def scalar_function(x):
 # <br>
 #
 # vous allez les utiliser sans même vous en rendre compte !
-#     
-#
-# </div>
 
 # %% [markdown]
 # ***
@@ -352,7 +349,6 @@ np.power
 # absolute_vect(tab)
 # -> array([10. , 30. , 56.5])    
 # ```
-# </div>
 
 # %%
 # le code
@@ -479,8 +475,6 @@ absolute_vect([-10, -20, 30])
 #
 # * vous savez que ça existe
 # * vous y penserez le jour où la création de tableaux intermédiaires prendra une place bien trop importante
-#     
-# </div>
 
 # %% [markdown]
 # le code ci-dessous

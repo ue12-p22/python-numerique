@@ -78,8 +78,6 @@ import numpy as np
 # 5    coyote   69.0    12.0
 # 6    horse    88.0    28.0
 # ```
-#
-# </div>
 
 # %%
 # le code

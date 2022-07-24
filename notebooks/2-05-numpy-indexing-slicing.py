@@ -306,13 +306,6 @@ tab
 #     
 # vous pourrez ensuite, par exemple, modifier ces éléments  
 # et donc ils seront modifiés dans le tableau initial
-#     
-# <br>
-#
-#     
-# <br>
-#
-# </div>
 
 # %% [markdown]
 # ***
@@ -354,9 +347,6 @@ tab
 # # ou
 # l[:]
 # ```
-# <br>
-#
-# </div>
 
 # %%
 # le code
@@ -437,9 +427,6 @@ vec
 # ```python
 # tab[0, 1, :, 3] # remarquez le ':' pour indiquer toutes les lignes
 # ```
-#
-#     
-# </div>
 
 # %%
 # le code
@@ -496,8 +483,7 @@ print(    tab[0, 1, :, 3]    )
 # ```python
 # tab[:, 0, :, :]
 # tab[:, 0] # ou encore, plus simplement
-# ```    
-# </div>
+# ```
 
 # %%
 tab = np.arange(120).reshape(2, 3, 4, 5)

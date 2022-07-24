@@ -242,8 +242,6 @@ json_url = "https://pomber.github.io/covid19/timeseries.json"
 #
 # si votre connexion ne vous permet pas la requête  
 # voir la prochaine cellule de cours
-#
-# </div>
 
 # %%
 # pensez à bien installer le module requests

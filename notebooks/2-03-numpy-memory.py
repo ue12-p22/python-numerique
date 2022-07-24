@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -149,7 +149,6 @@ mat.nbytes
 #
 # * pour que `numpy` soit le plus rapide possible dans ses manipulations de tableaux
 # * grâce à ces contraintes, passer d'une case du tableau à une autre  est très rapide
-# </div>
 
 # %% [markdown]
 # ***
@@ -305,8 +304,6 @@ mat.nbytes
 #
 # ici une case est constituée d'un tableau d'au plus 5 caractères  
 # (une case n'est pas l'adresse d'une chaîne de caractère mais bien la valeur de la chaîne)
-#
-# </div>
 
 # %% [markdown]
 # ### exercice: tableau hétérogène

@@ -511,8 +511,6 @@ df['Name'].dtype
 #
 # il faut travailler un peu les paramètres pour que ce soit visible  
 # (là la taille est trop peu différenciée, multipliez la)
-#
-# </div>
 
 # %%
 # le code

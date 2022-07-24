@@ -282,7 +282,6 @@ gr = (imf[:, :, :].sum(axis=2))/3
 # axes[1, 2].set_title('sinus magenta')
 # plt.tight_layout()                            # ajustement automatique des paddings
 # ```
-# </div>
 
 # %%
 import numpy as np

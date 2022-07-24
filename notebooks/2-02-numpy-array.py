@@ -763,8 +763,6 @@ np.random.randint(10, 20, size=(2, 3, 5))
 #
 # * contient plus de fonctionnalités pour le calcul scientifiques que `random.random`  
 # * sait manipuler efficacement des tableaux `numpy.ndarray`
-#
-# </div>
 
 # %%
 # le code

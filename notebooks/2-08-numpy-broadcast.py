@@ -12,7 +12,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -482,8 +482,6 @@ except ValueError as e:
 # <br>
 #     
 # les formes sont désormais compatibles, les deux tableaux peuvent être ajoutés
-#     
-# </div>
 
 # %% [markdown]
 # ***

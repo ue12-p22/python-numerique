@@ -42,7 +42,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown]
 # voir la version originale de ce TP - par Jake Vanderplas - sur Youtube
 #
-# https://www.youtube.com/watch?v=_ZEWDGpM-vM&list=PLYCpMb24GpOC704uO9svUrihl-HY1tTJJ
+# <https://www.youtube.com/watch?v=_ZEWDGpM-vM&list=PLYCpMb24GpOC704uO9svUrihl-HY1tTJJ>
 
 # %% [markdown]
 # ## propos - niveau avancé

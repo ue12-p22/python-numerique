@@ -545,8 +545,6 @@ for group, subdf in by_class_sex:
 # ```python
 # pd.cut?
 # ```
-#
-# </div>
 
 # %%
 # le code (à décommenter pour essayer)
