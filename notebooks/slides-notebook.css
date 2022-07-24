@@ -1,0 +1,41 @@
+/*
+ * leveraging nb-courselevels
+ * the first entry in a framed cell
+ * if it's a (sub)title, gets outlined
+ */
+
+div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h1:first-child,
+div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h2:first-child,
+div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h3:first-child,
+div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
+        color: purple;
+        text-decoration-line: underline;
+        text-decoration-color: rgb(227, 129, 227);
+        text-decoration-style: double;
+}
+
+/* ----------- specific to this course */
+/* used in the notebook on memory layout */
+.memory {
+    font-size: 180%;
+    line-height: 1.2;
+}
+
+/*
+ * jupyter has its own way to render lists
+ * which, let's just say, is not optimal
+ * cancelling that tweaking would
+ * amount to do the following
+ */
+/*
+.rendered_html * + ol,
+.rendered_html * + ul {
+    margin-top: initial !important;
+}
+*/
+
+/* notes */
+.note {
+    font-style: italic;
+    font-size: 80%;
+}

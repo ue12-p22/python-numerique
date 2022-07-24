@@ -1,0 +1,26 @@
+# the course structure under nbhosting
+tracks:
+  - name: "Python numérique"
+    description: "calcul scientifique et data en Python"
+    id: python-num
+    sections:
+      - name: numpy
+        notebooks: [ "notebooks/2-[0-9]*.py"]
+      - name: pandas
+        notebooks: [ "notebooks/3-[0-9]*.py"]
+      - name: matplotlib
+        notebooks: [ "notebooks/4-[0-9]*.py"]
+      - name: cheatsheets
+        notebooks: [ "cheatsheets/cheatsheets.md" ]
+
+builds:
+  - id: handouts
+    name: format HTML
+    description: contenu statique et cherchable
+    directory: notebooks
+    script: |
+      pip install jupyter-book
+      jupyter-book build .
+
+# no mapping needed
+static-mappings: []

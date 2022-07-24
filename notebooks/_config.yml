@@ -1,0 +1,35 @@
+# Jupyter Book settings
+
+title: Python Numérique
+author: Valérie Roy
+logo: media/logo-python.svg
+
+repository:
+  url: https://github.com/ue12-p21/python-numerique
+  branch: master
+  path_to_book: notebooks
+
+html:
+  use_repository_button: yes
+  use_edit_page_button: yes
+  use_issues_button: yes
+
+###
+
+only_build_toc_files: true
+
+execute:
+#  execute_notebooks: "force"
+  execute_notebooks: cache
+
+sphinx:
+  config:
+    nb_custom_formats:
+      .py:
+        - jupytext.reads
+        - fmt: py:percent
+
+# for raw <img> tags in markdown
+parse:
+  myst_enable_extensions:
+    - html_image

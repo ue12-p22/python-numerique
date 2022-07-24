@@ -1,0 +1,7 @@
+name: pynum
+dependencies:
+  - python >= 3.9
+  - pip
+  - wheel
+  - pip:
+    - -r requirements.txt
