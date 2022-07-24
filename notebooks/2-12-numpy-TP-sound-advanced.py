@@ -18,14 +18,17 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: TP - un peu de musique
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>Thierry Parmentelat</span>
-# <span><img src="media/inria-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # TP - un peu de musique
@@ -683,8 +686,10 @@ plt.plot(data, linewidth=0.05);
 # * et ajouter les deux
 #
 # sauf que si on s'y prend comme cela:
+#
 # * les deux signaux apparaissent avec le même niveau sonore  
 #   or un effet d'echo sous-entend une atténuation du signal tardif
+#
 # * en plus avec le type `int16`, on risque de causer des erreurs de débordement  
 #   en effet si au même instant les deux signaux contiennent tous deux  
 #   une valeur >= 20_000, la somme va dépasser $2^{15}$ et donc provoquer  
@@ -694,11 +699,13 @@ plt.plot(data, linewidth=0.05);
 # ![](media/sounds-offsets.png)
 #
 # c'est ce qu'on essaie d'illustrer ici
+#
 # * le signal de départ (en vert)
 # * est décalé vers la droite de la valeur du retard
 # * et on applique à chacun une pondération  
 #   par exemple 70% pour le signal de départ,
 #   et 30% pour le signal retardé
+#
 # * avant de les ajouter
 
 # %%
@@ -735,6 +742,7 @@ plt.plot(data_echoed, linewidth=0.05);
 # **exercice** v2
 #
 # 1. idem mais pour produire une durée correspondant à la somme
+#
 #   * de la durée du son de départ
 #   * et du retard
 

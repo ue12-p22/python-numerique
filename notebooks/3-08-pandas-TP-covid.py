@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: TP - coronavirus
+#     title: "TP sur les donn\xE9es coronavirus"
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import matplotlib.pyplot as plt
@@ -41,6 +45,7 @@ import IPython
 # <br>
 #
 # les données sur le corona virus
+#
 # * sont publiées par le département *Center for Systems Science and Engineering* (CSSE)
 # * de l'Université Johns Hopkins
 # * sur le dépôt github <https://github.com/CSSEGISandData/COVID-19>
@@ -57,6 +62,7 @@ official_url = "https://github.com/CSSEGISandData/COVID-19"
 # <br>
 #
 # un dépôt de *seconde main* <https://github.com/pomber/covid19>
+#
 # * consolide les données du CSSE
 # * en un unique fichier `timeseries.json`
 # * mis à jour quotidiennement
@@ -72,6 +78,7 @@ json_url = "https://pomber.github.io/covid19/timeseries.json"
 # <br>
 #
 # nous avons vu le `csv`
+#
 # * un format de données très simple décrivant une table
 # * les éléments séparés par un caractère (`,` ou `;`...)
 # * pouvant contenir des identificateurs, des chaînes de caractères et des nombres
@@ -79,6 +86,7 @@ json_url = "https://pomber.github.io/covid19/timeseries.json"
 # <br>
 #
 # `json` est un format de données bien plus structuré avec
+#
 # * object (`dict`), `list`, nombre, `str` (with " only), `false`,  `true`, `null`
 # * les `list` sont les tableaux python
 # * les `dict` sont les dictionnaires `Python`  
@@ -131,6 +139,7 @@ json_url = "https://pomber.github.io/covid19/timeseries.json"
 # <br>
 #
 # le fichier https://pomber.github.io/covid19/timeseries.json contient un objet `dict` dont
+#
 # * les clés sont les pays du monde
 # * chaque valeur est une liste de `dict`  
 #   chacun décrivant **une** mesure de covid avec les 4 clés: `date`, `confirmed`, `deaths` et `recovered`
@@ -352,11 +361,13 @@ list(by_country.keys())[:4]
 # ```
 #
 # **attention**
+#
 # * les `???` peuvent être différents suivant ce que vous faites
 # * `115050` dépend de la date à laquelle le fichier a été récupéré  
 #   (et de combien de données étaient alors disponibles)
 #
 # **indications**
+#
 # * les élèves avancés peuvent travailler sans indications supplémentaires
 # * pour les autres élèves, la cellule suivante vous propose une méthode pas-à-pas
 
@@ -376,6 +387,7 @@ list(by_country.keys())[:4]
 # et ensuite généraliser à tous les pays
 #
 # **rappel** l'objet Python `by_country` est un `dict` dont:
+#
 # * les clés `keys()` sont les noms des pays
 # * les valeurs `values()` sont des séries temporelles (`list`) d'observations sur le covid  
 # * chaque observation est un objet exprimé sous la forme d'un `dict`  
@@ -596,6 +608,7 @@ pd.to_datetime('15 july 2021 08:00')
 # pour illustrer la puissance de pandas, et la pertinence de notre choix d'index  
 # voyons comment utiliser du **slicing** (*très très avancé*)  
 # pour extraire cette fois les données relatives à
+#
 # * deux pays au hasard - disons `France` et `Italy`
 # * à la période 1er Juillet - 15 Août 2021 inclus
 #
@@ -607,10 +620,12 @@ pd.to_datetime('15 july 2021 08:00')
 # <br>
 #
 # on va fabriquer :
+#
 # * `countries`: une liste de pays - c'est facile
 # * `time_slice`: un slice sur le temps  
 #   qui en temps normal pourrait s'écrire `'july 2021' : '15 august 2021'`  
 #   (bornes inclusives puisque .loc[])
+#
 # * un slice sur les colonnes  
 #   mais au fait on les veut toutes, on peut utiliser `:` 
 #   
@@ -813,6 +828,7 @@ df6.plot(figsize=(12, 5));
 # ### extra
 #
 # les rapides peuvent écrire une fonction `extract()` qui prend en paramètres 
+#
 # * les pays concernés
 # * les mesures concernées
 # * et en option pour les plus forts, les dates de début et de fin

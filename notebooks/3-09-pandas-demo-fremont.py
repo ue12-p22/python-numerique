@@ -19,11 +19,25 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: "TP - les v\xE9los sur le pont"
+#     title: "Les v\xE9los sur le pont de Fremont"
 # ---
 
 # %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
+
+
+# %% [markdown]
 # # Les vélos sur le pont de Fremont
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # voir la version originale de ce TP - par Jake Vanderplas - sur Youtube
@@ -129,6 +143,7 @@ with open(local_file) as feed:
 # **exercice**
 #
 # cherchez dans les méthodes de la dataframe pour
+#
 # * compter le nombre de lignes dupliquées
 # * éliminer les doublons de la dataframe
 #
@@ -342,6 +357,7 @@ data.resample('1D').mean().rolling(365).sum().plot();
 # spécifiquement, la plus ancienne valeur dans la table originale est le *3 octobre 2012*  
 #
 # du coup dans la dataframe issue de `rolling()`:
+#
 # * la première valeur disponible correspond au *2 oct 2013*
 # * et pour cette date on calcule la somme de tous les trafics (moyens) journaliers sur l'année 3/10/2012 → 2/10/2013
 #
@@ -389,12 +405,14 @@ data.groupby(data.index.time).mean().plot();
 # **individuellement** les uns des autres - 
 #
 # on veut donc dessiner 
+#
 # * *autant de courbes que de jours*
 # * et chaque courbe va avoir, en X l'heure de la journée, et en Y le nombre total de passages  
 #  (on est obligé de simplifier un peu car si on garde nos 3 valeurs on n'y voit plus rien)
 
 # %% [markdown]
 # pour faire ça on calcule grâce à `pivot_table` une table P dont
+#
 # * comme on veut une courbe par jour: les colonnes de P sont les jours
 # * on veut en X les heures: l'index des lignes de P correspond aux heures de la journée
 
@@ -435,6 +453,7 @@ pivoted.plot(legend=False, alpha=0.01);
 # ici il s'agit de classifier les jours en deux familles, qu'on voit très distinctement sur la figure
 #
 # il s'agit de faire une ACP sur un tableau qui aurait 
+#
 # * 24 colonnes correspondant aux heures de la journée
 # * autant de lignes que de jours
 #

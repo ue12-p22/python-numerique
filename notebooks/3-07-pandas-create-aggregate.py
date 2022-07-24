@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: "cr\xE9ation - agr\xE9gation"
+#     title: manipulations de base
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # manipulations de base
@@ -193,6 +197,7 @@ df.values
 # <br>
 #
 # **remarquez**, sans index
+#
 # * les index des `2` colonnes sont leurs indices `0` à `1`
 # * les index des `7` lignes sont leurs indices `0` à `6`
 #
@@ -298,10 +303,12 @@ df.values
 # <br>
 #
 # **rappel**
+#
 # * `astype`  
 # la méthode `pandas.Series.astype`, à laquelle vous indiquez un type `float`  
 # crée (si c'est possible) une nouvelle `pandas.Series` dont les éléments sont de type `float`
 # <br>
+#
 # * rajouter ou modifier une colonne dans une `pandas.DataFrame`  
 # revient à modifier ou rajouter une clé à un `dict`
 #
@@ -354,6 +361,7 @@ df.values
 #
 # * la fonction `pd.concat([df1, df2, ..])`  
 #   qui a vocation à accumuler des données en hauteur  
+#
 # * et à la méthode `df1.append(df2)`   
 #   qui est une version simplifiée de `concat()`
 
@@ -364,6 +372,7 @@ df.values
 #
 # * la fonction `pd.merge(left, right)`  
 #   ou sous forme de méthode `left.merge(right)`  
+#
 # * et à la méthode `left.join(right)`
 #   une version simplifiée de `left.merge()`
 
@@ -432,12 +441,15 @@ df1.merge(df2, left_index=True, right_on='name')
 # ### `concat()` *vs* `merge()`
 #
 # les deux fonctionnalités sont assez similaires sauf que
+#
 # * `merge` peut aligner les index ou les colonnes  
 #   alors que `concat` ne considère que les index
+#
 # * `merge` est une opération minaire  
 #    alors que `concat` est n-aire  
 #    ce qui explique d'ailleurs la différence de signatures  
 #    `concat([d1, d2])` *vs* `merge(d1, d2)`
+#
 # * seule `concat()` supporte un paramètre `axis=` 
 
 # %% [markdown]

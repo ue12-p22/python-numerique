@@ -1,4 +1,4 @@
-NOTEBOOKS = $(shell git ls-files [0-9]*)
+NOTEBOOKS = $(shell git ls-files [1-9]*)
 
 all: style
 
@@ -13,7 +13,6 @@ _static/style.html: _static/style.css
 	(echo '<style>'; \
 	cat $^ | sed -n '/^\/\*.*\*\//!p' | sed -n '/ \/\/.*/!p' | sed 's|/\*|\n&|g;s|*/|&\n|g' | sed '/\/\*/,/*\//d'; \
 	echo '</style>') > $@
-
 
 
 ########## NORMALIZING

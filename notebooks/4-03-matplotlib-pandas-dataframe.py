@@ -20,19 +20,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: matplotlib & pandas
+#     title: '`matplotlib` et `pandas`'
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import matplotlib.pyplot as plt
@@ -468,6 +465,7 @@ df['Name'].dtype
 # <br>
 #
 # avec le paramètre `c=`  
+#
 # * on peut changer la couleur  
 # * mais on peut aussi, indiquer une **couleur par point**  
 # * une idée du code couleur intéressant à utiliser ?
@@ -475,6 +473,7 @@ df['Name'].dtype
 # <br>
 #
 # oui, on peut représenter ainsi la catégorie des points  
+#
 # * chacun des 3 types d'iris, est une valeur entière différente  
 # * on va considérer cette valeur comme un code dans une table de couleurs
 # * attention au code `0` (il peut être très peu coloré dans certaines tables)
@@ -541,6 +540,7 @@ plt.scatter(df['SepalLength'], df['SepalWidth'], c=df['Name-code'], s=df['PetalW
 
 # %% [markdown]
 # le fichier `wine.csv` contient
+#
 # * les résultats d'analyses chimiques de vins, cultivés dans une même région d'Italie  
 # (13 mesures) par trois cultivateurs différents 1, 2 et 3
 #

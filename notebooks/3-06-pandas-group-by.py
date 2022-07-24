@@ -20,19 +20,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: regroupements
+#     title: "regrouper par crit\xE8res"
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # regrouper par critères
@@ -63,6 +60,7 @@ df.head(3)
 # <br>
 #
 # les passagers du Titanic sont ainsi divisés
+#
 # * en homme/femme par la colonne `Sex`
 # * en passagers de première, seconde ou troisième classe par la colonne `Pclass`
 # * en survivants ou décédés par la colonne `Survived`
@@ -115,6 +113,7 @@ df.head(3)
 # <br>
 #
 # faisons la partition de notre dataframe en
+#
 # * la sous-dataframe des hommes i.e. `male`
 # * la sous-dataframe des femmes i.e. `female`
 # * nous pourrons alors procéder à des analyses différenciées par genre
@@ -262,6 +261,7 @@ by_sex.get_group('female')
 # <br>
 #
 # la méthode `pandas.DataFrame.groupby`
+#
 # * calcule les valeurs distinctes de chaque colonne (comme dans le cas du critère unique)
 # * mais ensuite il en fait le **produit cartésien**
 # * on obtient ainsi les clés des groupes sous la forme de tuples
@@ -269,6 +269,7 @@ by_sex.get_group('female')
 # <br>
 #
 # prenons les critères `Pclass` et`Sex`
+#
 # * le premier critère a trois valeurs `1`, `2` et `3` (pour les trois classes de cabines)
 # * le second a 2 valeurs `female` et `male`
 #
@@ -520,6 +521,7 @@ for group, subdf in by_class_sex:
 # <br>
 #
 # par exemple dans la colonne des `Age`  
+#
 # * si nous faisons un groupement brutal sur cette colonne  
 # comme nous avons 88 âges différents  
 # cela ne donne pas d'information intéressante
@@ -562,6 +564,7 @@ for group, subdf in by_class_sex:
 # <br>
 #
 # `pandas.cut`
+#
 # * s'applique à une colonne de votre dataframe
 # * vous devez précisez les bornes de vos intervalles avec le paramètre `bins`  
 # * les bornes min des intervalles seront exclues  
@@ -588,9 +591,11 @@ for group, subdf in by_class_sex:
 # <br>
 #
 # remarquez  
+#
 # * on doit donner toutes les bornes des intervalles  
 #   les bornes se comportent comme des poteaux  
 #   ici 5 bornes produisent 4 intervalles  
+#
 # * les bornes min des intervalles sont bien exclues
 # * la colonne est de type `category` (cette catégorie est ordonnée)
 # * des labels sont générés par défaut
@@ -700,6 +705,7 @@ df.groupby(['Age-class', 'Survived', ]).size()
 # <br>
 #
 # exemple précis, on pourrait visualiser comme ceci
+#
 # * le taux de survie  
 # * par classe de cabine (en lignes)
 # * et par genre (en colonnes)
@@ -714,8 +720,10 @@ df.groupby(['Age-class', 'Survived', ]).size()
 # <br>
 #
 # les paramètres les plus importants sont 
+#
 # * `values` : la (ou les) colonne(s) qu'on veut regarder  
 #   ce seront les valeurs **dans le tableau**
+#
 # * `index` : la (ou les) colonne(s) utilisée(s) pour **les lignes** du résultat
 # * `columns` : idem pour **les colonnes**
 # * `aggfunc` : la fonction d'aggrégation à utiliser sur les `values`  
@@ -782,6 +790,7 @@ df.pivot_table(
 # **exercice**  
 # observez les résultats obtenus par exemple  
 # en ajoutant dans chacune des dimensions
+#
 # * comme valeur supplémentaire `Age`
 # * comme critère supplémentaire `Sex`  
 # et notamment que pouvez-vous dire des index (en lignes et en colonnes)  

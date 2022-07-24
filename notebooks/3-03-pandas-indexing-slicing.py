@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: "acc\xE8s et slicing"
+#     title: "indexation et acc\xE8s aux sous-tableaux"
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # indexation et accès aux sous-tableaux
@@ -239,9 +243,11 @@ mat
 #
 # la première **grosse différence** entre numpy et pandas  
 # est que 
+#
 # * un tableau numpy de dimension 2  
 #   est organisé en *ligne, colonne*  
 #   c'est-à-dire que `tab[i]` renvoie **une ligne**
+#
 # * mais on a vu précédemment que sur une dataframe  
 #   `df[truc]` renvoie **une colonne**  
 #   
@@ -403,6 +409,7 @@ df.loc[:, ['Name', 'Pclass']]
 #
 # **ATTENTION** pour le *slicing*  
 # il y a une **grande différence** entre `loc` et `iloc`  
+#
 # * pour `loc`: la slice **contient les bornes**  
 # * alors que pour `iloc` la borne supérieure est exclue  
 #   comme d'habitude en Python
@@ -614,6 +621,7 @@ df['Cabin'].iloc[-4:]
 
 # %% [markdown]
 # 6. fabriquez une dataframe contenant
+#
 #   * les infos des 10 dernières lignes du fichier
 #   * pour les colonnes `Name`, `Pclass` et `Survived`
 
@@ -901,20 +909,24 @@ df.loc[df['Age'] >= 71, ['Sex', 'Survived']]
 # <br>
 #
 # **le problème**
+#
 # * savoir si cette sous-partie **réfère** la dataframe initiale ou est une **copie** de la data-frame initiale 
 # * ...ça dépend du contexte
 #
 # <br>
 #
 # vous devez vous en soucier ?
+#
 # * **dès que** vous essayez de modifier des sous-parties de dataframe
 # * tant que vous ne faites que lire, tout va bien
 #
 # <br>
 #
 # en effet
+#
 # * si c'est une **copie**  
 #  votre modification ne sera **pas prise en compte** sur la dataframe d'origine
+#
 # * si c'est une **référence partagée** (une vue)  
 # vos modifications dans la sélection, seront bien **répercutées** dans les données d'origine
 #
@@ -997,6 +1009,7 @@ df.loc[df['Age'] >= 71, ['Sex', 'Survived']]
 # <br>
 #
 # **non**
+#
 # * `df['Survived'][1]` est clairement une indexation par chaînage, on voit les `[][]`
 # * ce n'est pas une référence
 # * toutes les indexations par chaînage sont des copies
@@ -1044,6 +1057,7 @@ df.loc[552, 'Survived']
 # <br>
 #
 # lors d'accès à cette sous-dataframe
+#
 # * `pandas` peut retourner une copie de la sous data-frame
 # * sauf si vous utilisez `loc` et `iloc` (correctement i.e. sans chaînage)  
 # il retourne alors une vue vers la dataframe existante
@@ -1053,6 +1067,7 @@ df.loc[552, 'Survived']
 # Qu'est-ce-qu'un chaînage ?  
 #
 # l'expression `df['Age'][889]` comporte un chaînage d'index que vous remarquez par les `[][]`  
+#
 # * on accède à la colonne d'index `Age` de la DataFrame `df`
 # * cet accès retourne la série (`pandas.Series`) représentant la colonne `df['Age']`
 # * on accède à l'index `889` de cette série
@@ -1114,6 +1129,7 @@ df['Age'][889] = 27.5
 #
 # deux possibilité lors d'extractions de sous-partie d'une dataframe  
 # (obtenue par découpage de la dataframe d'origine)
+#
 # * c'est une copie **implicite** de la dataframe: vous ne devez pas la modifier
 #
 #     ```python

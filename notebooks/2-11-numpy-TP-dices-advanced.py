@@ -19,11 +19,27 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: exercice sur le *broadcasting*
 #   notebookname: broadcasting
 # ---
 
 # %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
+
+
+# %% [markdown]
 # # exercice sur le *broadcasting*
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import numpy as np

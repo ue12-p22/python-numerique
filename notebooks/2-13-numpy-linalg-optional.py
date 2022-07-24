@@ -19,19 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: "alg\xE8bre lin\xE9aire"
 #   notebookname: "alg\xE8bre lin\xE9aire"
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import numpy as np
@@ -115,6 +114,7 @@ import numpy as np
 # <br>
 #     
 # attention au type des éléments
+#
 # * les `matrices` et les `vecteurs` seront des `numpy.ndarray`
 # * les affectations peuvent entraîner des modifications de valeurs
 #
@@ -140,6 +140,7 @@ A
 # <br>
 #     
 # une **matrice** de $m$ lignes et $n$ colonnes
+#
 # * est un tableau `numpy.ndarray`
 # * de dimension `2`  
 # * de forme `(m, n)`
@@ -160,6 +161,7 @@ A
 # ----------------------------------
 #     
 # un **vecteur** de taille $n$
+#
 # * est un `np.ndarray`
 # * de dimension `1`
 # * de forme `(n,)`
@@ -194,6 +196,7 @@ print(V.shape)
 # <br>
 #     
 # $A\cdot V$
+#
 # * `np.dot(A, V)`
 # * ou aussi `A.dot(V)`
 #     
@@ -243,6 +246,7 @@ print(A.dot(V))
 # <br>
 #     
 # $A\cdot B$
+#
 # * `np.dot(A, B)`
 # * ou aussi `A.dot(B)`
 #     
@@ -314,6 +318,7 @@ A.dot(B)
 # <br>
 #     
 # `numpy.matmul` et `np.dot`
+#
 # * se ressemblent en dimension 2
 # * la multiplication par un scalaire n'est  pas possible avec `numpy.matmul`
 # * en dimensions supérieure à 2, leur comportement diffère complètement
@@ -568,6 +573,7 @@ except np.linalg.LinAlgError as e:
 # <br>
 #  
 # `numpy.diag`
+#
 # * sur une matrice, extrait le tableau des éléments de sa diagonale
 # * sur une liste d'éléments, construit la matrice diagonale
 #
@@ -789,6 +795,7 @@ np.all(np.isclose(np.dot(A_1, A), I))
 #
 #
 # avec la fonction `numpy.linalg.eig` qui retourne
+#
 # * la liste des valeurs propres *eigen-values*
 # * et la liste des vecteurs propres *eigen-vectors*
 #
@@ -809,6 +816,7 @@ np.all(np.isclose(np.dot(A_1, A), I))
 # alpha.shape # (3,)
 # v.shape # (3, 3)  
 # ```
+#
 # * les 3 valeurs propres sont dans un vecteur
 # * les 3 vecteurs propres forment les colonnes d'une matrice
 #     
@@ -906,6 +914,7 @@ np.all(np.isclose(np.dot(M, v0),  alpha0*v0))
 # <br>
 #
 # une erreur `numpy.linalg.LinAlgError` sera levée
+#
 # * si elle n'est pas carrée
 # * si la matrice n'est pas inversible
 

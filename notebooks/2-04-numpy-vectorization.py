@@ -18,12 +18,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: vectorisation
 #   notebookname: programmation vectorielle
 # ---
 
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # vectorisation
@@ -55,6 +61,7 @@ from matplotlib import pyplot as plt
 #         
 # **l'idée**  
 # pour appliquer une fonction à tous les éléments d'un tableau `numpy`
+#
 # * de ne **jamais** utiliser une boucle `for-python`  
 # (qui calcule une indirection à chaque accès à un élément)
 # <br>    
@@ -319,18 +326,21 @@ np.power
 #
 # `if` appliqué au tableau de booléens `[False, True, False]` ne sait pas quoi faire   
 # alors il propose des solutions
+#
 # * `if` est-il vrai quand tous les éléments sont vrais ? `np.all(x)`
 # * `if` est-il vrai quand au moins un élément du tableau est vrai ? `np.any(x)`
 #    
 # <br>
 #     
 # ... mais vous ne voulez rien de tout cela  
+#
 # * vous voulez que `numpy` applique le `if` à-chaque-élément
 # * i.e. que la fonction s'exécute de manière vectorisée
 #
 # <br>
 #     
 # la **solution**
+#
 # * demander à  `numpy` de **vectoriser** la fonction avec `np.vectorize`
 # * il considérera l'argument comme un tableau
 # * sur lequel les fonctions seront appelées de manière vectorisée
@@ -458,6 +468,7 @@ absolute_vect([-10, -20, 30])
 # <br>
 #     
 # **mais** ce code est
+#
 # * beaucoup plus compliqué à écrire que dans sa version compacte, simple et *directe*
 # * il sera donc plus propice à des erreurs
 # * il est franchement très difficile à lire !
@@ -465,6 +476,7 @@ absolute_vect([-10, -20, 30])
 # <br>
 #
 # **en conclusion** ne faites surtout pas cela systématiquement
+#
 # * vous savez que ça existe
 # * vous y penserez le jour où la création de tableaux intermédiaires prendra une place bien trop importante
 #     

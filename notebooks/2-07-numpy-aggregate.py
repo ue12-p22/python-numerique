@@ -19,15 +19,27 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: "fonctions d'agr\xE9gation"
 #   notebookname: "agr\xE9gation selon les axes"
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
+
 
 # %% [markdown]
 # # fonctions d'agrégation
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import numpy as np
@@ -63,6 +75,7 @@ import numpy as np
 #     
 # les fonctions d'agrégation vont permettre de combiner les valeurs d'un même tableau  
 # et de retourner des sous-tableaux
+#
 # * somme des lignes
 # * max d'une matrice
 # * ...
@@ -190,6 +203,7 @@ type(np.min(vec))
 #     
 # **version pédestre** ... on fait la somme  
 # (`True` devient `1` et `False` `0`)
+#
 # * si le résultat est la longueur du tableau... ils sont tous vrais
 # * si le résultat est 0... ils sont tous faux
 #     
@@ -308,6 +322,7 @@ def fake_none(tab):
 # <br>
 #     
 # on peut préciser un axe avec `axis=i`
+#
 # * quand on va appliquer une opération suivant un axe  
 # cette dimension va disparaître dans le résultat  
 # <br>

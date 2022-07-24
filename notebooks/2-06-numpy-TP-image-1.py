@@ -19,15 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: TP simple avec des images
 #   notebookname: indexation & slicing
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE 12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+
+# %%
+from IPython.display import HTML
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # TP simple avec des images
@@ -75,6 +78,7 @@
 # `(r, g, b) = (0, 0, 0)` donne la couleur noire    
 # `(r, g, b) = (255, 255, 0)` donne la couleur jaune ...
 # <img src='media/synthese-additive.png' width=200>
+#
 # * pour afficher le tableau `im` comme une image, utilisez: `plt.imshow(im)`
 # * pour afficher plusieurs images dans une même cellule de notebook faire `plt.show()` après chaque `plt.imshow(...)`
 
@@ -155,13 +159,17 @@
 #     Si oui très bien, si non que se passe-t-il ?
 #     
 #     **rappel** table des couleurs
+#
 #     * `RGB` représente directement l'encodage de la couleur du pixel   
 #     et non un indice dans une table
+#
 #     * donc pour afficher des pixel avec les 3 valeurs RGB pas besoin de tables de couleurs  
 #     on a la couleur
+#
 #     * mais pour afficher une image unidimensionnelle contenant des nombres de `0` à `255`  
 #     il faut bien lui dire à quoi correspondent les valeurs  
 #     (lors de l'affichage, le `255` des rouges n'est pas le même `255` des verts)
+#
 #     * donner le paramètre `cmap=` à `plt.imshow`, `'Reds'`,  `'Greens'` ou  `'Blues'`
 #     
 #     <br>

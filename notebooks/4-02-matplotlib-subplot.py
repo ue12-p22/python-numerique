@@ -20,19 +20,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: figures et sous-figures
+#     title: grilles de figures
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # grilles de figures
@@ -54,6 +51,7 @@ import numpy as np
 # <br>
 #
 # une terminologie `matplotlib` un peu particulière
+#
 # * `fig` et `figure` désignent la figure globale
 # * `axis` désigne les sous-figures (et non les axes des figures)
 #
@@ -125,6 +123,7 @@ plt.plot(x, np.cos(x));
 # <br>
 #
 # la fonction `plt.subplots(n, m)`
+#
 # * crée une grille virtuelle de `n` lignes et `m` colonnes à l'intérieur de la figure courante  
 # * elle renvoie la figure courante et un tableau `numpy` de sous-figures
 # * où vous positionnez vos sous-figures
@@ -169,12 +168,14 @@ axes[-1, -1].plot(x, np.cos(x));
 # <br>
 #
 # on indique 3 entiers `n`, `m` et `i` à la fonction `plt.subplot`
+#
 # * soit en les séparant par des ',' soit en les donnant sous la forme d'un entier des 3 digit `nmi`
 # * `n` et `m` donnent la manière de considérer la grille
 #
 # <br>
 #
 # `plt.subplot(n, m, i)` ou `plt.subplot(nmi)` 
+#
 # * la sous-figure prendra la position `i`  
 #     1 est la figure en haut à gauche, 2 la suivante...
 #
@@ -290,6 +291,7 @@ ax4.plot(x, y, 'y'); # jaune
 # <br>
 #
 # quelques fonctions pour améliorer:
+#
 # * `fig.suptitle` pour donner un titre à la figure globale (repérée par la variable-python `fig`)
 #
 # * `ax1.set_title` pour donner un titre à la sous-figure (repérée par la variable-python `ax1`)

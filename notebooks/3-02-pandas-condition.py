@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: masques et conditions
+#     title: conditions et masques
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # conditions et masques
@@ -44,6 +48,7 @@ import numpy as np
 # <br>
 #
 # les conditions peuvent s'appliquer, selon le contexte
+#
 # * à tout un tableau
 # * ou à toute une colonne
 # * ou à toute une ligne
@@ -108,8 +113,10 @@ import numpy as np
 # <br>
 #
 # en `pandas` comme en `numpy` pour combiner les conditions  
+#
 # * on utilise `&` (et) `|` (ou) et `~` (non)  
 # ou les `numpy.logical_and`, `numpy.logical_or`, `numpy.logical_not`
+#
 # * et **pas** `and`, `or` et `not` (opérateurs `Python` non vectorisés)
 # * on parenthèse les expressions
 #
@@ -122,6 +129,7 @@ import numpy as np
 # <br>
 #
 # on pourra ensuite utiliser ces tableaux de booléens  
+#
 # * pour leur appliquer des fonctions  
 # * comme des masques pour sélectionner des sous-tableaux
 
@@ -202,6 +210,7 @@ children.value_counts()
 # la méthode `isna()` rend construit **un masque**  
 # du même type (DataFrame ou Series donc), 
 # et à valeurs booléennes  où
+#
 # * `True` signifie que la valeur est manquante
 # * `False` que la valeur ne l'est pas
 #
@@ -276,6 +285,7 @@ np.sum(df['Age'].isna()), sum(df['Age'].isna())
 #
 # la méthode `isna()` s'applique aussi à une dataframe  
 # et elle retourne une **dataframe de booléens** où - sans surprise :  
+#
 # * `True` signifie que la valeur est manquante
 # * `False` que la valeur ne l'est pas
 #
@@ -395,6 +405,7 @@ df.isna().sum(axis=1)
 # <br>
 #
 # différence avec `numpy`, si on appelle sans préciser `axis`
+#
 # * avec **numpy**: on obtient le résultat **global**  
 # * avec **pandas**: par défaut `axis=0`, on agrège sur l'axe des lignes (par colonne)
 #

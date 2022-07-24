@@ -18,19 +18,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: "la m\xE9moire"
 #   notebookname: les types en numpy
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE 12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # la mémoire
@@ -60,6 +59,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #     
 # pour prendre des décisions en connaissance de cause  
+#
 # * savoir les conséquences de vos choix
 # * comprendre les erreurs  
 # (conversions implicites...)
@@ -67,18 +67,21 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #     
 # pour ne pas être dépourvu le jour où votre code, en se complexifiant
+#
 # * devient beaucoup trop lent
 # * prend beaucoup trop d'espace mémoire
 #     
 # <br>
 #
 # pour vous familiariser avec l'informatique et comprendre
+#
 # * les mécanismes sous-jacents 
 # * les choix des concepteurs
 #     
 # <br>
 #     
 # pour vous faire une petite culture en informatique technique
+#
 # * ne jamais penser que c'est magique, incompréhensible, trop compliqué...
 # * le plus souvent c'est simplement logique
 
@@ -120,11 +123,13 @@ mat.nbytes
 # <br>
 #     
 # **homogène**  
+#
 # * toutes les cases du tableau ont le même type
 # * donc elles occupent la même taille en mémoire
 # <br>
 #     
 # **taille fixe**  
+#
 # * une fois un tableau créé, on ne peut plus modifier la taille de ses éléments  
 # i.e. le nombre d'octets sur lequel chaque élément est stocké en mémoire est fixe
 #     
@@ -141,6 +146,7 @@ mat.nbytes
 # <br>
 #     
 # pourquoi ces **contraintes** ?  
+#
 # * pour que `numpy` soit le plus rapide possible dans ses manipulations de tableaux
 # * grâce à ces contraintes, passer d'une case du tableau à une autre  est très rapide
 # </div>
@@ -211,6 +217,7 @@ mat.nbytes
 # <br>
 #     
 # pour un tableau, on sait maintenant
+#
 # * que la taille des éléments est homogène  
 # * que le bloc est contigu en mémoire
 #     
@@ -225,6 +232,7 @@ mat.nbytes
 #     
 #     
 # l'idée de n'avoir pas d'indirection est
+#
 # * quand on arrive dans une case du tableau
 # * elle contient la valeur qu'on cherche 
 # * on n'a pas besoin d'aller ailleurs en mémoire
@@ -236,6 +244,7 @@ mat.nbytes
 # <br>
 #     
 # si toutes les cases d'un même tableau en informatique ont la même taille, comment puis-je
+#
 # * y "*mettre*"  des élément hétérogènes ? entier, réel, string... 
 # * modifier ces éléments sans réallouer le tableau ?
 #     
@@ -250,6 +259,7 @@ mat.nbytes
 # <br>
 #
 # en `python`, dans une case d'un vecteur (`list`)
+#
 # * on ne trouve pas l'objet lui même (`1` ou `"bonjour"`)
 # * mais l'**adresse** en mémoire de l'endroit où l'objet a été alloué
 #     
@@ -352,6 +362,7 @@ mat.nbytes
 # <br>
 #
 # `numpy` crée sur cette base, un système d'indexation
+#
 # * pour *considérer* le tableau sous une forme (`shape`) multi-dimensionnelle
 
 # %% [markdown]
@@ -567,6 +578,7 @@ print(seg)
 # <br>
 #
 # les deux objets  `tab` et `tab1` de type `numpy.ndarray`
+#
 # * sont des objets différents (leurs index sont différents)
 # * mais ils ont le même segment sous-jacent de données
 # * toucher l'un a pour effet de modifier l'autre
@@ -580,6 +592,7 @@ print(seg)
 # <br>
 #     
 # pour les tableaux `numpy.ndarray` en dimension supérieure ou égale à 2
+#
 # * les deux dernières valeurs de leur forme  `tab.shape`   
 # sont leur nombre de ligne et leur nombre de colonne
 #     

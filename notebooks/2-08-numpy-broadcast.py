@@ -19,19 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: '*broadcasting*'
 #   notebookname: broadcasting
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE 12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # *broadcasting*
@@ -611,6 +610,7 @@ grp+mat
 # def are_broadcast_compatible(shape1, shape2):
 #     ...
 # ```
+#
 # * faites une fonction de test qui crée deux tableaux en `numpy`, les ajoute et renvoie `True` si l'addition fonctionne et `False` sinon
 # ```python
 # def test_compatibility(shape1, shape2):

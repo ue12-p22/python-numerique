@@ -19,19 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: suite du TP simple avec des images
 #   notebookname: indexation & slicing
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # suite du TP simple avec des images
@@ -50,10 +49,12 @@ from matplotlib import pyplot as plt
 # **notions intervenant dans ce TP**
 #
 # sur les tableaux `numpy.ndarray`
+#
 # * `reshape()`, tests, masques booléens, *ufunc*, agrégation, opérations linéaires sur les `numpy.ndarray`
 # * les autres notions utilisées sont rappelées (très succinctement)
 #
 # pour la lecture, l'écriture et l'affichage d'images
+#
 # * utilisez `plt.imread`, `plt.imshow`
 # * utilisez `plt.show()` entre deux `plt.imshow()` dans la même cellule
 #
@@ -63,6 +64,7 @@ from matplotlib import pyplot as plt
 # * nous ne signifions pas là du tout que ce sont les meilleures  
 # par exemple `matplotlib.pyplot.imsave` ne vous permet pas de donner la qualité de la compression  
 # alors que la fonction `save` de `PIL` le permet
+#
 # * vous êtes libres d'utiliser une autre librairie comme `opencv`  
 #   si vous la connaissez assez pour vous débrouiller (et l'installer), les images ne sont qu'un prétexte
 #
@@ -89,6 +91,7 @@ from matplotlib import pyplot as plt
 # <br>
 #
 # 1. Faites une fonction `patchwork` qui  
+#
 #    * prend une liste de couleurs et la structure donnant le code des couleurs RGB
 #    * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
 #    * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  

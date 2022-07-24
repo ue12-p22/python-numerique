@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: read_csv et dataframe
+#     title: "Python-num\xE9rique - les tables de donn\xE9es"
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # Python-numérique - les tables de données
@@ -34,6 +38,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # nous avons vu quelques fonctions de `numpy`, pour manipuler les `numpy.ndarray` qui sont des tableaux
+#
 # * multidimensionnels
 # * homogènes
 # * d'éléments de taille fixe
@@ -41,6 +46,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # il existe d'autres **tables de données**, très fréquentes en data-science où on a:
+#
 # * une observation par ligne (ici les passagers du Titanic)  
 # * plusieurs informations par observation  
 # * les différentes informations forment les colonnes de la table
@@ -57,6 +63,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # format de fichier, le plus simple, pour stoquer ces tables ? 
+#
 # * une observation par ligne
 # * dans chaque ligne, les informations séparées par un caractère choisi au préalable  
 # (qui sera le même pour tout le fichier)
@@ -69,6 +76,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # voici le début du fichier `titanic.csv`, notez:
+#
 # * le séparateur `,` sans espace autour
 # * dans `"Sharp, Mr. Percival James R"` un *faux* séparateur `,` dans une chaîne
 # * dans la première ligne, les noms des colonnes (pas obligatoire)
@@ -214,6 +222,7 @@ df.head(2)
 #
 # sur une `DataFrame`, elle vous donne  
 # pour chaque colonne **de type numérique**
+#
 # * le nombre de valeurs non-manquantes (voir colonne `Age`)
 # * la moyenne
 # * l'écart-type
@@ -238,9 +247,11 @@ df.head(2)
 # <br>
 #  
 # on remarque que `pandas.DataFrame.describe`
+#
 # * a, par défaut, appliqué les calculs sur **les colonnes numériques**  
 # même quand ça n'a pas forcément beaucoup d'intérêt - voir `Survived` ou `Pclass`  
 # qui sont plutôt des catégories
+#
 # * n'a rien fait sur les colonnes non-numériques
 #
 # <br>
@@ -254,6 +265,7 @@ df.head(2)
 #
 # ou forcer la méthode à s'appliquer à **toutes les colonnes**  
 # pour les colonnes non-numériques, seront affichés à la place
+#
 # * le nombre de valeurs
 # * le nombre de valeurs `unique`s
 # * la valeur la plus fréquente `top`
@@ -306,6 +318,7 @@ df['Sex'].describe()
 # <br>
 #
 # la clé pour comprendre `pandas`:
+#
 # * **les lignes et les colonnes ont des index**
 # * les opérations sur ces index sont **le plus efficace possible**
 # * (on verra par la suite que les lignes et les colonnes ont aussi naturellement des indices, i.e. de `0` à `n-1`)
@@ -315,17 +328,22 @@ df['Sex'].describe()
 # **la notion d'index**
 #
 # un constat  
+#
 # * rechercher dans une liste est très inefficace  
 # (en moyenne $n/2$ essais pour localiser un élément)
 #
 # **l'idée**
+#
 # * trouver une caractéristique qui identifie une observation de manière unique  
 # (genre *numéro de sécurité sociale* pour un individu)
+#
 # * calculer un index à partir de cette caractéristique  
 # qui soit *le plus unique* possible (pour avoir peu de collisions)
+#
 # * utiliser cet index comme entrée dans une table
 # * la recherche peut alors être considérée comme en temps constant  
 #   comme l'accès à un élément d'un tableau
+#
 # * c'est la technique des **tables de hachage** (comme les `dict` ou `set` Python)
 #
 # <br>
@@ -343,6 +361,7 @@ df['Sex'].describe()
 #
 # dans notre fichier du Titanic seules les colonnes ont un nom  
 # (les lignes n'en ont pas), du coup:
+#
 # * les **colonnes** ont été **indexées par leur nom**
 # * les **lignes** ont été **indexées par leur indice**  
 # i.e. une simple numérotation à partir de 0  
@@ -385,12 +404,14 @@ df.columns[0]
 # <br>
 #
 # une table `pandas` est un "dictionnaire"
+#
 # * où les clés sont les noms des colonnes
 # * où les valeurs sont les colonnes (de type `Series`)
 #
 # <br>
 #
 # accès à la colonne `Age` de la data-frame du Titanic
+#
 # * on remarque les `891` entrées
 # * on remarque les indices des lignes de `0` à `890` 
 # * on constate que le type des éléments de cette colonne est `float64`
@@ -597,6 +618,7 @@ df['Name'][552]
 # <br>
 #
 # les **index** c'est quand on utilise des valeurs fournies par l'utilisateur, comme
+#
 # * les **noms** de colonnes
 # * ou les **identifiants** de lignes  
 #   par ex. plus haut `552` est l'index de la première ligne parce que  
@@ -644,11 +666,13 @@ df['Name'][552]
 #               556, 236, 224, 598, 258, 463, 287, 326, 396, 832],
 #              dtype='int64', name='PassengerId', length=891)
 # ```
+#
 # * les index des lignes sont les valeurs de la colonne `PassengerId`
 #
 # <br>
 #
 # faisons l'indexation précédente en deux coups  
+#
 # * on lit la data-frame du titanic  
 # * on modifie son index par la colonne `PassengerId` avec la méthode `set_index`  
 # remarquez le `inplace` 
@@ -734,6 +758,7 @@ df.index
 # <br>
 #
 # `pandas` apporte
+#
 # * l'indexation du tableau
 # * des fonctions pratiques et de haut-niveau pour manipuler cette table de données
 

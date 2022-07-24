@@ -19,19 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: indexation et *slicing*
 #   notebookname: indexation & slicing
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE 12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %%
 import numpy as np
@@ -93,6 +92,7 @@ from matplotlib import pyplot as plt
 # </div>
 #     
 # peut être indexé sous différentes dimensions et formes
+#
 # * dimension 1, par exemple $(12,)$
 # * dimension 2, par exemple $(1, 12)$ $(6, 2)$ $(3, 4)$ $(4, 3)$
 # * dimension 3, par exemple $(2, 3, 2)$...
@@ -120,6 +120,7 @@ from matplotlib import pyplot as plt
 # Quelle est la valeur de `tab[0]` ?    
 #
 # rappelez-vous
+#
 # * les éléments d'un tableaux `numpy` sont typés et leur taille est fixe
 #
 # <br>
@@ -202,6 +203,7 @@ tab1[0].dtype, tab1[0]
 #     
 # remarque  en dimension $\ge2$  
 # les deux dernières dimensions sont les lignes et les colonnes
+#
 # * ainsi le nombre de lignes c'est `tab.shape[-2]`
 # * et de colonne`tab.shape[-1]`
 
@@ -259,6 +261,7 @@ tab
 #
 #
 # indice   
+#
 # * utilisez `numpy.random.randint`
 # * son `help` vous dira comment passer la forme au tableau à sa création  
 # (celui de `np.random.randint` selon la manière d'importation de `numpy` )
@@ -280,14 +283,17 @@ tab
 # <br>
 #     
 # la **grande** différence est que
+#
 # * quand vous slicez un **tableau `numpy`** vous obtenez une **vue** sur le tableau initial  
 # (avec une nouvelle indexation)
+#
 # * quand vous slicez une **liste `python`** vous obtenez une **copie** de la liste initiale
 #
 #    
 # <br>
 #     
 # le slicing `numpy` va
+#
 # * regrouper des éléments du tableau initial
 # * dans un sous-tableau `numpy.ndarray` avec l'indexation adéquate
 # * la mémoire sous-jacente reste la même
@@ -466,6 +472,7 @@ print(    tab[0, 1, :, 3]    )
 # <br>
 #     
 # à savoir    
+#
 # * quand vous voulez la valeur par défaut de `from`, `to` et `step` vous ne mettez rien
 # * quand les valeurs par défaut sont en fin d'expression, elles sont optionnelles
 # * `::` devient `:`
@@ -513,12 +520,14 @@ tab[:, 0]
 # on a 2 groupes de 3 matrices de 4 lignes et 5 colonnes
 #
 # donc
+#
 # * pour les 2 groupes de matrices
 # * dans la première matrice
 # * la sous-matrice du milieu
 # (obtenue en enlevant une épaisseur de largeur 1 sur le pourtour)  
 #
 # donc
+#
 # * tous les groupes `:`
 # * la première matrice (indice `0`)
 # * de la première ligne (indice `1`) à l'avant dernière ligne (indice `-1`) step par défaut
@@ -544,6 +553,7 @@ tab[:, 0]
 # <br>
 #     
 # **donc lors d'un slicing**
+#
 # * un nouvel objet `np.ndarray` est bien créé,
 # * son indexation est différente de celle de l'objet `np.ndarray` initial
 # * mais ils **partagent** la mémoire (le segment unidimensionnel sous-jacent)
@@ -625,9 +635,11 @@ tab[:, 0]
 #     
 #     
 # les `numpy.ndarray` ayant le même objet `numpy.ndarray.base`
+#
 # * partagent tous leur segment sous-jacent
 # * sont différentes vues d'un même tableau original  
 # (celui indiqué par leur attribut `base`)
+#
 # * modifier les éléments de l'un modifiera les éléments des autres  
 # (ils *pointent tous* sur le même segment de mémoire)
 #     

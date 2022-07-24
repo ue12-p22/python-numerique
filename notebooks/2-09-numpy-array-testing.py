@@ -19,19 +19,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: tests et masques sur tableaux
 #   notebookname: masques pour tester les tableaux
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>ue12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # tests et masques sur tableaux
@@ -130,6 +129,7 @@ print(res.shape)
 # <br>
 #         
 # les opérations de comparaison s'appliquent à tous les éléments d'un tableau en une seule fois  
+#
 # * il ne faut **jamais** utiliser de **for-python**
 # * les fonctions sont vectorisées (les *UFuncs*)
 #
@@ -155,6 +155,7 @@ np.greater(tab, 5)
 #     
 #     
 # **les résultats** peuvent être combinés
+#
 # * en un résultat **global**
 # * en des **sous-tableaux** de résultats
 #     
@@ -239,6 +240,7 @@ np.count_nonzero(tab%2==0, axis=0)
 # <br>
 #     
 # le tableau des résultats des tests est un **masque booléen**  
+#
 # * il a la **même forme** que le tableau initial
 # * il va servir de **filtre** sur le tableau initial
 #     
@@ -262,6 +264,7 @@ np.count_nonzero(tab%2==0, axis=0)
 # ```python
 # tab[tab > 0]
 # ```
+#
 # * ou encore
 # ```python
 # tab[np.greater(tab, 0)]
@@ -299,12 +302,15 @@ tab
 # <br>
 #     
 # 4 règles
+#
 # * vous ne pouvez **pas** utiliser les opérateurs logiques Python `and`, `or`, `not`  
 #   (ils ne sont **pas** vectorisés)
+#
 # * vous devez utiliser les opérateurs logiques *bit-à-bit* `&` `|`  `~`
 # * ou leur équivalent en fonction `numpy`  
 #   `np.logical_and` `np.logical_or` `np.logical_not`  
 #   (qui sont binaires)
+#
 # * vous devez parenthéser les sous-termes de vos expressions
 #     
 # <br>
@@ -465,6 +471,7 @@ print(tab)
 # <br>
 #     
 # et pour calculer ces indices, deux fonctions:
+#
 # * la fonction `numpy.nonzero`
 # * la fonction `numpy.argwhere` (avancé)
 
@@ -477,6 +484,7 @@ print(tab)
 # <br>
 #     
 # `numpy.nonzero`
+#
 # * renvoie un tuple de même dimension que le tableau d'origine
 # * dans chaque dimension, on a la liste des indices
 #     
@@ -540,6 +548,7 @@ print("edited tab", tab)
 # <br>
 #     
 # `numpy.argwhere`
+#
 # * renvoie un tableau de dimension 2
 # * autant de lignes que d'éléments filtrés
 # * chaque ligne donne l'index d'un élément  
@@ -576,6 +585,7 @@ print("edited tab", tab)
 # <br>
 #     
 # on remarque
+#
 # * que les résultats de `numpy.nonzero` et  `numpy.argwhere` sont très proches
 # * à une transposée et un type `tuple` près
 #     

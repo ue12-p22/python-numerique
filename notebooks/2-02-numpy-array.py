@@ -11,26 +11,25 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: les tableaux
 #   notebookname: "intro \xE0 numpy"
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # les tableaux
@@ -155,6 +154,7 @@ import numpy as np
 # <br>
 #     
 # nous n'avons indiqué
+#
 # * ni la forme du tableau
 # * ni le type des éléments
 #
@@ -343,8 +343,10 @@ print(mat.ndim, len(mat.shape))
 #     
 #     
 # on peut donc utiliser le type  
+#
 # * `numpy.int8` pour le type des entiers signés sur 8 bits  
 #   $256$ valeurs de $-128$ à $127$
+#
 # * le type correspondant sera `numpy.int8` (entier signé sur 8 bits)
 #     
 # <br>
@@ -628,6 +630,7 @@ zorro1
 # <br>
 #     
 # **utilité ?**
+#
 # * ne pas perdre de temps à initialiser inutilement un tableau
 # * quand vous n'allez jamais utiliser la valeur initiale des éléments
 
@@ -648,6 +651,7 @@ zorro1
 # <br>
 #
 # `numpy.arange(from, to, step)`
+#
 # * nombres équidistants de `step` sur l'intervalle `[from, to[`  
 # * n'utilisez pas un incrément (step) non entier
 #     
@@ -657,6 +661,7 @@ zorro1
 #     
 #     
 # `numpy.linspace(from-included, to-included, n)`
+#
 # * `n` réels régulièrement espacés dans un intervalle
 # * la valeur supérieure de l'intervalle **est** incluse
 
@@ -755,6 +760,7 @@ np.random.randint(10, 20, size=(2, 3, 5))
 # <br>
 #
 # la librairie `numpy.random`
+#
 # * contient plus de fonctionnalités pour le calcul scientifiques que `random.random`  
 # * sait manipuler efficacement des tableaux `numpy.ndarray`
 #

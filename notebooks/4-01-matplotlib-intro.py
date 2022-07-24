@@ -20,19 +20,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: "intro \xE0 matplotlib"
+#     title: "Python-num\xE9rique - visualisation des donn\xE9es"
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # Python-numérique - visualisation des données
@@ -60,6 +57,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # elle est devenue **la** librairie la plus populaire pour le dataviz en Python avec
+#
 # * une communauté de développeurs/utilisateurs très active
 # * les autres librairies sont, le plus souvent, dérivées de `matplotlib`
 #
@@ -76,6 +74,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 # <br>
 #
 # vous allez y trouver toutes les fonctions classiques:
+#
 # * courbes, histogrammes, box-plots, nuages de points, plot3D, grilles de figures ...
 # * que vous allez pouvoir les personnaliser avec des textes, titres, étiquettes, légendes ...
 # * dont vous allez pouvoir contrôler les couleurs, styles de ligne, propriétés de police ...
@@ -322,6 +321,7 @@ plt.title('sinus(X)', fontsize=20, loc='left');
 # <br>
 #
 # la fonction `plt.figure` permet
+#
 # * de créer une nouvelle figure ou d'en activer une existante
 # * et aussi de passer différents paramètres à la figure courante  
 # dont sa **taille**

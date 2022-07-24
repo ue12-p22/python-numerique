@@ -18,19 +18,18 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
+#   nbhosting:
+#     title: "Python-num\xE9rique - introduction"
 #   notebookname: "intro \xE0 numpy"
 # ---
 
 # %% [markdown]
-# <div class="licence">
-# <span>Licence CC BY-NC-ND</span>
-# <span>UE12</span>
-# <span><img src="media/ensmp-25-alpha.png" /></span>
-# </div>
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown] tags=["framed_cell"]
 # **Note**: cette cellule doit s'afficher entourée d'un cadre  
@@ -144,6 +143,7 @@ print(f'matplotlib version {mpl.__version__}')
 # <br>
 #     
 # en data-science on peut avoir de **très grandes quantités** de données
+#
 # * le stockage des données en mémoire doit être **optimisé**  
 #     (en **espace mémoire** et en **temps d'accès** à cet espace mémoire)
 # <br>
@@ -172,6 +172,7 @@ print(f'matplotlib version {mpl.__version__}')
 #
 # -------------------------------------------------
 # 2. des **tables** d'observations où
+#
 #    * chaque **observation** (*lignes*)...
 #    
 #    * ...est décrite par une ou plusieurs **mesures** (*colonnes*)
@@ -187,6 +188,7 @@ print(f'matplotlib version {mpl.__version__}')
 #    
 # ---------------------------------
 # 3. des **séries temporelles**
+#
 #    * on affiche ici les valeurs cumulées des infections au covid de janvier à août 2020 en France
 #    
 # <img src='media/corona-france.jpg' width="500"></img>
@@ -369,6 +371,7 @@ print(f'matplotlib version {mpl.__version__}')
 # <br>
 #
 # les valeurs des pixels RGB
+#
 # * ici, des entiers prenant 256 valeurs
 # * $2^8$ valeurs de 0 à 255  
 # * pour les stocker il suffit donc d'entiers non-signés sur 8 bits  
@@ -395,6 +398,7 @@ print(f'matplotlib version {mpl.__version__}')
 # <br>
 #     
 # comme un `max` ou un `min`
+#
 # * le passager le plus agé ou le plus jeune du titanic
 # * les pixels les plus clairs ou les plus foncés
 # * les minima ou maxima des lignes de la matrice

@@ -19,12 +19,16 @@
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
 #   nbhosting:
-#     title: TP - type des colonnes
+#     title: TP sur les types des colonnes
 # ---
+
+# %% [markdown]
+# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML('<link rel="stylesheet" href="slides-notebook.css" />')
+HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 # %% [markdown]
 # # TP sur les types des colonnes
@@ -67,6 +71,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 #
 #  * il s'agit donc pour nous d'apppliquer la méthode `upper`
 #    à toutes les chaînes de caractères (`str`) de  la colonne `df['Name']`
+#
 #  * les `pandas.Series` formées de chaînes de caractères sont, par défaut, du type `pandas` `object`
 #  * ces colonnes ont un accesseur `str` (par exemple ici `df['Names'].str`)
 #  * cet attribut permet d'accéder aux méthodes classiques des `str` (comme par exemple `upper()`)
@@ -91,6 +96,7 @@ HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 #    en effet, la colonne `'Name'` serait mieux définie par un type catégorie `'category'`  
 #    
 #    **rappels** sur la fonction `pandas.Series.astype`  
+#
 #    * elle possède un paramètre `copy` qui, par défaut, est à `True`
 #    * cela signifie que, sans indication spécifique, cette fonction retourne une copie de la colonne
 #    <br>
