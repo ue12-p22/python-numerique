@@ -3,31 +3,10 @@ root: 0-00-intro
 parts:
 - caption: "numpy"
   chapters:
-  - file: 2-01-numpy-introduction
-  - file: 2-02-numpy-array
-  - file: 2-03-numpy-memory
-  - file: 2-04-numpy-vectorization
-  - file: 2-05-numpy-indexing-slicing
-  - file: 2-06-numpy-TP-image-1
-  - file: 2-07-numpy-aggregate
-  - file: 2-08-numpy-broadcast
-  - file: 2-09-numpy-array-testing
-  - file: 2-10-numpy-TP-image-2
-  - file: 2-11-numpy-TP-dices-advanced
-  - file: 2-12-numpy-TP-sound-advanced
-  - file: 2-13-numpy-linalg-optional
+  - glob: 2-*
 - caption: "pandas"
   chapters:
-  - file: 3-01-pandas-read-csv
-  - file: 3-02-pandas-condition
-  - file: 3-03-pandas-indexing-slicing
-  - file: 3-04-pandas-TP-sorting
-  - file: 3-05-pandas-TP-type-columns
-  - file: 3-06-pandas-group-by
-  - file: 3-07-pandas-create-aggregate
-  - file: 3-08-pandas-TP-covid
+  - glob: 3-*
 - caption: "matplotlib"
   chapters:
-  - file: 4-01-matplotlib-intro
-  - file: 4-02-matplotlib-subplot
-  - file: 4-03-matplotlib-pandas-dataframe
+  - glob: 4-*
