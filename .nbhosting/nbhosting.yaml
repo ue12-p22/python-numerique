@@ -4,8 +4,10 @@ tracks:
     description: "calcul scientifique et data en Python"
     id: python-num
     sections:
+      - name: petit test Python
+        notebooks: [ "notebooks/1-00*.py"]
       - name: rappels Python
-        notebooks: [ "notebooks/1-[0-9]*.py"]
+        notebooks: [ "notebooks/1-[1-9]*.py"]
       - name: numpy
         notebooks: [ "notebooks/2-[0-9]*.py"]
       - name: pandas

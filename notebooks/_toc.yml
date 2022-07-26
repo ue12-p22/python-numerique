@@ -3,7 +3,8 @@ root: 0-00-intro
 parts:
 - caption: "rappels Python"
   chapters:
-  - glob: 1-*
+  # remove the test (numbered 1-00) from the HTML output
+  - glob: 1-[1-9]*
 - caption: "numpy"
   chapters:
   - glob: 2-*
