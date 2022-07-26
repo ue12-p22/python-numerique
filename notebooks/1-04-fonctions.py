@@ -274,7 +274,7 @@ driver()
 
 
 # %% [markdown] cell_style="split"
-# ![uncaught](media/except-stack-uncaught.png)
+# ![uncaught](media/except-stack-uncaught.svg)
 
 # %% cell_style="split" slideshow={"slide_type": "slide"}
 # cette fois tout est
@@ -290,7 +290,7 @@ driver_try()
 
 
 # %% [markdown] cell_style="split"
-# ![try](media/except-stack-try.png)
+# ![try](media/except-stack-try.svg)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## clause `except`
