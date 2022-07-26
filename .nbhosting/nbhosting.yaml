@@ -4,6 +4,8 @@ tracks:
     description: "calcul scientifique et data en Python"
     id: python-num
     sections:
+      - name: rappels Python
+        notebooks: [ "notebooks/1-[0-9]*.py"]
       - name: numpy
         notebooks: [ "notebooks/2-[0-9]*.py"]
       - name: pandas

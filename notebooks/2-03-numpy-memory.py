@@ -20,7 +20,6 @@
 #     pygments_lexer: ipython3
 #   nbhosting:
 #     title: "la m\xE9moire"
-#   notebookname: les types en numpy
 # ---
 
 # %% [markdown]
@@ -29,6 +28,7 @@
 # %%
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 
 # %% [markdown]

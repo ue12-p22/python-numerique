@@ -21,7 +21,6 @@
 #     pygments_lexer: ipython3
 #   nbhosting:
 #     title: exercice sur le *broadcasting*
-#   notebookname: broadcasting
 # ---
 
 # %% [markdown]
@@ -30,7 +29,6 @@
 # %%
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
-
 
 
 # %% [markdown]

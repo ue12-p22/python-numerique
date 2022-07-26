@@ -1,6 +1,9 @@
 format: jb-book
 root: 0-00-intro
 parts:
+- caption: "rappels Python"
+  chapters:
+  - glob: 1-*
 - caption: "numpy"
   chapters:
   - glob: 2-*

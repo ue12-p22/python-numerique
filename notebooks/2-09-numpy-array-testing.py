@@ -21,7 +21,6 @@
 #     pygments_lexer: ipython3
 #   nbhosting:
 #     title: tests et masques sur tableaux
-#   notebookname: masques pour tester les tableaux
 # ---
 
 # %% [markdown]
@@ -30,6 +29,7 @@
 # %%
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
+
 
 
 # %% [markdown]
