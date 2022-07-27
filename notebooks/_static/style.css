@@ -1,3 +1,25 @@
+/* notes */
+.note {
+    font-style: italic;
+    font-size: 80%;
+}
+
+.grey {
+    background-color: #eee;
+}
+
+.blue {
+    background-color: rgb(223, 235, 251);
+}
+
+.red {
+    background-color: rgb(234, 125, 110);
+}
+
+.pink {
+    background-color: pink;
+}
+
 /*
  * leveraging nb-courselevels
  * the first entry in a framed cell
@@ -14,28 +36,20 @@ div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
         text-decoration-style: double;
 }
 
-/* ----------- specific to this course */
-/* used in the notebook on memory layout */
-.memory {
-    font-size: 180%;
-    line-height: 1.2;
-}
-
 /*
  * jupyter has its own way to render lists
  * which, let's just say, is not optimal
  * cancelling that tweaking would
  * amount to do the following
  */
-/*
 .rendered_html * + ol,
 .rendered_html * + ul {
     margin-top: initial !important;
 }
-*/
 
-/* notes */
-.note {
-    font-style: italic;
-    font-size: 80%;
+/* ----------- specific to this course */
+/* used in the notebook on memory layout */
+.memory {
+    font-size: 180%;
+    line-height: 1.2;
 }

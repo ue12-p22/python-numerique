@@ -1,4 +1,25 @@
 <style>
+.note {
+    font-style: italic;
+    font-size: 80%;
+}
+
+.grey {
+    background-color: #eee;
+}
+
+.blue {
+    background-color: rgb(223, 235, 251);
+}
+
+.red {
+    background-color: rgb(234, 125, 110);
+}
+
+.pink {
+    background-color: pink;
+}
+
 
 
 
@@ -12,18 +33,15 @@ div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
         text-decoration-style: double;
 }
 
+
+
+.rendered_html * + ol,
+.rendered_html * + ul {
+    margin-top: initial !important;
+}
+
 .memory {
     font-size: 180%;
     line-height: 1.2;
-}
-
-
-
-
-
-
-.note {
-    font-style: italic;
-    font-size: 80%;
 }
 </style>
