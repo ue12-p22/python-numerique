@@ -1,0 +1,13 @@
+########## STYLE
+# we need 2 forms:
+# for jupyterbook, _static/style.css is a pure CSS file
+# the local variant style.html is derived from the former
+# but embedded in a <style> tag
+style: _static/style.html
+
+_static/style.html: _static/style.css
+	(echo '<style>'; \
+	cat $^ | sed -n '/^\/\*.*\*\//!p' | sed -n '/ \/\/.*/!p' | sed 's|/\*|\n&|g;s|*/|&\n|g' | sed '/\/\*/,/*\//d'; \
+	echo '</style>') > $@
+
+.PHONY: style

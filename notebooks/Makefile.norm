@@ -1,0 +1,18 @@
+########## NORMALIZING
+# is about applying applying the contents
+# of .style and .license, and set nbhosting.title metadata
+# use pip install nbnorm to install
+
+# default settings are these
+# -l1: use 1st cell as the the license cell
+# -s2: use 2nd cell as the style cell
+# -t h1: use the first header1 to fill in nbhosting.title
+
+# to override, define NBNORMFLAGS before including this recipe
+ifeq ($(NBNORMFLAGS),)
+NBNORMFLAGS = -l1 -s2 -t h1
+endif
+
+
+norm:
+	nbnorm $(NBNORMFLAGS) $(NOTEBOOKS)
