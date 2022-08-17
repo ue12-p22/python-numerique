@@ -15,3 +15,5 @@ nbautoeval
 nb-courselevels
 
 rise
+
+nbprune

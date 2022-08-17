@@ -30,7 +30,6 @@ from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
 
-
 # %% [markdown]
 # # les tableaux
 
@@ -422,6 +421,14 @@ mat
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+l = [[  0,   8,  34,   8],
+     [255,  61, 128, 254]]
+print(    np.array(l, dtype=np.uint8)    )
+
+print(    np.array(l, dtype=np.int8)    )
+
 # %% [markdown] tags=["framed_cell"]
 # ### modifier le type des éléments d'un tableau existant    
 # <br>
@@ -621,6 +628,11 @@ zorro1
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+print(    zorro.dtype    )
+np.zeros(shape=(2, 5, 3), dtype=np.uint8)
+
 # %% [markdown] tags=["framed_cell"]
 # ### tableau non-initialisé `numpy.empty`
 # <br>
@@ -644,6 +656,11 @@ zorro1
 
 # %%
 # votre code ici
+
+# %%
+# prune-cell
+tab = np.empty(shape=(3, 5), dtype=np.int8)
+print(tab) # n'importe quelles valeurs entre -128 et 127
 
 # %% [markdown] tags=["framed_cell"]
 # ### tableau de valeurs régulièrement espacées
@@ -791,6 +808,11 @@ np.random.randn(2, 3, 1)
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+img = np.random.randint(0, 256, size=(10, 10, 3), dtype=np.uint8)
+plt.imshow(img);
+
 # %% [markdown] tags=["level_intermediate", "framed_cell"]
 # ## comparaison des temps de création tableaux - avancé
 # <br>
@@ -863,3 +885,20 @@ a + 1
 
 # %% tags=["level_intermediate"]
 # votre code ici
+
+# %%
+# prune-cell
+n = 10000
+l = [0]*n
+
+# %%
+# prune-cell
+# %timeit np.array(l)
+
+# %%
+# prune-cell
+# %timeit np.zeros(shape=(n))
+
+# %%
+# prune-cell
+# %timeit np.empty(shape=(n))
