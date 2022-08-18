@@ -1,0 +1,8 @@
+SOLUTIONS = $(shell find . -name '*.py' -o -name '*.md' \
+  | egrep -- '-corrige\.|-howto\.|\.teacher' \
+  | grep -v .ipynb_checkpoints)
+
+FLAGS = -v
+
+prune:
+	nbprune $(FLAGS) $(SOLUTIONS)
