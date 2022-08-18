@@ -73,7 +73,34 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # <br>
 
 # %%
+# prune-cell
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# %%
 # #pd.read_csv?
+
+# %%
+# prune-cell
+cols = ['PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age', 'Fare' ]
+df = pd.read_csv('titanic.csv', index_col='PassengerId', usecols=cols)
+print(  df.dtypes  )
+df.head()
+
+# %%
+# prune-cell
+plt.plot(df.index, df['Age'], 'rs');
+
+# %%
+# prune-cell
+# qu'on aurait pu d'ailleurs faire aussi comme ceci
+df.Age.plot(style='rs');
+
+# %%
+# prune-cell
+plt.plot(df['Age'], 'b.');
+# par défaut, plt plot en fonction des index
 
 # %% [markdown]
 # ## tri des lignes d'une dataframe
@@ -109,6 +136,26 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. plotez la colonne dans l'ordre des ages croissants
 # <br>
 
+# %%
+# prune-cell 1. et 2.
+# on trie dans l'axe des lignes donc `axis=0`
+df_sorted = df.sort_values(by='Pclass', ascending=True, axis=0).copy()
+df_sorted.head(4)
+
+# %%
+# prune-cell 3. et 4.
+# on trie en place et dans l'axe des lignes
+df_sorted.sort_values(by='Age', ascending=True, axis=0, inplace=True)
+df_sorted.head(4)
+
+# %%
+# prune-cell 5.
+plt.plot(df_sorted['Age'], 'b.');
+
+# %%
+# prune-cell 6.
+plt.plot(range(len(df_sorted)), df_sorted['Age'], 'r.');
+
 # %% [markdown]
 # ## tri des lignes *égales* au sens d'un premier critère d'une dataframe
 #
@@ -141,6 +188,32 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. produire une nouvelle dataframe en ne gardant que les ages connus,
 #    et triée selon les ages, puis les prix de billet
 
+# %%
+# prune-cell 1.
+df.loc[673, 'Age'], df.loc[746, 'Age']
+
+# %%
+# prune-cell 2.
+df_sorted = df.sort_values(by=['Age', 'Fare']).copy()
+
+# %%
+# prune-cell 3. et 4.
+df_sorted_isna = df_sorted[df_sorted['Age'].isna()]
+print(f"we have {len(df_sorted_isna)} missing ages") # nb de passagers dont l'age n'est pas connu
+
+# %%
+# prune-cell 5.
+# en fin
+df_sorted.tail()
+
+# %%
+# prune-cell 6.
+df_sorted.sort_values(by='Age', ascending=True, axis=0, na_position='first').head()
+
+# %%
+# prune-cell 7.
+df[df.Age.notna()].sort_values(by=['Age', 'Fare'])
+
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon une colonne
 #
@@ -165,6 +238,14 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Affichez la dataframe
 # <br>
 
+# %% {"tags": ["level_intermediate"]}
+# prune-cell
+df = pd.DataFrame(np.random.randint(0, 100, 20).reshape(4, 5),
+                  columns=['a', 'b', 'c', 'd', 'e'])
+df.index = ['un', 'deux', 'trois', 'quatre']
+print(df)
+df.sort_values(by='trois', ascending=True, axis=1)
+
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon l'index
 #
@@ -187,3 +268,18 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # Cela peut, par exemple, servir à réordonner la dataframe du Titanic  
 # qui a été triée en place dans l'ordre des `Age`, `Fare` croissants  
 # par ordre d'index de ligne croissants
+
+# %% {"tags": ["level_intermediate"]}
+# prune-cell
+df = pd.DataFrame(np.random.randint(0, 100, 20).reshape(4, 5),
+                  columns=['a', 'b', 'c', 'd', 'e'],
+                  index = ['un', 'deux', 'trois', 'quatre'])
+print(df)
+
+# %% {"tags": ["level_intermediate"]}
+# prune-cell
+print(df.sort_index(axis=0))
+
+# %% {"tags": ["level_intermediate"]}
+# prune-cell
+print(df.sort_index(axis=1))

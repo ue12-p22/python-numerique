@@ -376,6 +376,39 @@ list(by_country.keys())[:4]
 
 # global_df = ...
 
+# %%
+# prune-cell
+all_dfs = []
+for country, records in by_country.items():
+    df = pd.DataFrame(records)
+    df['country'] = country
+    all_dfs.append(df)
+
+global_df = pd.concat(all_dfs)
+global_df.shape
+
+# %%
+# prune-cell
+global_df.head()
+
+# %%
+# prune-cell
+global_df.tail()
+
+# %%
+# prune-cell
+# on peut essayer de tirer profit de pd.concat(keys=)
+
+# on fabrique une df par pays et on met tout dans une liste
+country_dfs = [pd.DataFrame(records) for records in by_country.values()]
+# qu'on peut passer à concat
+global_df1 = pd.concat(country_dfs, keys=by_country.keys())
+
+# mais ça met le pays dans l'index, donc la suite ne fonctionnerait
+# plus exactement pareil
+
+global_df1.head()
+
 # %% [markdown] tags=["framed_cell"]
 # ### exercice (méthode pas-à-pas)
 #
@@ -414,6 +447,48 @@ list(by_country.keys())[:4]
 
 # %%
 # votre code
+
+# %%
+# prune-cell France et Italy
+
+country_dfs = []
+
+# 1.
+country = 'France'
+df = pd.DataFrame(by_country[country])
+
+# 2.
+print('columns (1)', df.columns)
+
+# 3.
+df['country'] = country
+print('columns (2)', df.columns)
+print('shape for France', df.shape)
+country_dfs.append(df)
+
+# 4. 
+country = 'Italy'
+df = pd.DataFrame(by_country[country])
+df['country'] = country
+print('shape for Italy', df.shape)
+country_dfs.append(df)
+df_fr_it = pd.concat(country_dfs)
+print('shape for france+italy', df_fr_it.shape)
+
+# 5.
+country_dfs = []
+
+for country, records in by_country.items():
+    country_df = pd.DataFrame(records)
+    country_df['country'] = country
+    country_dfs.append(country_df)
+    
+global_df2 = pd.concat(country_dfs)
+print('global shape', global_df2.shape)
+
+# %%
+# prune-cell où on vérifie l'égalité des deux méthodes
+np.all(global_df == global_df2) # si True, les 2 dataframes sont identiques
 
 # %% [markdown]
 # ***
@@ -572,6 +647,30 @@ pd.to_datetime('15 july 2021 08:00')
 # %%
 # votre code
 
+# %%
+# prune-cell
+
+# 1. et 2.
+print(global_df.dtypes)
+
+global_df.date.dtype
+
+# %%
+# prune-cell
+
+# 3. 
+format = '%Y-%m-%d'
+
+# 4.
+proper_date = pd.to_datetime(df['date'], format=format)
+# le type est np.datetime64
+proper_date
+
+# %%
+# prune-cell 5.
+global_df['date'] = proper_date
+global_df.dtypes
+
 # %% [markdown] tags=["framed_cell"]
 # ## un index plus idoine
 #
@@ -589,6 +688,35 @@ pd.to_datetime('15 july 2021 08:00')
 # %%
 # votre code
 
+# %%
+# prune-cell
+
+# 1.
+# on veut utiliser comme index un couple
+# (country, date)
+# de cette façon on aura bien unicité de l'index
+# et les valeurs restant dans la dataframe (hors index)
+# sont les 3 grandeurs qui nous intéressent:
+# confirmed, deaths et recovered
+
+# 2. 
+clean_df = global_df.pivot_table(
+    values=['confirmed', 'deaths', 'recovered'],
+    index=['country', 'date'],
+    # on a déjà choisi plusieurs valeurs,
+    # si on choisissant aussi plusieurs colonnes
+    # on aurait un multiindex, ce n'est pas ce qu'on veut
+    columns=[],
+)
+
+clean_df
+
+# %%
+# prune-cell 2. (avec set_index)
+clean_df = global_df.set_index(['country', 'date'])
+# NB qu'on aurait pu passer à set_index le paramètre inplace=True
+clean_df
+
 # %% [markdown] tags=["framed_cell"]
 # ### accéder via un *MultiIndex*
 #
@@ -598,6 +726,18 @@ pd.to_datetime('15 july 2021 08:00')
 #    essayez de trouver/deviner comment extraire de
 #    cette dataframe toutes les données relatives à la France
 # 1. même question pour la France et l'Italie
+
+# %%
+# prune-cell 1.
+clean_df.loc[('France', '1 jan 2021')]
+
+# %%
+# prune-cell 2.
+clean_df.loc['France']
+
+# %%
+# prune-cell 3.
+clean_df.loc[['France', 'Italy']]
 
 # %% [markdown] tags=["framed_cell", "level_intermediate"]
 # ### un exemple de slicing (très) avancé
@@ -732,6 +872,18 @@ df.plot();
 # %%
 # votre code
 
+# %%
+# prune-cell 1.
+# pas forcément super pertinent de comparer 
+# les 3 mesures sur un même graphique mais 
+# l'idée générale semble fonctionner
+
+clean_df.loc['France'].plot();
+
+# %%
+# prune-cell 2.
+clean_df.loc['France', ['deaths', 'confirmed']].plot();
+
 # %% [markdown] tags=["framed_cell"]
 # ### plusieurs pays
 #
@@ -748,6 +900,11 @@ df.plot();
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+df3 = clean_df.loc[['France', 'Italy', 'Germany'], ['deaths', 'confirmed']]
+df3.plot(rot=45);
 
 # %% [markdown] tags=["framed_cell"]
 # ### mise en forme des données 

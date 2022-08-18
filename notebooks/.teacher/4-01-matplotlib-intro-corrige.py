@@ -268,6 +268,16 @@ plt.plot([10, 20], [10, 20]);
 # le code
 plt.plot([10], [10]);
 
+# %%
+# prune-cell
+l = [10, np.nan, 20, 30, np.nan, 40, np.nan]
+plt.plot(l, l);
+
+# %%
+# prune-cell
+l = [10, np.nan, 20, 30, np.nan, 40, np.nan]
+plt.plot(l, l, marker='v');
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## ajouter un titre `plt.title`
 #
@@ -569,6 +579,20 @@ plt.plot(x, np.sin(x))
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+
+x_min, x_max, nb = 0, 10, 50
+x = np.linspace(x_min, x_max, nb)
+y = np.power(x, 3)
+z = 3*np.power(x, 2)+1
+plt.plot(x, y, label='$x^3$')
+plt.plot(x, z, label='$3 x^2 + 1$')
+plt.xticks([x_min, x_max])
+plt.yticks([min(y.min(), z.min()), max(y.max(), z.max())])
+plt.title('deux courbes', loc='right')
+plt.legend(loc='center');
+
 # %% [markdown]
 # ## **exercice** sauver une figure dans un fichier (sans clic-droit)
 
@@ -601,3 +625,30 @@ plt.plot(x, np.sin(x))
 # [ma belle figure](foo.pdf)
 # ```
 # et cliquez dessus...
+
+# %%
+# prune-cell
+x = np.linspace(-10, 10, 50)
+y = np.power(x, 2)
+
+plt.title('$f(x) = x^2$', fontsize=20)
+
+plt.xlabel('x', fontsize=15)
+plt.ylabel('$x^2$', fontsize=15)
+
+plt.plot(x, y, label='$x^2$')
+
+plt.legend(fontsize=12)
+
+plt.savefig('foo.svg')
+plt.savefig('foo.pdf')
+
+# %% [markdown]
+# prune-cell
+#
+# <img src='foo.svg'>
+
+# %% [markdown]
+# prune-cell
+#
+# [ma belle figure](foo.pdf)

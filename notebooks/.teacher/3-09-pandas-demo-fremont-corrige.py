@@ -156,6 +156,38 @@ with open(local_file) as feed:
 # ***
 # ***
 
+# %%
+# prune-cell
+# la taille avant le nettoyage
+
+before = len(data)
+before
+
+# %%
+# prune-cell
+# le nombre de doublons
+
+dups = sum(data.duplicated());
+dups
+
+# %%
+# prune-cell
+# pour nettoyer on peut faire
+
+data.drop_duplicates(inplace=True)
+
+# %%
+# prune-cell
+# la taille après le nettoyage
+
+after = len(data)
+
+# %%
+# prune-cell
+# pour vérifier
+
+after + dups == before
+
 # %% [markdown]
 # ## parser les dates
 
@@ -247,8 +279,74 @@ data.head()
 # ***
 # ***
 
+# %% cell_style="split"
+# prune-cell
+# les lignes 
+
+data[data.Total.isna()]
+
+# %% cell_style="split"
+# prune-cell
+# ou encore si on préfère
+
+data[data.isna().any(axis=1)]
+
+# %%
+# prune-cell
+
+to_remove = len(data[data.Total.isna()])
+to_remove
+
+# %%
+# prune-cell
+
+before = len(data)
+before
+
+# %%
+# prune-cell
+# pour supprimer les lignes 
+
+data.dropna(how='any', inplace=True)
+
+# %%
+# prune-cell
+# pour vérifier
+
+after = len(data)
+after + to_remove == before
+
 # %% [markdown]
 # ***
+
+# %%
+# prune-cell
+# pour remplir les trous
+
+# on commence par repartir d'une dataframe intacte
+data = pd.read_csv(local_file).drop_duplicates()
+data.index = pd.to_datetime(data.Date, format="%m/%d/%Y %I:%M:%S %p")
+del data['Date']
+data.columns = ['Total',  'East', 'West',]
+
+# %%
+# prune-cell
+
+before = len(data)
+before
+
+# %%
+# prune-cell
+# pour remplir les nan par 0
+
+data.fillna(0)
+
+# %%
+# prune-cell
+# pour vérifier
+
+after = len(data)
+after == before
 
 # %% [markdown]
 # ## à quoi ça ressemble

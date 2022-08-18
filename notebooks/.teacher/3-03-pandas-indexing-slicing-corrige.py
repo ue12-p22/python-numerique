@@ -589,6 +589,10 @@ df.loc[:, 'Survived'].shape
 # %%
 # votre code
 
+# %%
+# prune-cell
+df = pd.read_csv('titanic.csv', index_col='PassengerId')
+
 # %% [markdown]
 # 2. localisez l'élément d'index `40`  
 #   a. Quel est le type de l'élément ?  
@@ -597,17 +601,33 @@ df.loc[:, 'Survived'].shape
 # %%
 # votre code
 
+# %%
+# prune-cell
+
+p40 = df.loc[40]
+print(f"{p40} is of type {type(p40)}")
+print(f"their name is {p40.loc['Name']}")
+print(f"their name is also {df.loc[40, 'Name']}")
+
 # %% [markdown]
 # 3. quel est le nom de la personne qui apparaît en avant-dernier dans le fichier
 
 # %%
 # votre code
 
+# %%
+# prune-cell
+df.iloc[-2].loc['Name']
+
 # %% [markdown]
 # 4. localisez les 3 derniers éléments de la ligne d'index `40`
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+df.loc[40].iloc[-3:]
 
 # %% [markdown]
 # 5. localisez les 4 derniers éléments de la colonne `Cabin`
@@ -626,6 +646,10 @@ df['Cabin'].iloc[-4:]
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+df.iloc[-10:][['Name', 'Pclass', 'Survived']]
 
 # %% [markdown]
 # ## indexation par un masque
@@ -803,6 +827,11 @@ df[df.Sex == 'female'].head()
 # %%
 # votre code
 
+# %%
+# prune-cell
+selection = df[ (df.Pclass != 1) & (df.Age >= 70) ]
+selection
+
 # %% [markdown]
 # 2. Combien trouvez-vous de passagers ?
 
@@ -818,12 +847,21 @@ len(selection)
 # %%
 # votre code
 
+# %%
+# prune-cell 
+selection.iloc[0].loc['Name']
+
 # %% [markdown]
 # 4. Faites la même expression que la question 1  
 # en utilisant les fonctions `numpy.logical_and`, `numpy.logical_not`
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+selection2 = df [ np.logical_and ( np.logical_not( df.Pclass == 1), df.Age >= 70)]
+selection2
 
 # %% [markdown]
 # ***

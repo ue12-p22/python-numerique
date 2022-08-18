@@ -480,6 +480,24 @@ df.isna().to_numpy().sum()
 #
 # (1) servez-vous du help `pd.Series.unique?`
 
+# %%
+# prune-cell 1. et 2.
+
+cols = ['Survived', 'Pclass', 'Sex', 'Embarked']
+for c in cols:
+    print(f"{c} unique values: {df[c].unique()}")
+
+
+# %%
+# prune-cell 3. et 4.
+# une type de catégorie
+print(df[cols].dtypes)
+
+# du coup on pourrait faire
+for c in cols:
+    print(f"column {c:>12} has type {df[cols].dtypes[c]} =?= {df[c].dtype}")
+
+
 # %% [markdown]
 # ***
 
@@ -494,3 +512,68 @@ df.isna().to_numpy().sum()
 # 1. Calculez le taux de survie des passagers
 # 1. Calculez le taux de survie des hommes et des femmes par classes  
 # on reverra ces décomptes d'une autre manière
+
+# %%
+# prune-cell 1.
+df = pd.read_csv('titanic.csv', index_col='PassengerId')
+# df.isna().to_numpy().sum(), df.isna().sum(axis=1), df.isna().sum(axis=0),
+
+# %%
+# prune-cell 2.
+
+print(10*'-', 'par colonne')
+print(df.isna().sum())
+print(10*'-', 'par ligne')
+print(df.isna().sum(axis=1))
+print(10*'-', 'total')
+print(df.isna().sum().sum())
+
+# %%
+# prune-cell 3.
+len(df['Pclass'].unique())
+
+# %%
+# prune-cell 4.
+df['Sex'].value_counts()/len(df)
+
+# %%
+# prune-cell 5.
+((df['Age'] >= 20) & (df['Age'] <= 40)).sum()/len(df)
+
+# %%
+# prune-cell 6.
+print(df['Survived'].value_counts()/len(df))
+
+# le taux de survie
+(df['Survived'].value_counts()/len(df))[1]
+
+# %%
+# prune-cell 7.
+
+# classe
+cls = 1
+
+# nb d'hommes
+pass_h_cls = ((df['Sex'] == 'male') & (df['Pclass'] == cls)).sum()
+
+# nb de femmes
+pass_f_cls = ((df['Sex'] == 'female') & (df['Pclass'] == cls)).sum()
+
+# taux survie homme, femme de classe cls
+(   ((df['Sex'] == 'male') & (df['Survived'] == 1) & (df['Pclass'] == cls)).sum()/pass_h_cls,
+    ((df['Sex'] == 'female') & (df['Survived'] == 1) & (df['Pclass'] == cls)).sum()/pass_f_cls )
+
+
+# %%
+# prune-cell
+
+c1 = (df['Pclass'] == 1).sum()
+c2 = (df['Pclass'] == 2).sum()
+c3 = (df['Pclass'] == 3).sum()
+
+
+# %%
+# prune-cell
+
+(   ((df['Sex'] == 'female') & (df['Survived'] == 1) & (df['Pclass'] == 1)).sum()/c1,
+    ((df['Sex'] == 'male') & (df['Survived'] == 1) & (df['Pclass'] == 1)).sum()/c1     )

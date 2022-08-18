@@ -436,6 +436,17 @@ df['Name'].dtype
 # ces codes peuvent servir, par exemple, de code-couleur pour afficher des points  
 # on verra cela plus tard
 
+# %%
+# prune-cell
+col = df['Name'].astype('category')
+print(col.dtype)
+df['Name-code'] = col.cat.codes
+df['Name-code'].value_counts()
+
+# %%
+# prune-cell en une seule ligne
+df['Name-code'] = df['Name'].astype('category').cat.codes
+
 # %% [markdown]
 # ## nuages de points `df.plot.scatter`
 
@@ -585,3 +596,22 @@ plt.scatter(df['SepalLength'], df['SepalWidth'], c=df['Name-code'], s=df['PetalW
 #
 # 1. afficher l'alcool en fonction de l'acide malique avec comme couleur les numéros des cultivateurs  
 # pensez à utiliser une `cmap`
+
+# %% {"scrolled": false}
+# prune-cell
+cols = ['cultivator', 'alcohol', 'malic-acid', 'ash','total-phenols',
+        'flavanoids','color-intensity', 'hue' ]
+df_wine = pd.read_csv('wine.csv', usecols=cols)
+df_wine.head(2)
+df_wine.dtypes
+df_wine.describe()
+df_wine.plot(figsize=(10, 10))
+df_wine[['flavanoids', 'cultivator']].plot()
+plt.show()
+df_wine.boxplot()
+plt.xticks(rotation=90)
+df_wine.hist(bins=20)
+plt.tight_layout()
+plt.show()
+df_wine.plot.scatter(x='malic-acid', y='alcohol', c='cultivator', cmap='viridis')
+plt.show()

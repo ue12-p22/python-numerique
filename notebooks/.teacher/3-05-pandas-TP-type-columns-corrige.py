@@ -50,6 +50,18 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #
 # 1. Affichez les 3 premières lignes de la dataframe
 
+# %%
+# prune-cell 1.
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# %%
+# prune-cell 2. et 3.
+df = pd.read_csv('iris.csv')
+print(   df.head(3)   )
+
 # %% [markdown]
 # ## le type `object` `str`
 #
@@ -82,6 +94,20 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. observer la valeur de la colonne `Name` dans la dataframe originale  
 #    a-t-elle été modifiée ?  
 #    comment faire pour la modifier ?
+
+# %%
+# prune-cell 1. 2. et 3.
+df.dtypes
+
+# %%
+# prune-cell 4.
+df['Name'].str.upper()
+
+# %%
+# prune-cell 5.
+print('avant', df.loc[0, 'Name'])
+df['Name'] = df['Name'].str.upper()
+print('après', df.loc[0, 'Name'])
 
 # %% [markdown]
 # ## le type `category`
@@ -125,6 +151,25 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # votre code
 
+# %%
+# prune-cell 1.
+df = pd.read_csv('iris.csv')
+df.Name.unique()
+
+# %%
+# prune-cell 2.
+df.dtypes, df.dtypes['Name'], df.Name.dtype
+
+# %%
+# prune-cell 3.
+df['Name-cat'] = df.Name.astype('category')
+# vérifions
+df.dtypes
+
+# %%
+# prune-cell 4.
+df['Name-cat'].cat.codes
+
 # %% [markdown] tags=["level_intermediate"]
 # ## fabriquer son propre type `category`
 #
@@ -150,3 +195,18 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %% tags=["level_intermediate"]
 # votre code
+
+# %% tags=["level_intermediate"]
+# prune-cell 2.
+
+my_type = pd.CategoricalDtype(categories=['Iris-versicolor', 'Iris-setosa', 'Iris-virginica'])
+
+# %% tags=["level_intermediate"]
+# prune-cell 3.
+
+df.Name = df.Name.astype(my_type)
+
+# %% tags=["level_intermediate"]
+# prune-cell 4.
+
+df.sort_values(by='Name')

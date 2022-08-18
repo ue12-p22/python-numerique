@@ -323,6 +323,58 @@ df.values
 # `pandas` et son tableau `numpy` sous-jacent indiqueront `O` ou `object`  
 # pour **mixed data types in columns**
 
+# %%
+# prune-cell
+animals = [['snail', 0.1, 2.0],
+           ['pig', 17.5, 8.0],
+           ['elephant', 40.0, 70.0],
+           ['rabbit', 48.0, 1.5],
+           ['giraffe', 52.0, 25.0],
+           ['coyote', 69.0, 12.0],
+           ['horse', 88.0, 28.0]]
+
+# %%
+# prune-cell 1.
+nd = np.array(animals)
+
+# 2.
+print(nd.dtype)
+
+# %%
+# prune-cell 3.
+df = pd.DataFrame(nd, columns=['names', 'speed', 'lifespan'])
+df
+
+# %%
+# prune-cell 4.
+x = df.loc[2, 'lifespan']
+x, df.lifespan.dtype, type(x)
+
+# %%
+# prune-cell 5.
+x = df.loc[2, 'names']
+x, df.names.dtype, type(x)
+
+# %%
+# prune-cell 6.
+# pas de souci pour mettre une chaine plus longue
+df.loc[2, 'names'] = 'grey elephant grey elephant more than 32'
+df
+
+# %%
+# prune-cell 7.
+df.dtypes
+
+# %%
+# prune-cell 8.
+df.to_numpy()
+
+# %%
+# prune-cell 9.
+df['speed'] = df['speed'].astype(float)
+df['lifespan'] = df['lifespan'].astype(float)
+df.dtypes
+
 # %% [markdown] tags=["framed_cell"]
 # ## agrégations des données
 #
@@ -472,6 +524,28 @@ df3
 # %%
 # votre code
 
+# %% cell_style="center"
+# prune-cell
+# on commence par réconcilier
+# les deux premières
+# par défaut merge() calcule 
+# l'intersection des colonnes 
+# ici on trouve seulement 'name'
+# et il utilise ça comme critère pour 
+# aligner les lignes à droite et à gauche
+df12 = df1.merge(df2)
+# on aurait pu faire, pour être explicite
+df12 = df1.merge(df2, left_on='name', right_on='name')
+df12
+
+# %% cell_style="center"
+# prune-cell
+# sans rien préciser concat var aligner les colonnes
+# des deux tables, rien de particulier à faire ici
+# puisque df12 et df3 ont les mêmes colonnes
+df123 = pd.concat([df12, df3])
+df123
+
 # %% [markdown] tags=["level_intermediate"]
 # ### **exercice** - intermédiaire
 #
@@ -494,3 +568,18 @@ df3i
 
 # %% tags=["level_intermediate"]
 # votre code
+
+# %% cell_style="center" tags=["level_intermediate"]
+# prune-cell
+# cette fois on est obligés de préciser
+# sur quel(s) critère(s) (colonnes ou index) 
+# se fait l'alignement des lignes entre elles 
+# ici à gauche et à droite c'est les index qui sont alignés
+# il faut chercher dans la doc pour trouver ceci
+df12i = df1i.merge(df2i, left_index=True, right_index=True)
+df12i
+
+# %% cell_style="center" tags=["level_intermediate"]
+# prune-cell
+df123i = pd.concat([df12i, df3i])
+df123i

@@ -824,3 +824,44 @@ print(df.shape)
 
 # %%
 # votre code
+
+# %%
+# prune-cell 1.
+file = 'petit-titanic.csv'
+df = pd.read_csv(file)
+df.head(2)
+
+# %%
+# prune-cell 3.a 3.b 3.c
+COLUMNS = [
+    'PassengerId', 'Survived', 'Pclass', 'Name', 
+    'Sex', 'Age', 'SibSp', 'Parch', 
+    'Ticket', 'Fare', 'Cabin', 'Embarked',
+]
+
+df = pd.read_csv(file, sep=';', header=None, names=COLUMNS)
+df.head(2)
+
+# %%
+# prune-cell 4.
+len(df.columns), len(df.index), df.shape,
+
+# %%
+# prune-cell 5.
+df.columns, df.index
+
+# %%
+# prune-cell 6
+# remarquez qu'on peut aussi changer 
+# les noms des colonnes après le chargement 
+# comme ceci
+columns = ['Identifiant', 'Survécu', 'Pclass', 
+           'Nom', 'Genre', 'Age', 'SibSp',
+           'Parch', 'Ticket', 'Tarif', 'Cabine', 'Embarquement']
+df.columns = columns
+df.head(2)
+
+# %%
+# prune-cell
+df.set_index('Identifiant', inplace=True)
+df.head(2)

@@ -465,6 +465,10 @@ for group, subdf in by_class_sex:
 # %%
 # votre code
 
+# %%
+# prune-cell 1.
+len(df['Sex'].unique()) * len(df['Pclass'].unique()) * len(df['Survived'].unique())
+
 # %% [markdown]
 # 2. calculez la partition avec `pandas.DataFrame.groupby`  
 #    et affichez les nombres d'items par groupe
@@ -472,11 +476,20 @@ for group, subdf in by_class_sex:
 # %%
 # votre code
 
+# %%
+# prune-cell 2.
+groups = df.groupby(['Pclass', 'Sex', 'Survived'])
+groups.size()
+
 # %% [markdown]
 # 3. affichez la dataframe des entrées pour les femmes qui ont péri et qui voyagaient en 1ère classe
 
 # %%
 # votre code
+
+# %%
+# prune-cell 3.
+groups.get_group((1, 'female', 0))
 
 # %% [markdown]
 # 4. **révision**  
@@ -484,6 +497,11 @@ for group, subdf in by_class_sex:
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+mask = (df.Pclass == 1) & (df.Sex == 'female') & ~df.Survived
+df[mask]
 
 # %% [markdown]
 # 5. créez un `dict` avec les taux de survie par genre dans chaque classe
@@ -501,12 +519,43 @@ for group, subdf in by_class_sex:
 # %%
 # votre code
 
+# %% {"scrolled": false}
+# prune-cell
+D = {}
+groups_sex_class = df.groupby(['Sex', 'Pclass'])
+for group, subdf in groups_sex_class:
+    survived_series = subdf.Survived
+    total = len(survived_series)
+    survived = sum(survived_series)
+    D[group] = survived / total
+
+D
+
+# %%
+# prune-cell 
+# la même chose en plus court
+D = {}
+for group, subdf in df.groupby(['Sex', 'Pclass']):
+    D[group] = subdf.Survived.sum() / len(subdf)
+D
+
+# %%
+# prune-cell
+# encore plus court avec une compréhension
+# bon bien sûr, ce n'est pas forcément plus lisible...
+{group: subdf.Survived.sum() / len(subdf) 
+ for group, subdf in df.groupby(['Sex', 'Pclass'])}
+
 # %% [markdown]
 # 6. créez à partir de ce `dict` une `pandas.Series`  
 #    avec comme nom `'taux de survie par genre dans chaque classe'`  
 #    **indice:** comme tous les types en Python  
 #    `pd.Series()` permet de créer des objets par programme  
 #    voyez la documentation avec `pd.Series?`  
+
+# %%
+# prune-cell
+pd.Series(D, name="taux de survie par genre dans chaque classe")
 
 # %% [markdown]
 # ## intervalles de valeurs d'une colonne
@@ -689,6 +738,11 @@ print("après", df.columns)
 # le code
 df.groupby(['Age-class', 'Survived', ]).size()
 
+# %%
+# prune-cell
+# utilisez
+df.groupby(['Age-class', 'Pclass', 'Survived']).size()
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## `pivot_table()`
 #
@@ -770,6 +824,15 @@ df.pivot_table(
 # %%
 # votre code
 
+# %%
+# prune-cell
+df.pivot_table(
+    values='Survived',
+    index='Pclass',
+    columns='Sex',
+    aggfunc='sum', # ou aussi np.sum,
+)
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### `pivot_table()` et multi-index
 #
@@ -805,6 +868,15 @@ df = pd.read_csv('titanic.csv')
 df2 = ...
 
 # %% {"cell_style": "center"}
+# prune-cell
+df2 = df.pivot_table(
+    values=['Survived', 'Age'],
+    index='Pclass',
+    columns='Sex',
+)
+df2
+
+# %% {"cell_style": "center"}
 df2.columns
 
 # %%
@@ -814,6 +886,15 @@ df2.index
 # votre code
 # plusieurs columns
 df3 = ...
+
+# %% {"cell_style": "center"}
+# prune-cell
+df3 = df.pivot_table(
+    values='Age',
+    index='Pclass',
+    columns=['Sex', 'Embarked'],
+)
+df3
 
 # %%
 df3.columns
@@ -825,6 +906,15 @@ df3.index
 # votre code
 # plusieurs index
 df4 = ...
+
+# %% {"cell_style": "center"}
+# prune-cell
+df4 = df.pivot_table(
+    values='Age',
+    index=['Pclass', 'Embarked'],
+    columns='Sex',
+)
+df4
 
 # %%
 df4.columns
@@ -842,13 +932,34 @@ df.head()
 # %% [markdown]
 # 1. affichez les valeurs min, max, et moyenne, de la colonne 'magnesium'
 
+# %%
+# prune-cell
+summary = df.magnesium.describe()
+summary
+
 # %% [markdown]
 # 2. définissez deux catégories selon que le magnesium est en dessous ou au-dessus de la moyenne (qu'on appelle 'mag-low' et 'mag-high'); rangez le résultat dans une colonne 'mag-cat'
+
+# %%
+# prune-cell
+
+df['mag-cat'] = pd.cut(
+    df.magnesium,
+    bins=[summary['min'], summary['mean'], summary['max']],
+    labels=('mag-low', 'mag-high'))
+df.head()
 
 # %% [markdown]
 # 3. calculez cette table
 #
 # ![](media/pivot-table-expected.png)
+
+# %%
+# prune-cell
+
+df.pivot_table(values=('color-intensity', 'flavanoids', 'magnesium'),
+               index=('cultivator'),
+               columns=('mag-cat'))
 
 # %% [markdown] {"tags": ["framed_cell", "level_intermediate"]}
 # ## accès au dictionnaire des groupes
