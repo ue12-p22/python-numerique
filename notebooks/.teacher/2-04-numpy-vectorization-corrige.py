@@ -11,25 +11,19 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python 3
 #     language: python
 #     name: python3
 #   language_info:
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
-#   nbhosting:
-#     title: vectorisation
+#   notebookname: programmation vectorielle
 # ---
-
-# %% [markdown]
-# Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
-HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
-
-
+HTML('<link rel="stylesheet" href="slides-notebook.css" />')
 
 # %% [markdown]
 # # vectorisation
@@ -61,7 +55,6 @@ from matplotlib import pyplot as plt
 #         
 # **l'idée**  
 # pour appliquer une fonction à tous les éléments d'un tableau `numpy`
-#
 # * de ne **jamais** utiliser une boucle `for-python`  
 # (qui calcule une indirection à chaque accès à un élément)
 # <br>    
@@ -128,7 +121,6 @@ y = []
 for e in x:
     y.append(np.sin(e))
 
-
 # %% [markdown]
 # ### dessiner un cercle de rayon `r`
 
@@ -147,6 +139,16 @@ for e in x:
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+theta = np.linspace(0, 2*np.pi, 1000)
+r = 1.5
+x = r * np.sin(theta)
+y = r * np.cos(theta)
+plt.plot(x, y)
+plt.axis('equal');
+
 
 # %% [markdown]
 # ### calculer une fonction polynomiale
@@ -175,6 +177,12 @@ for e in x:
 def scalar_function(x):
     pass
 
+
+# %%
+# prune-cell
+def scalar_function(x):
+    return x**3+2*x**2-5*x+1
+scalar_function(theta)
 
 # %% [markdown]
 # ## les `ufunc`
@@ -242,6 +250,9 @@ def scalar_function(x):
 # <br>
 #
 # vous allez les utiliser sans même vous en rendre compte !
+#     
+#
+# </div>
 
 # %% [markdown]
 # ***
@@ -263,6 +274,7 @@ def scalar_function(x):
 # %%
 # essayez !
 np.power
+
 
 # %% [markdown]
 # ## pour vectoriser une fonction
@@ -289,6 +301,21 @@ np.power
 
 # %%
 # votre code ici
+
+# %%
+# prune-cell
+def absolute (x):
+    if x >= 0:
+        return x
+    return -x
+
+tab = np.array([10, -30, 56.5])
+print(    tab    )
+
+try:
+    absolute(tab)
+except ValueError as e:
+    print('PROBLÈME:', e)
 
 # %% [markdown] tags=["framed_cell"]
 # ### problème de la fonction `absolute`
@@ -323,21 +350,18 @@ np.power
 #
 # `if` appliqué au tableau de booléens `[False, True, False]` ne sait pas quoi faire   
 # alors il propose des solutions
-#
 # * `if` est-il vrai quand tous les éléments sont vrais ? `np.all(x)`
 # * `if` est-il vrai quand au moins un élément du tableau est vrai ? `np.any(x)`
 #    
 # <br>
 #     
 # ... mais vous ne voulez rien de tout cela  
-#
 # * vous voulez que `numpy` applique le `if` à-chaque-élément
 # * i.e. que la fonction s'exécute de manière vectorisée
 #
 # <br>
 #     
 # la **solution**
-#
 # * demander à  `numpy` de **vectoriser** la fonction avec `np.vectorize`
 # * il considérera l'argument comme un tableau
 # * sur lequel les fonctions seront appelées de manière vectorisée
@@ -349,6 +373,7 @@ np.power
 # absolute_vect(tab)
 # -> array([10. , 30. , 56.5])    
 # ```
+# </div>
 
 # %%
 # le code
@@ -464,7 +489,6 @@ absolute_vect([-10, -20, 30])
 # <br>
 #     
 # **mais** ce code est
-#
 # * beaucoup plus compliqué à écrire que dans sa version compacte, simple et *directe*
 # * il sera donc plus propice à des erreurs
 # * il est franchement très difficile à lire !
@@ -472,9 +496,10 @@ absolute_vect([-10, -20, 30])
 # <br>
 #
 # **en conclusion** ne faites surtout pas cela systématiquement
-#
 # * vous savez que ça existe
 # * vous y penserez le jour où la création de tableaux intermédiaires prendra une place bien trop importante
+#     
+# </div>
 
 # %% [markdown]
 # le code ci-dessous

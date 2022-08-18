@@ -119,6 +119,119 @@ from matplotlib import pyplot as plt
 # %%
 # votre code
 
+# %% {"scrolled": false}
+# prune-cell 1.
+colors_dict = dict()
+with open('rgb-codes.txt', 'r') as f:
+    for line in f:
+        name, r, g, b = line.split()
+        colors_dict[name] = [int(r), int(g), int(b)]
+
+# %%
+# prune-cell 2.
+for c in ['Red', 'Lime', 'Blue']:
+    print(c, colors_dict[c])
+
+
+# %% [markdown]
+# prune-cell 3
+#
+# pour calculer le rectangle qui contient n couleurs
+#
+# n | rect | `int(sqrt(n))` |
+# -|-|-|
+# 1 | 1x1 | 1
+# 2 | 1x2 | 1
+# 3 | 2x2 | 1
+# 4 | 2x2 | 2
+# 5 | 2x3 | 2
+# 6 | 2x3 | 2
+# 7 | 3x3 | 2
+# 8 | 3x3 | 2
+# 9 | 3x3 | 3
+# 10 | 3x4 | 3
+# 11 | 3x4 | 3
+# 12 | 3x4 | 3
+# 13 | 4x4 | 3
+# 14 | 4x4 | 3
+# 15 | 4x4 | 3
+# 16 | 4x4 | 4
+# 17 | 4x5 | 4
+
+# %%
+# prune-cell 3
+def rectangle_size(n):
+    ''' calcule la taille du rectangle
+        pour ranger n couleurs '''
+    c = int(np.sqrt(n-1))+1 
+    if (c-1)*c >= n:
+        return c-1, c 
+    else:
+        return c, c
+
+def patchwork (col_list, col_dict, side=5, background='White'):
+    ''' create an image with a patchwork of the col_list colors
+        the image contains l*c patches
+        each patch is a square of side pixels
+        the patchwork can have more patches than colors
+        the color of additional patches will be background (white by defaut) '''
+    # we compute the number of lines and columns of the patchwork
+    l, c = rectangle_size(len(col_list))
+
+    # we create the ndarray of the colors
+    # (each color has an indice from 0 to len(col_list)-1)
+    col_tab = np.array([col_dict[background]]*l*c, dtype=np.uint8)
+    # we assign the array with the colors
+    # (additional colors will the backgroud color)
+    col_tab[0:len(col_list)] = [col_dict[k] for k in col_list]
+    
+    # the image is a rectangle of (l*side, c*side) of pixels
+    # we compute its indices
+    i, j = np.indices((l*side, c*side))
+    # we pass the indices in the patchwork of l*c patches (i.e. //side)
+    I, J = i//side, j//side
+    # c*I+J transforms I and J in the corresponding color indices of col_tab
+    # note that we index the col_tab array by a bigger array of indices
+    # it is done by vectorization
+    return col_tab[c*I+J]
+
+colors = [
+    'DarkBlue', 'AntiqueWhite', 'LimeGreen',
+    'NavajoWhite', 'Tomato', 'DarkGoldenrod',
+    'LightGoldenrodYellow', 'OliveDrab',
+]
+plt.imshow(patchwork(colors, colors_dict, side=50));
+
+# %%
+# prune-cell 4.
+import random
+k = 19
+im = patchwork(random.sample(list(colors_dict.keys()), k),
+                     colors_dict,
+                     side=10)
+
+plt.imshow(im);
+
+# %%
+# prune-cell 5.
+for s in ['white', 'red']: #, 'blue', 'medium', 'light', 'brown'
+    colors = [k for k in colors_dict.keys() if s in k.lower()]
+    print(f'{len(colors)} "{s}" colors')
+    plt.imshow(patchwork(colors, colors_dict))
+    plt.show()
+
+# %%
+# prune-cell 6.
+im_all = patchwork(list(colors_dict.keys()), colors_dict, side=100)
+plt.imshow(im_all);
+
+# %%
+# prune-cell 7.
+plt.imsave('patchwork-all.jpg', im_all)
+plt.show()
+pat = plt.imread('patchwork-all.jpg')
+plt.imshow(pat);
+
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
 
@@ -148,6 +261,75 @@ from matplotlib import pyplot as plt
 
 # %%
 # votre code
+
+# %%
+# prune-cell 0.
+import numpy as np
+from matplotlib import pyplot as plt
+
+im = plt.imread('les-mines.jpg')
+
+# 1.
+
+# NOT GOOD !
+gr0 = im[:, :, 0] + im[:, :, 1] + im[:, :, 2]
+
+
+# 2.
+print(f"type={gr0.dtype}, max={gr0.max()}") # uint8 -> overflow
+# image pas correcte à cause des overflows
+plt.imshow(gr0, cmap='gray')
+plt.show()
+
+# %%
+# prune-cell 3.
+
+# de la manière précédente vous ne pouvez pas obtenir les valeurs
+# en niveaux de gris des pixels de l'image, il faudrait faire:
+# gr2 = im[:, :, 0]/3 + im[:, :, 1]/3 + im[:, :, 1]/3
+# print(gr2.dtype, gr2.max())
+
+gr1 = (np.sum(im, axis=2))
+
+# prune-cell 4.
+print(f"type={gr1.dtype}, max={gr1.max()}") # int64 ok
+
+
+# prune-cell 5.
+# # np.sum?
+# dtype : dtype, optional
+#     The type of the returned array and of the accumulator in which the
+#     elements are summed.  The dtype of `a` is used by default unless `a`
+#     has an integer dtype of less precision than the default platform
+#     integer.  In that case, if `a` is signed then the platform integer
+#     is used while if `a` is unsigned then an unsigned integer of the
+#     same precision as the platform integer is used.
+    
+# 6.
+plt.imshow(gr1/3, cmap='gray')
+plt.show()
+
+# %% {"scrolled": false}
+# prune-cell 6.bis
+
+gr2 = (im[:, :, 0]/3 + im[:, :, 1]/3 + im[:, :, 1]/3).astype(np.uint8)
+plt.imshow(gr2, cmap='gray')
+plt.show()
+
+# prune-cell 7.
+gr3 = gr2.copy()
+gr3[gr3>=127] = 255
+gr3[gr3<127] = 0
+
+# prune-cell 7. avec where
+gr3 = np.where(gr2>128, 255, 0)
+plt.imshow(gr3, cmap='gray')
+plt.show()
+
+# prune-cell 8.
+print(np.unique(gr3))
+
+
 
 # %% [markdown]
 # ## Image en sépia
@@ -194,6 +376,79 @@ C = A.dot(B)
 
 A.shape, B.shape, C.shape
 
+# %%
+# prune-cell 1. pas à pas
+SEPIA=np.array([[0.393, 0.349, 0.272],
+                [0.769, 0.686, 0.534],
+                [0.189, 0.168, 0.131]])
+
+img = plt.imread('les-mines.jpg') # dtype = uint8
+print(img.dtype)
+print(img.shape, SEPIA.shape) # (i, j, 3) (m, 3)
+
+img_SEPIA = img.dot(SEPIA)
+# ou img_SEPIA = np.dot(img, SEPIA)
+print(img_SEPIA.dtype) # floats64
+
+print(img_SEPIA.min(), img_SEPIA.max()) # de 0 à 344.505
+
+# plt.imshow demande un type correct
+# soit uint8 (donc des valeurs entre 0 et 255)
+# soit float64 avec des valeurs entre 0 et 1
+# (et pas entre 0 et 344.505)
+# on doit donc seuiller au dessous de 255 et passer en uint8
+img_SEPIA[img_SEPIA>255] = 255
+img_SEPIA = img_SEPIA.astype(np.uint8)
+
+plt.imshow(img_SEPIA);
+
+
+# %%
+# prune-cell 1. avec dot()
+# dans ce cas de figure on peut aussi bien utiliser
+# np.dot ou @ (aka np.matmul)
+# https://numpy.org/doc/stable/reference/generated/numpy.dot.html
+
+def sepia(im, SEPIA=np.array([[0.393, 0.349, 0.272],
+                              [0.769, 0.686, 0.534],
+                              [0.189, 0.168, 0.131]])):
+# les deux marchent
+    result = np.dot(im, SEPIA) 
+#    result = im @ SEPIA
+    result[result>255] = 255
+    return result.astype(np.uint8)
+
+plt.imshow(
+    sepia(plt.imread('les-mines.jpg')));
+
+# %% [markdown]
+# prune-cell: comment ça marche ?
+#
+# la doc dit que
+# > `dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])`
+#
+# dans notre cas:
+# * a.dim = 3 (`a.shape = lines, cols, 3`), et 
+# * b.dim = 2, (`b.shape = 3, 3`), ce qui donne
+#
+# > `dot(image, SEPIA)[i, j, canal] 
+#   = sum(image[i, j, :] * SEPIA[:, canal])`  
+#   cqfd $\diamond$
+
+# %% {"cell_style": "center"}
+# prune-cell 2.
+
+file = 'patchwork-all.jpg'
+im = plt.imread(file)
+plt.imshow(sepia(im));
+
+# %%
+# prune-cell 3.
+
+im_sepia = sepia(plt.imread('les-mines.jpg'))
+plt.imshow(im_sepia)
+plt.imsave('les-mines-sepia.jpg', im_sepia)
+
 # %% [markdown]
 # ## Exemple de qualité de compression
 
@@ -217,3 +472,37 @@ A.shape, B.shape, C.shape
 
 # %%
 # votre code
+
+# %%
+# prune-cell 1.
+from PIL import Image
+
+file = "les-mines.jpg"
+
+# prune-cell 2. - en bash
+# %ls -l $file
+
+# prune-cell 2. - en Python pour cross-platform
+from pathlib import Path
+print(f"{file} {Path(file).stat().st_size} bytes")
+
+# prune-cell 3.
+imPLT = plt.imread(file)
+imPIL = Image.open(file)
+np.all(np.isclose(imPLT, imPIL))
+
+# %%
+# prune-cell 4.
+plt.imsave(f'{file}-PLT.jpg', imPLT) # no quality
+imPIL.save(f'{file}-PIL.jpg', quality=100)
+
+# prune-cell 5.
+for ext in ['PLT', 'PIL']:
+    print(f"{ext} {Path(f'{file}-{ext}.jpg').stat().st_size} bytes")
+
+# %% {"scrolled": true}
+# prune-cell 6.
+imPLT_PLT = plt.imread(f"{file}-PLT.jpg")
+imPLT_PIL = plt.imread(f"{file}-PIL.jpg")
+print(np.all(np.isclose(imPLT_PLT, imPLT_PIL)))
+plt.imshow(imPLT_PLT - imPLT_PIL);

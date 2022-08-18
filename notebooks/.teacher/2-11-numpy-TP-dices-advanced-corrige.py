@@ -66,6 +66,11 @@ import numpy as np
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+S1 = np.arange(1, 7)
+S1
+
 # %% [markdown]
 # Maintenant si on prend `n=2` dès à `s=6` faces. Quels sont les tirages possibles ?
 #
@@ -88,6 +93,14 @@ import numpy as np
 # %%
 # votre code ici
 
+# %%
+# prune-cell
+
+S1_ = S1.reshape((6, 1))
+# print(S1_)
+S2 = S1 + S1_
+S2
+
 # %% [markdown]
 # On remarque que la dimension de notre tableau est le nombre de dès.
 
@@ -108,6 +121,12 @@ import numpy as np
 
 # %%
 # votre code ici
+
+# %%
+# prune-cell
+S2_ = S1_.reshape((6, 1, 1))
+S3 = S2 + S2_
+S3
 
 # %% [markdown]
 # Cet espace des tirage pourra nous resservir dans de futurs exercices.
@@ -170,3 +189,68 @@ dice_2
 
 # %% {"tags": ["level_advanced"]}
 dice_1 + dice_2
+
+
+# %%
+# prune-cell
+
+def dice(target, nb_dice=2, nb_sides=6):
+    """
+    Pour un jeu où on lance `nb_dice` dés qui ont chacun `sides` faces,
+    quel est le nombre de tirages dont la somme des dés fasse `target`
+
+    Version force brute, il y a bien sûr des outils mathématiques
+    pour obtenir une réponse beaucoup plus rapidement
+
+    Toutes les solutions procèdent en deux étapes
+
+    * calcul de l'hypercube qui énumère les tirages,
+      et calcule la somme des dés pour chacun de ces tirages
+    * trouver le nombre de points dans le cube où la somme des dés
+      correspond à ce qu'on cherche
+
+    les deux étapes sont indépendantes, et peuvent donc être mélangées
+    entre les solutions
+    """
+
+    # pour élaborer le cube, on procède par broadcating
+    # on commence avec un simple vecteur de shape (nb_sides,) - e.g. de 1 à 6
+    # on lui ajoute lui-même mais avec une forme (nb_sides, 1) - en colonne donc
+    # et ainsi de suite avec
+    # shape=(nb_sides, 1, 1) pour la dimension 3,
+    # shape=(nb_sides, 1, 1, 1) pour la dimension 4
+    sides = np.arange(1, nb_sides+1)
+    cube = sides
+    # une liste plutôt qu'un tuple pour décrire la shape,
+    # car on va y ajouter '1' à chaque tour
+    shape = [nb_sides]
+    # on a déjà un dé
+    for _dimension in range(nb_dice - 1):
+        shape.append(1)
+        cube = cube + sides.reshape(shape)
+
+    # le cube est prêt,
+    # pour chercher combien de cases ont la valeur target,
+    # on peut faire par exemple
+    return np.sum(cube == target)    
+
+
+# %%
+# prune-cell
+
+def dice_2(target, nb_dice=2, nb_sides=6):
+    """
+    une variante de la première forme, qui utilise
+    astucieusement une matrice diagonale pour énumérer
+    les 'shapes' qui entrent en jeu
+
+    credits: aurelien
+    """
+    sides = np.arange(1, nb_sides+1)
+    shapes = np.diag([nb_sides-1]*nb_dice) + 1
+    # attention ici c'est le sum Python
+    # et non pas np.sum qui ferait complètement autre chose
+    cube = sum(sides.reshape(s) for s in shapes)
+
+    # une autre façon de faire le décompte
+    return np.count_nonzero(cube == target)

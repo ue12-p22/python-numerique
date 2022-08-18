@@ -65,6 +65,12 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # votre code
 
+# %%
+# prune-cell
+
+import numpy as np
+from matplotlib import pyplot as plt
+
 # %% [markdown]
 # ## création d'une image de couleur
 
@@ -98,6 +104,37 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # votre code
 
+# %%
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+# 1.
+img = np.empty(shape=(91, 91, 3), dtype=np.uint8)*255 # RGB
+plt.imshow(img)
+plt.show()
+
+# 2.
+img[:, :, :] = 0
+plt.imshow(img)
+plt.show()
+
+# 3.
+img[:, :, 0:2] = 255
+plt.imshow(img)
+plt.show()
+
+# 4.
+print(img[0, 0, :])
+print(img[-1, -1, :])
+
+# 5.
+img[::10, :, 0] = 0
+img[::10, :, 1:] = 255
+img[:, ::10, 0] = 0
+img[:, ::10, 1:] = 255
+plt.imshow(img);
+
 # %% [markdown]
 # ## lecture d'une image en couleur
 
@@ -128,6 +165,42 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # votre code
 
+# %% {"scrolled": false}
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+file = 'les-mines.jpg'
+
+# 1.
+im = plt.imread(file)
+
+# 2.
+print(im.flags.writeable)
+im = im.copy()
+print(im.flags.writeable)
+
+# 3.
+plt.imshow(im)
+plt.show()
+
+# 4.
+print(type(im))
+
+# 5. 6. 7.
+print(im.ndim)
+print(im.shape[0], im.shape[1])
+
+# 7. 8.
+print(im.itemsize)
+print(im.dtype)
+
+# 9.
+print(im.min(), im.max())
+
+# 10.
+plt.imshow(im[:10, :10, :]);
+
 # %% [markdown]
 # ## accès à des parties d'image
 
@@ -144,6 +217,36 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %%
 # votre code
+
+# %% {"scrolled": false}
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+file = 'les-mines.jpg'
+
+# 1.
+im = plt.imread(file)
+
+# 2.
+for n in (2, 5, 10, 20):
+    print(f"un pixel sur {n}")
+    plt.imshow(im[::n, ::n, :]);
+    plt.show()
+
+print("---")    
+# 3.
+for (l, c) in ((10, 20), (100, 200)):
+    print(f"centre de taille {l} x {c}")
+    ml = im.shape[0] // 2 - l//2
+    mc = im.shape[1] // 2 - c//2
+    plt.imshow(im[ml:ml+l, mc:mc+c, :])
+    plt.show()
+
+# 4.
+print(im[-1:, -1:, :])
+plt.imshow(im[-1:, -1:, :]);
+plt.show()    
 
 # %% [markdown]
 # ## canaux rgb de l'image
@@ -184,6 +287,60 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # votre code
 
+# %% {"scrolled": false}
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+# 1.
+file = 'les-mines.jpg'
+im = plt.imread(file)
+
+# 2.
+R, G, B = im[:, :, 0], im[:, :, 1], im[:, :, 2]
+
+# 3.
+print('le canal R sans colormap')
+plt.imshow(R)
+plt.show()
+
+# 4.
+print('le canal R avec colormap')
+plt.imshow(R, cmap='Reds')
+plt.show()
+
+# les 3 canaux
+print('les 3 canaux avec colormap')
+for (channel, cmap) in (R, 'Reds'), (G, 'Greens'), (B, 'Blues'):
+    plt.imshow(channel, cmap)
+    plt.show()
+
+# 5.1
+im1 = im.copy()
+l = 200
+c = 200
+#im1[-l:, -c:, 0] = 230
+#im1[-l:, -c:, 1] = 112
+#im1[-l:, -c:, 2] = 147
+#plt.imshow(im1)
+#plt.show()
+im1[-l:, -c:] = (230, 112, 147)
+plt.imshow(im1)
+plt.show()
+
+# 5.2
+#im1[-l::2, -c:, :] = 255
+#im1[-l+1::2, -c:, 0] = 255
+#im1[-l+1::2, -c:, 1:] = 0
+im1[-l::2, -c:] = 255
+im1[-l+1::2, -c:] = 255, 0, 0
+plt.imshow(im1)
+plt.show()
+
+# 6.
+plt.imshow(im1[-20:, -20:])
+plt.show()
+
 # %% [markdown]
 # ## transparence des images
 
@@ -202,6 +359,26 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+# 1.
+file = 'les-mines.jpg'
+im = plt.imread(file)
+
+# 2.
+ima = np.empty(shape=(im.shape[0], im.shape[1], 4), dtype=im.dtype)
+# ou encore pour les geeks
+# ima = np.empty(shape=(*im.shape[:2], 4), dtype=im.dtype)
+
+# 3.
+ima[:, :, 0:3] = im
+ima[:, :, 3] = 128
+plt.imshow(ima)
+plt.show()
 
 # %% [markdown]
 # ## image en niveaux de gris en `float`
@@ -225,6 +402,51 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %%
 # votre code
+
+# %% {"scrolled": false}
+# prune-cell
+import numpy as np
+from matplotlib import pyplot as plt
+
+# 1.
+file = 'les-mines.jpg'
+im = plt.imread(file)
+
+# 2.
+plt.title('q2: flottant entre 0 et 1')
+imf = im/255
+plt.imshow(imf)
+plt.show()
+
+# 3.1
+plt.title("q3.1: niveaux de gris (moyenne)")
+gr = (imf[:, :, 0] + imf[:, :, 1] + imf[:, :, 2])/3
+# pour les geeks; par contre il semble que c'est plus lent...
+gr = (imf[:, :, :].sum(axis=2))/3
+plt.imshow(gr, cmap='gray')
+plt.show()
+
+# 3.2
+plt.title('q3.2: niveaux de gris (correction Y)')
+grY = 0.299*imf[:, :, 0] + 0.587*imf[:, :, 1] + 0.114*imf[:, :, 2]
+plt.imshow(grY, cmap='gray')
+plt.show()
+
+# 4.
+plt.imshow(np.power(gr, 2), cmap='gray')
+plt.title('q4: au carré')
+plt.show()
+
+# 5.
+plt.imshow(np.sqrt(gr), cmap='gray')
+plt.title('q5: racine carrée')
+plt.show()
+
+# 6.
+gr8 = (gr*255).astype(np.uint8)
+plt.imshow(gr8, cmap='gray')
+plt.title('q6: en uint8')
+plt.show()
 
 # %% {"tags": ["raises-exception"]}
 # %%timeit 
@@ -326,3 +548,40 @@ plt.tight_layout()
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+
+# gr, grY et grS
+
+grS = np.sqrt(gr)
+
+1.
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+fig.suptitle('cote à cote')
+axes[0].imshow(gr, cmap='gray')
+axes[0].set_title('moyenne')
+axes[1].imshow(grY, cmap='gray')
+axes[1].set_title('corr. Y')
+axes[2].imshow(grS, cmap='gray')
+axes[2].set_title('racine')
+plt.show()
+
+
+
+2.
+images = [gr, grY, grS]
+titles = ['moyenne', 'corr. Y', 'racine']
+
+fig, axes = plt.subplots(3, 3, figsize=(15, 15))
+fig.suptitle('en damier')
+fig.tight_layout()
+
+for i in range(3):
+    for j in range(3):
+        index = (i-j)%3
+        image = images[index]
+        title = titles[index]
+        axes[i, j].imshow(image, cmap='gray')
+        axes[i, j].set_title(title)
+plt.show()

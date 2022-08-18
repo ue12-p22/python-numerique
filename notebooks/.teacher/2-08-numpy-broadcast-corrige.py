@@ -78,6 +78,32 @@ import numpy as np
 # %%
 # votre code
 
+# %%
+# prune-cell
+
+# 1.
+# tab1 = np.arange(0, 120).reshape(2, 3, 4, 5)
+# en mettant -1 on laisse numpy faire le calcul du 'nombre adéquat'
+tab1 = np.arange(0, 120).reshape(2, 3, 4, -1)
+
+# 2.
+# tab2 = np.linspace(0, 1, 120).reshape(2, 3, 4, 5)
+# pour ne pas se répéter
+tab2 = np.linspace(0, 1, 120).reshape(*tab1.shape)
+
+# 3
+np.round(tab2, 2, out=tab2)
+
+# 4.a
+#tab3 = np.add(tab1, tab2)
+tab3 = tab1 + tab2
+
+# 4.b
+np.add(tab1, tab2, out=tab2)
+
+# 5.
+tab2[::-1, ::-1, ::-1, ::-1]
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## tableaux de formes différentes: broadcasting
 # <br>
@@ -400,6 +426,13 @@ mat+col
 #     
 # il faut faire attention à la forme de la colonne `(n, 1)`
 
+# %%
+# prune-cell
+line = np.arange(5)
+print(line)
+col = np.array([[10], [20], [30]])
+line + col
+
 # %% [markdown] {"tags": ["level_intermediate", "framed_cell"]}
 # ## règles de broadcasting - avancés
 #
@@ -653,6 +686,28 @@ grp+mat
 # -> False
 #    False
 # ```
+
+# %%
+# prune-cell
+
+def test_compatibility (s1, s2):
+     try:
+        np.empty(shape=s1) + np.empty(shape=s2)
+        return True
+     except ValueError:
+        return False
+
+def are_broadcast_compatible (s1, s2):
+    if not s1 or not s2:
+        return True
+    if (s1[-1] == s2[-1]) or (s1[-1] == 1) or (s2[-1] == 1):
+        if (len(s1) != 1) and (len(s2) != 1):
+            return are_broadcast_compatible(s1[:-1], s2[:-1])
+        else:
+            return True
+    else:
+        return False
+
 
 # %% {"scrolled": true}
 # pour corriger votre code

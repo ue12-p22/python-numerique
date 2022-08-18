@@ -245,6 +245,10 @@ tab
 # %%
 # votre code
 
+# %%
+# prune-cell
+np.arange(2, 62, 2).reshape((2, 5, 3))[0, 1, 2]
+
 # %% [markdown] {"cell_style": "center"}
 # **exercice**
 #
@@ -268,6 +272,10 @@ tab
 
 # %%
 # votre code ici
+
+# %%
+# prune-cell
+np.random.randint(0, 101, size=(3, 2, 5, 4)).shape[-2:]
 
 # %% [markdown]
 # ## accéder à un sous-tableau (slicing)
@@ -522,6 +530,11 @@ tab[:, 0]
 # %%
 # votre code
 
+# %%
+# prune-cell
+tab = np.arange(120).reshape(2, 3, 4, 5)
+tab[:, 0, 1:-1, 1:-1]
+
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## les sous-tableaux sont des vues, et non des copies
 #
@@ -682,6 +695,18 @@ tab1.base
 
 # %%
 # votre code ici
+
+# %% {"scrolled": true}
+# prune-cell 
+tab1 = np.arange(2, 26, 2)
+print(tab1)
+print(tab1.base is None)
+tab2 = tab1.reshape(2, 2, 3) # vue
+print(tab2)
+print(tab2.base is tab1)
+tab3 = tab2[::-1, ::-1, ::-1] # vue
+print(tab3)
+tab2.base is tab1;
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## modification des sous-tableaux

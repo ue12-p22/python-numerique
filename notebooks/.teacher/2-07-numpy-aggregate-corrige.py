@@ -258,6 +258,14 @@ def fake_none(tab):
     pass
 
 
+# %%
+# prune-cell
+def fake_all(tab):
+    return np.sum(tab) == 1
+def fake_none(tab):
+    return np.sum(tab) == 0
+
+
 # %% [markdown]
 # ## agrégation en dimension > 1
 
@@ -433,6 +441,19 @@ print(    np.unravel_index(tab.argmax(), tab.shape)    )
 
 # %% {"tags": ["level_advanced"]}
 # votre code ici
+
+# %% {"tags": ["level_advanced"]}
+# prune-cell
+def unravel_index(index, shape):
+    result = []
+    n = len(shape)
+    for rank in range(n):
+        subshape = shape[rank+1:]
+        size = np.prod(subshape, initial=1)
+        sub_index, index = index // size, index % size
+        result.append(int(sub_index))
+    return result
+
 
 # %% {"tags": ["level_advanced"]}
 # devrait retourner [1, 2, 0, 4]

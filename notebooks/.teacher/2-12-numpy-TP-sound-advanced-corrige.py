@@ -103,6 +103,26 @@ la_1seconde = ...
 # ***
 # ***
 
+# %% [markdown]
+# prune-cell
+#
+# 1. N = 44_100
+# 2. pour t variant de 0 à 1, la fonction est tout simplement  
+#    $f(t) = sin(2\pi t * 440)$
+# 3. il reste juste à 
+#   * créer en entrée un tableau qui représente le temps en secondes  
+#     avec `np.linspace()` pour modéliser l'intervalle de temps de 0 à 1s  
+#     et en lui demandant de créer 44_100 points dans cet intervalle
+#   * et à lui appliquer la formule ci-dessus
+
+# %%
+# prune-cell
+
+t = np.linspace(0, 1, RATE)
+
+la_1seconde = np.sin(2*np.pi*LA*t)
+#print(la_1seconde[:20])
+
 # %%
 # pour écouter le résultat
 # remarquez qu'on a maintenant perdu la fréquence d'échantillonnage
@@ -144,6 +164,14 @@ def sine(freq, duration=1, amplitude=1.):
 
 
 # %%
+# prune-cell
+
+def sine(freq, duration=1):
+    t = np.linspace(0, duration, int(RATE*duration))
+    return np.sin(2*np.pi*freq*t)
+
+
+# %%
 # pour écouter: plus court
 
 MyAudio(sine(LA, .5), autoplay=True)
@@ -152,6 +180,7 @@ MyAudio(sine(LA, .5), autoplay=True)
 # pour écouter: plus long
 
 MyAudio(sine(LA, 1.5), autoplay=True)
+
 
 # %% [markdown] tags=["level_intermediate"]
 # ### pour les rapides
@@ -164,6 +193,14 @@ MyAudio(sine(LA, 1.5), autoplay=True)
 
 # %% tags=["level_intermediate"]
 # votre code
+
+# %% tags=["level_intermediate"]
+# prune-cell
+def sine_linear(freq1, freq2, duration):
+    freq = freq1 + (freq2-freq1)*np.linspace(0, duration, duration*RATE)/duration
+    t = np.linspace(0, duration, int(RATE*duration))
+    return np.sin(2*np.pi*freq*t)    
+
 
 # %% tags=["level_intermediate"]
 # pour écouter
@@ -201,6 +238,12 @@ MyAudio(sine_linear(440, 660, 3))
 crescendo_la_1seconde = ...
 
 # %%
+# prune-cell 1
+
+t = np.linspace(0, 1, RATE)
+crescendo_la_1seconde = sine(LA) * t
+
+# %%
 # pour écouter
 MyAudio(crescendo_la_1seconde) #, autoplay=True)
 
@@ -209,6 +252,14 @@ MyAudio(crescendo_la_1seconde) #, autoplay=True)
 # votre code pour 2.
 def crescendo(freq, duration):
     ...
+
+
+# %%
+# prune-cell 2
+
+def crescendo(freq, duration):
+    t = np.linspace(0, duration, int(duration*RATE))
+    return t * sine(freq, duration)
 
 
 # %%
@@ -223,9 +274,54 @@ def crescendo(freq, duration, increase=True):
 
 
 # %%
+# prune-cell 3
+
+# et on peut aussi penser à passer un paramétre 
+# pour décroitre
+
+def crescendo(freq, duration, increase=True):
+    volume = np.linspace(0, 1, int(duration*RATE))
+    if not increase:
+        volume = volume[::-1]
+    return sine(freq, duration) * volume
+
+
+# %%
 # pour écouter
 
 MyAudio(crescendo(LA, 2, increase=False)) #, autoplay=True)
+
+
+# %%
+# prune-cell 4
+
+# c'est plus habile de concevoir ça en deux morceaux
+
+def crescendo_volume(duration, increase=True):
+    volume = np.linspace(0, 1, int(duration*RATE))
+    if not increase:
+        volume = volume[::-1]
+    return volume
+
+# comme ça on a pourra appliquer le crescendo
+# à d'autres sons
+
+MyAudio(sine(LA, 2) * crescendo_volume(2, False)) #, autoplay=True)
+
+
+# %%
+# prune-cell 4
+# 4. (bis)
+
+# ou encore mieux, au lieu de préciser la durée deux fois
+def apply_crescendo(sound, increase=True):
+    size = len(sound)
+    volume = np.arange(size)/size
+    if not increase:
+        volume = volume[::-1]
+    return sound * volume
+
+MyAudio(apply_crescendo(sine(LA, 2))) #, autoplay=True)    
 
 # %% [markdown]
 # ## concaténation
@@ -242,6 +338,12 @@ DO = 523.25
 # %%
 # votre code
 la_do = ...
+
+# %%
+# prune-cell
+la_do = np.concatenate([
+    sine(LA), sine(DO)
+])
 
 # %%
 # pour écouter
@@ -339,6 +441,15 @@ trash[32_764: 32_772]
 # votre code
 def float_to_int16(as_float):
     ...
+
+
+# %%
+# prune-cell
+
+INT16_MAX = 2**15 - 1
+
+def float_to_int16(as_float):
+    return (as_float*INT16_MAX).astype(np.int16)
 
 
 # %% cell_style="split"
@@ -466,6 +577,13 @@ MyAudio(
 # \end{array}
 # $
 
+# %%
+# prune-cell
+
+alpha = 2**(1/12)
+ratios = alpha**np.arange(13)
+ratios
+
 # %% [markdown]
 # 2. on a besoin d'une fonction qui calcule la fréquence  
 #    d'une note à partir de son nom  
@@ -479,6 +597,17 @@ scale = ['do', 'do#', 'ré', 'ré#', 'mi', 'fa', 'fa#', 'sol', 'sol#', 'la', 'la
 # votre code
 def freq_from_name(name):
     ...
+
+
+# %%
+# prune-cell
+
+def freq_from_name(name):
+    # le do est 9 demi-tons en dessous du la
+    do = LA / (alpha**9)
+    # on cherche à quel index est 'name' dans les notes
+    index = scale.index(name)
+    return do*ratios[index]
 
 
 # %% cell_style="center"
@@ -585,6 +714,12 @@ sol = sine(freq_from_name('sol'), 2)
 accord_do_mi_sol = ...
 
 # %%
+# prune-cell
+
+# bien entendu c'est aussi simple que ceci
+accord_do_mi_sol = do + mi + sol
+
+# %%
 # pour écouter
 
 MyAudio(accord_do_mi_sol, autoplay=True)
@@ -617,6 +752,23 @@ original = la_do # par exemple
 # 
 restored = ... # relisez le fichier 'sample.wav' dans une variable 'after'
 
+# %%
+# prune-cell
+original = la_do
+
+# pass into the int16 space
+original16 = float_to_int16(original)
+# -- or --
+original16 = (original * (2**15 - 1)).astype(np.int16)
+
+# write
+wavfile.write('do-la.wav', RATE, original16)
+# read
+datarate, restored = wavfile.read('do-la.wav')
+
+# MyAudio(original16)
+restored[:20]
+
 # %% cell_style="split" tags=["raises-exception"]
 # pour vérifier
 
@@ -646,6 +798,18 @@ MyAudio(restored)
 
 # %%
 # votre code
+
+# %%
+# prune-cell
+
+# 1.
+samplerate, data = wavfile.read('media/sounds-cello.wav')
+
+# 2. et 3.
+samplerate, len(data)
+
+# 4.
+len(data) / samplerate
 
 # %%
 # pour vérifier à l'oreille
@@ -729,6 +893,18 @@ main_ratio, delayed_ratio = 0.7, 0.3
 data_echoed = ...
 
 # %%
+# prune-cell
+
+1. # en échantillons
+offset = int (samplerate * delay)
+
+2.
+# on passe dans l'hyperespace - des flottants
+# on baisse les volumes car sinon l'addition va créer un overflow
+data_echoed = (data * main_ratio)
+data_echoed[offset::] += (data[:-offset:] * delayed_ratio)
+
+# %%
 # pour écouter
 
 MyAudio(data_echoed)
@@ -751,6 +927,14 @@ plt.plot(data_echoed, linewidth=0.05);
 # votre code
 
 data_echoed_v2 = ...
+
+# %%
+# prune-cell
+data_len = len(data)
+data_echoed_v2 = np.empty(data_len+offset)
+data_echoed_v2[:data_len] = data * main_ratio
+data_echoed[-offset:] = 0
+data_echoed_v2[offset:] += data*delayed_ratio
 
 # %%
 # pour écouter
@@ -810,6 +994,13 @@ plt.plot(data_echoed_v2, linewidth=0.05);
 
 data2 = ...
 
+# %%
+# prune-cell
+
+# pour faire ça en numpy c'est hyper simple: 
+
+data2 = data[::2]
+
 # %% cell_style="split"
 # pour écouter
 
@@ -866,6 +1057,32 @@ plt.plot(data2, linewidth=0.05);
 # %%
 # votre code
 data3 = ...
+
+# %%
+# prune-cell
+# pas trop mal mais buggé quand même
+
+# 1.
+# la taille de data3 est 2/3 de la taille de data
+# MAIS il nous faut une taille *entière* et donc on utilise // et non pas /
+
+
+data3 = np.empty(2*len(data) // 3, dtype=np.int16)
+
+# 2.
+data3[0::2] = data[0::3]
+
+# 3.
+
+# ATTENTION: si on fait comme ceci, ça marche mal !!
+# ça commence pas trop mal, mais quand le morceau
+# monte en amplitude on entend des crissements
+# à cause du dépassement de capacité dans le type int16
+data3[1::2] = (data[1::3] + data[2::3]) // 2
+
+# il faut éviter les dépassements de capacité du type int16
+# par exemple comme ceci
+data3[1::2] = (data[1::3] //2) + (data[2::3] // 2)
 
 # %%
 # vérification de visu
