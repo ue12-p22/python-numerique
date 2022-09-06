@@ -29,8 +29,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown] slideshow={"slide_type": "slide"}
 # # test sur le langage Python
 
@@ -45,12 +43,14 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #    
 
 # %% [markdown]
-# Ce notebook jupyter propose une série d'exercices en **auto-évaluation** pour tester votre niveau en python. Ils sont présentés en 3 niveaux: ***débutant***, ***moyen*** et ***avancé***
+# Ce notebook jupyter propose une série d'exercices en **auto-évaluation** pour tester votre niveau en python.  
+# Ils sont présentés en 3 niveaux: ***débutant***, ***moyen*** et ***avancé***
 #
 #    1. Vous rencontrez des difficultés dans les exercices pour débutants ?  
 #       Votre niveau en Python est **insuffisant.**  
-#       Nous vous demandons d'**étudier les notebooks** de ce cours (intitulé *Python primer*) qui reprennent les notions essentielles du langage.  
-#       Et surtout **inscrivez-vous aux tutorats**
+#       Nous vous demandons d'**étudier les notebooks** de ce cours (intitulé *rappels Python*) 
+#       qui reprennent les notions essentielles du langage.
+#       Éventuellement signalez-vous auprès des enseignants pour qu'on envisage un rattrapage spécifique.
 #       
 #    1. Vous faites le niveau débutant, mais sans plus ?
 #       Votre niveau en Python est **pas terrible.**  
@@ -62,7 +62,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #       Lisez simplement le notebook `un-tour-de-python`.
 #
 #    1. Vous avez réussi les exercices pour débutants, moyens et la plupart des exercices pour avancés ?  
-#       Proposez-vous auprès de vos enseignants pour aider lors des tutorats.
+#       Proposez-vous auprès de vos enseignants pour aider vos camarades lors des cours.
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## quelques définitions
