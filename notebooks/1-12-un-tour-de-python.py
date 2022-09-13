@@ -114,6 +114,46 @@ True
 10 % 3 == 1 
 
 # %% [markdown] slideshow={"slide_type": "slide"}
+# ## précision des calculs flottants
+#
+# bien sûr un flottant est représenté, en informatique, comme une suite de bits 0 ou 1  
+# cela induit des calculs avec une précision imparfaite
+
+# %% cell_style="split"
+# sur les architectures actuelles 
+# un flottant est encodé sur 64 bits
+
+0.2 + 0.1
+
+# %% cell_style="split"
+0.2 + 0.1 == 0.3
+
+# %% cell_style="split"
+0.2 + 0.2 == 0.4
+
+# %%
+# cette fonction est pratique pour faire 
+# un test de quasi-égalité sur les flottants
+np.isclose(0.2+0.1, 0.3)
+
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## précision des calculs flottants
+# **optionnel**
+
+# %% [markdown] slideshow={"slide_type": ""}
+# la façon de passer d'un flottant à une séquence de bits  
+# s'appelle un **encodage** 
+# [dans le cas des flottants: IEE754](https://en.wikipedia.org/wiki/IEEE_754)  
+# qui est efficace car supporté par le processeur
+
+# %% [markdown] slideshow={"slide_type": ""}
+# pour faire court - dans le cas le plus courant (`binary64`)  
+# la précision des calculs est de l'ordre de $10^{-15}$ 
+#
+#
+# voir un [convertisseur en ligne](http://www.binaryconvert.com/convert_double.html) pour visuels
+
+# %% [markdown] slideshow={"slide_type": "slide"}
 # ## définir une variable
 #
 # pour définir une variable, il suffit de l'affecter avec le signe `=` 
@@ -195,6 +235,20 @@ print(f'pi = {math.pi}')
 # c'est à dire qu'à l'intérieur des {} on peut faire des calculs, ici sin(pi)
 print(f"pi = {math.pi} et sin(pi) = {math.sin(math.pi)}")
 
+# %% [markdown] slideshow={"slide_type": "slide"}
+# ## formatage - plus finement
+#
+# il y a des tas de possibilités pour affiner la façon  
+# dont les données sont mises en forme  
+# pour cela ajouter un format dans les `{}` avec un `:`  
+# par exemple pour afficher deux chiffres après la virgule :
+
+# %% cell_style="center"
+print(f"bla {2*math.pi:.2f} bla")
+
+
+# %% [markdown] cell_style="split"
+# ![](media/f-string.svg)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## fonctions
@@ -344,46 +398,6 @@ np.sin(np.pi)
 # %% [markdown] slideshow={"slide_type": "notes"}
 # Remarquez qu'ici on devrait obtenir 0, mais les calculs sur les flottants sont faits de manière approchée. 
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## précision des calculs flottants
-#
-# bien sûr un flottant est représenté, en informatique, comme une suite de bits 0 ou 1  
-# cela induit des calculs avec une précision imparfaite
-
-# %% cell_style="split"
-# sur les architectures actuelles 
-# un flottant est encodé sur 64 bits
-
-0.2 + 0.1
-
-# %% cell_style="split"
-0.2 + 0.1 == 0.3
-
-# %% cell_style="split"
-0.2 + 0.2 == 0.4
-
-# %%
-# cette fonction est pratique pour faire 
-# un test de quasi-égalité sur les flottants
-np.isclose(0.2+0.1, 0.3)
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## précision des calculs flottants
-# **optionnel**
-
-# %% [markdown] slideshow={"slide_type": ""}
-# la façon de passer d'un flottant à une séquence de bits  
-# s'appelle un **encodage** 
-# [dans le cas des flottants: IEE754](https://en.wikipedia.org/wiki/IEEE_754)  
-# qui est efficace car supporté par le processeur
-
-# %% [markdown] slideshow={"slide_type": ""}
-# pour faire court - dans le cas le plus courant (`binary64`)  
-# la précision des calculs est de l'ordre de $10^{-15}$ 
-#
-#
-# voir un [convertisseur en ligne](http://www.binaryconvert.com/convert_double.html) pour visuels
-
 # %% [markdown]
 # ## containers
 
@@ -420,16 +434,8 @@ D['dix']
 # mais on peut chercher si un élément existe
 100 in S
 
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## formatage - suite
-#
-# il y a des tas de possibilités pour affiner la façon  
-# dont les données sont mises en forme  
-# pour cela ajouter un format dans les `{}` avec un `:`  
-# par exemple pour afficher deux chiffres après la virgule :
-
-# %% cell_style="split"
-print(f"bla {2*math.pi:.2f} bla")
+# %% [markdown]
+# pour les modifier
 
 # %% cell_style="split"
 # liste ordonnée d'objets
@@ -504,9 +510,6 @@ print(court)
 # %% cell_style="split"
 # les caractères sont 'a', '\n', et 'b'
 len(court)
-
-# %% [markdown] cell_style="split"
-# ![](media/f-string.svg)
 
 # %% [markdown]
 # ## types
