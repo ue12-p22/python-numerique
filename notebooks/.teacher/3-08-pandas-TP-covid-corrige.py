@@ -502,7 +502,7 @@ np.all(global_df == global_df2) # si True, les 2 dataframes sont identiques
 # si vous avez appelé `pd.concat()` sans paramètre particulier  
 # vous pouvez sans doute observer ceci:
 
-# %%
+# %% tags=["raises-exception"]
 # si on essaie d'accéder à la ligne d'index 0
 # on remarque qu'en fait on obtient .. plein de lignes
 global_df.loc[0]
@@ -773,7 +773,7 @@ clean_df.loc[['France', 'Italy']]
 # l'idée serait ensuite d'écrire simplement
 #
 # ```python
-# df_clean.loc [ (countries, time_slice), :]
+# clean_df.loc [ (countries, time_slice), :]
 # ```
 #
 # <br>
@@ -783,7 +783,7 @@ clean_df.loc[['France', 'Italy']]
 # avec la notation `start:stop` (parce que pas dans des `[]`)  
 # du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
 
-# %% tags=["level_intermediate"]
+# %% tags=["level_intermediate", "raises-exception"]
 # ce qui nous donne le code suivant
 # plutôt subtil, mais vraiment puissant
 
@@ -966,7 +966,7 @@ df3.plot(rot=45);
 # . **en lignes** un seul niveau d'index - les dates  
 # . **en colonnes** deux niveaux, les 2 mesures x les 3 pays
 
-# %%
+# %% tags=["raises-exception"]
 # le code
 
 df6 = df3.unstack(0)
@@ -976,7 +976,7 @@ df6
 # %% [markdown]
 # ### ne reste qu'à plotter
 
-# %%
+# %% tags=["raises-exception"]
 # que du coup il n'y a plus qu'à plotter
 df6.plot(figsize=(12, 5));
 

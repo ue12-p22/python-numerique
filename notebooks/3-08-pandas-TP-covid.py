@@ -427,7 +427,7 @@ list(by_country.keys())[:4]
 # si vous avez appelé `pd.concat()` sans paramètre particulier  
 # vous pouvez sans doute observer ceci:
 
-# %%
+# %% tags=["raises-exception"]
 # si on essaie d'accéder à la ligne d'index 0
 # on remarque qu'en fait on obtient .. plein de lignes
 global_df.loc[0]
@@ -633,7 +633,7 @@ pd.to_datetime('15 july 2021 08:00')
 # l'idée serait ensuite d'écrire simplement
 #
 # ```python
-# df_clean.loc [ (countries, time_slice), :]
+# clean_df.loc [ (countries, time_slice), :]
 # ```
 #
 # <br>
@@ -643,7 +643,7 @@ pd.to_datetime('15 july 2021 08:00')
 # avec la notation `start:stop` (parce que pas dans des `[]`)  
 # du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
 
-# %% tags=["level_intermediate"]
+# %% tags=["level_intermediate", "raises-exception"]
 # ce qui nous donne le code suivant
 # plutôt subtil, mais vraiment puissant
 
@@ -809,7 +809,7 @@ df.plot();
 # . **en lignes** un seul niveau d'index - les dates  
 # . **en colonnes** deux niveaux, les 2 mesures x les 3 pays
 
-# %%
+# %% tags=["raises-exception"]
 # le code
 
 df6 = df3.unstack(0)
@@ -819,7 +819,7 @@ df6
 # %% [markdown]
 # ### ne reste qu'à plotter
 
-# %%
+# %% tags=["raises-exception"]
 # que du coup il n'y a plus qu'à plotter
 df6.plot(figsize=(12, 5));
 
