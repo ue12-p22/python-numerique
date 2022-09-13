@@ -604,7 +604,7 @@ print(seg)
 # votre code
 
 # %%
-#correction
+# prune-cell
 tab = np.ones(shape=(6))
 print(    tab    )
 
