@@ -38,7 +38,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 
 # %% [markdown] slideshow={"slide_type": ""}
-# # Python : généralités
+# # Python : environnement
 #
 # ce notebook reprend très rapidement quelques informations  
 # issues de la partie initiale de ce cours `intro & install`  
@@ -59,8 +59,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown] cell_style="split"
 # **illustration**
 #
-# ces usages sont explicités dans cette
-# [vidéo introductive](https://youtu.be/ULzWaZQa1Dc)
+# ces usages ont été vus dans le cours d'introduction, et [dans la vidéo associée](https://youtu.be/i_ZcP7iNw-U)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## nos cas d'usage
@@ -95,47 +94,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # ```
 
 # %% [markdown] slideshow={"slide_type": "slide"}
-# ### note à propos de Windows
-
-# %% [markdown]
-# * la notation avec un `$` réfère au terminal et vient historiquement de Unix  
-# (aujourd'hui Linux et MacOS)
-#
-#
-#
-# * le programme en question s'appelle un `shell`  
-# (on l'apparente à l'application `Terminal`)
-#
-#
-#
-# * sur Windows cette sorte de terminal n'est pas native  
-# (vous avez installé **git for windows**  
-# et obtenu la variante du `shell` appelée `bash`)
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## savoir si Python est installé
-
-# %% [markdown]
-# vous devez avoir python installé sur votre portable; pour le savoir tapez dans un terminal
-#
-# ```bash
-# $ python --version
-# ```
-#
-# ou encore
-#
-# ```bash
-# $ python3 --version
-# ```
-#
-# si vous lisez:
-#
-# * `Python 3.6.n` ou `Python 3.7.n` : vous avez un Python installé
-# * `Python 3.x` avec $x <= 5$ : votre Python a besoin d'une mise à jour
-# * `Python 2.x` : ne pas utiliser Python 2 !
-# * `command not found` : Python n'est pas installé (il faudra le faire rapidement)
-
-# %% [markdown] slideshow={"slide_type": "slide"}
 # ## note historique
 #
 # Python2 est une version plus ancienne du langage
@@ -150,54 +108,3 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # * pour lancer Python3
 #   * sur certains systèmes on tape encore `python3`
 #   * mais de plus en plus `python` tout court suffit
-
-# %% [markdown] cell_style="center" slideshow={"slide_type": "slide"}
-# ## les fichiers du cours
-#
-# * vous avez cloné [le cours sur
-#   github](https://github.com/ue12/python-numerique/tree/master/demo)
-#
-# * si ce n'est pas déjà fait, dans un terminal, utilisez `git clone` pour dupliquer le repo
-#   sur votre ordinateur
-#   ```bash
-#   $ git clone https://github.com/ue12/python-numerique
-#   ```
-#
-# * si vous voulez choisir le nom du dossier du clone
-#   ```bash
-#   $ git clone https://github.com/ue12/python-numerique ue12-python-numerique
-#   ```
-#
-# * déplacez-vous dans le sous-dossier `demo` `$ cd ue12-python-numerique/demo`
-
-# %% [markdown] slideshow={"slide_type": "slide"}
-# ## testez votre installation
-
-# %% [markdown] slideshow={"slide_type": "-"} cell_style="center"
-# Vous êtes dans le répertoire `demo`, lancez les deux programmes
-#
-# ```bash
-# $ python3 fact.py
-# fact(4) = 24
-# fact(25) = 15511210043330985984000000
-# ```
-#
-# ***
-#
-# ```bash
-# $ python3 users.py
-# Emilie (Lambert), 25 ans
-# Julien (Masson), 30 ans
-# ```
-
-# %% [markdown] slideshow={"slide_type": "slide"} tags=["level_intermediate"]
-# ## des introductions à Jupyter et VScode
-#
-# * une introduction rapide à   
-#   [l'installation et à l'usage des
-#   notebooks](https://nbhosting.inria.fr/auditor/notebook/python-slides:extras/slides-extras/3-1-notebooks-basic)
-#   
-#   est disponible sur nbhosting
-#
-# * idem en ce qui concerne [Visual Studio
-#   Code](https://nbhosting.inria.fr/auditor/notebook/python-slides:extras/slides-extras/7-vscode)
