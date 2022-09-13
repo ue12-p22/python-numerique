@@ -436,6 +436,20 @@ df['Name'].dtype
 # ces codes peuvent servir, par exemple, de code-couleur pour afficher des points  
 # on verra cela plus tard
 
+# %%
+df
+
+# %%
+# on vous montre comment faire pas à pas
+
+col = df['Name'].astype('category')
+print(col.dtype)
+df['Name-code'] = col.cat.codes
+df['Name-code'].value_counts()
+
+# %%
+# comment on pourrait faire à en une seul ligne ?
+
 # %% [markdown]
 # ## nuages de points `df.plot.scatter`
 

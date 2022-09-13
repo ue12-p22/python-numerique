@@ -437,11 +437,18 @@ df['Name'].dtype
 # on verra cela plus tard
 
 # %%
-# prune-cell
+df
+
+# %%
+# on vous montre comment faire pas à pas
+
 col = df['Name'].astype('category')
 print(col.dtype)
 df['Name-code'] = col.cat.codes
 df['Name-code'].value_counts()
+
+# %%
+# comment on pourrait faire à en une seul ligne ?
 
 # %%
 # prune-cell en une seule ligne
