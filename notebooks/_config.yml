@@ -21,8 +21,8 @@ html:
 only_build_toc_files: true
 
 execute:
-#  execute_notebooks: "force"
   execute_notebooks: cache
+  exclude_patterns: [ ".teacher/*" ]
 
 sphinx:
   config:
@@ -33,7 +33,7 @@ sphinx:
     html_show_copyright: false
     # from https://jupyterbook.org/en/stable/advanced/html.html#manually-specify-extra-files-folders-to-be-included-in-a-website
     # not quite convincing but...
-    html_extra_path: ['media']
+    html_extra_path: [ 'media' ]
 
 # for raw <img> tags in markdown
 parse:
