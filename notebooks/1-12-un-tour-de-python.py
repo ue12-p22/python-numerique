@@ -134,7 +134,7 @@ True
 # %%
 # cette fonction est pratique pour faire 
 # un test de quasi-égalité sur les flottants
-np.isclose(0.2+0.1, 0.3)
+math.isclose(0.2+0.1, 0.3)
 
 # %% [markdown] slideshow={"slide_type": "slide"}
 # ## précision des calculs flottants
