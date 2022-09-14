@@ -554,7 +554,7 @@ type(math)
 # %% [markdown]
 # en 3 étapes: on ouvre un fichier, on écrit dedans et on ferme le fichier
 
-# %% cell_style="split"
+# %% cell_style="center"
 # on écrit des chaînes de caractères
 file = 'hamlet.txt'
 f = open(file, 'w') # w pour le mode écriture
@@ -563,14 +563,23 @@ f.write('Or to take Arms ...')
 f.close()
 # ne pas oublier de fermer le fichier !
 
-# %% cell_style="split"
+# %% [markdown]
+# cette première façon de faire c'est la version 'pédestre' mais c'est très *old-school*, et **pas du tout recommandé**; on la montre juste pour bien décortiquer ce qui est fait
+#
+# la **bonne façon** de faire, c'est celle-ci:
+
+# %% cell_style="center"
 # en beaucoup beaucoup plus élégant ....
 file = 'hamlet.txt'
+
 with open(file, 'w') as f:
     f.write(bafouille)
     f.write('Or to take Arms ...')
 # vous ne pouvez pas oublier
 # de fermer le fichier
+
+# %% [markdown]
+# on peut aussi utiliser `print(des, trucs, file=f)` plutôt que `write`
 
 # %% [markdown]
 # ## lire le contenu d'un fichier
@@ -579,7 +588,7 @@ with open(file, 'w') as f:
 # tout le contenu
 file = 'hamlet.txt'
 with open(file, 'r') as f:
-       print(f.read())
+    print(f.read())
 
 # %% cell_style="split"
 # ligne par ligne
