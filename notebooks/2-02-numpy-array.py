@@ -38,34 +38,34 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #
 # <br>
 #
-#     
-# fonctions de création de tableaux `numpy.ndarray`    
+#
+# fonctions de création de tableaux `np.ndarray`
 #
 # | les fonctions | ce qu'elles font |
-# | --------------------------- | --------------------- ---------------------- |
-# | `numpy.array` | renvoie la version ndarray d'un tableau existant |
-# | `numpy.empty` | renvoie un ndarray vide (éléments non initialisés) |
-# | `numpy.zeros` | renvoie un ndarray rempli de *0.* (float) |
-# | `numpy.ones` | renvoie un ndarray rempli de *1.* (float) |
-# | `numpy.random.randint` | entiers aléatoirement générés |
-# | `numpy.random.randn` | flottants aléatoirement générés |
-#     
-#     
-#     
+# |-|-|
+# | `np.array` | renvoie la version ndarray d'un tableau existant |
+# | `np.empty` | renvoie un ndarray vide (éléments non initialisés) |
+# | `np.zeros` | renvoie un ndarray rempli de *0.* (float) |
+# | `np.ones` | renvoie un ndarray rempli de *1.* (float) |
+# | `np.linspace` | un vecteur de valeurs bien espacées entre deux bornes |
+# | `np.random.randint` | entiers aléatoirement générés |
+# | `np.random.randn` | flottants aléatoirement générés |
+#
+#
+#
 # <br>
 #
-# attributs/méthodes de manipulation de tableaux `numpy.ndarray`
+# attributs/méthodes de manipulation de tableaux `np.ndarray`
 #
-# | attributs/méthodes             | ce qu'ils font                                 |
-# |--------------------------|--------------------------------------------------|
-# | `np.ndarray.shape`    | la forme du tableau (tuple)                            |
-# | `np.ndarray.size`     | le nombre d'éléments du tableau                  |
-# | `np.ndarray.ndim`     | le nombre de dimensions du tableau               |
-# | `np.ndarray.dtype`    | le type des éléments                             |
-# | `np.ndarray.itemsize` | la taille en octet d'un élément                  |
+# | attributs/méthodes | ce qu'ils font |
+# |-|-|
+# | `np.ndarray.shape`    | la forme du tableau (tuple) |
+# | `np.ndarray.size`     | le nombre d'éléments du tableau |
+# | `np.ndarray.ndim`     | le nombre de dimensions du tableau |
+# | `np.ndarray.dtype`    | le type des éléments |
+# | `np.ndarray.itemsize` | la taille en octet d'un élément |
 # | `np.ndarray.nbytes`   | la taille totale du tableau sous-jacent en octet |
 # | `np.ndarray.astype`   | copie tableau avec autre taille des éléments |
-#
 #
 # <br>
 #
