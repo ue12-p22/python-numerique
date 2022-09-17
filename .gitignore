@@ -6,3 +6,6 @@
 .ipynb_checkpoints/
 *.ipynb
 _build/
+.macnb/
+.vscode/
+hamlet.txt
