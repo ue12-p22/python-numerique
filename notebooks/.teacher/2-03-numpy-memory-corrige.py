@@ -29,8 +29,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # la mémoire
 
@@ -458,8 +456,8 @@ tab
 #
 # </div>    
 #
-# ${0 \leq i \leq 4}$  
-# ${0 \leq j \leq 5}$
+# 0 <= i <= 4
+# 0 <= j <= 5
 
 # %% [markdown]
 # ***
@@ -633,6 +631,4 @@ print(    tab1    )
 # 1. afficher son nombre de lignes et son nombre de colonnes
 
 # %%
-tab = np.ones(shape=(1, 2, 3, 4, 5))
-print(tab.shape[-2:])
-
+# votre code ici

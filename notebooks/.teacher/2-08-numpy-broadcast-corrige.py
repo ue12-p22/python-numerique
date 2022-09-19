@@ -482,7 +482,7 @@ except ValueError as e:
 #
 # <br>
 #
-# * une matrice `A`$=\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\  \end{pmatrix}$ de forme $(2_A, 3_A)$
+# * une matrice `A`$=\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\  \end{pmatrix}$ de forme `(2_A, 3_A)`
 #     
 #     
 # * un tableau `b` réduit à  un scalaire $\begin{pmatrix}b_1 \\ \end{pmatrix}$ de forme $(1_b,)$  

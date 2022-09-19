@@ -29,8 +29,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # vectorisation
 
@@ -135,7 +133,7 @@ for e in x:
 # %% [markdown]
 # **exercice**
 #
-# Dessinez un cercle de rayon $r$  
+# Dessinez un cercle de rayon `r`  
 #
 # indices
 #
@@ -174,7 +172,6 @@ for e in x:
 # votre code ici
 def scalar_function(x):
     pass
-
 
 # %% [markdown]
 # ## les `ufunc`
@@ -219,13 +216,13 @@ def scalar_function(x):
 #
 # | opérateur | `numpy` fonction    |
 # |----------|-------------------|
-# |   $+$    | `np.add` |
-# |   $-$    | `np.substract`|
-# |   $*$    | `np.multiply` |
-# |   $/$    | `np.divide` |
-# |   $//$   | `np.floor_divide` |
-# |   $\%$   | `np.mod` |
-# |   $**$   | `np.power` |
+# |   `+`    | `np.add` |
+# |   `-`    | `np.substract`|
+# |   `*`    | `np.multiply` |
+# |   `/`    | `np.divide` |
+# |   `//`   | `np.floor_divide` |
+# |   `\%`   | `np.mod` |
+# |   `**`   | `np.power` |
 #
 # <br>
 #     

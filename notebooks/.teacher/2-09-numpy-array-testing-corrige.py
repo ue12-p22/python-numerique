@@ -74,7 +74,7 @@ import numpy as np
 # <br>
 #     
 # générons aléatoirement un tableau d'entiers  
-# (ici entre $0$ et $9$)
+# (ici entre `0` et `9`)
 #    
 # ```python
 # tab = np.random.randint(10, size=(2, 3))

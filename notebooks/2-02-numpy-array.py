@@ -51,8 +51,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # | `np.random.randint` | entiers aléatoirement générés |
 # | `np.random.randn` | flottants aléatoirement générés |
 #
-#
-#
 # <br>
 #
 # attributs/méthodes de manipulation de tableaux `np.ndarray`
@@ -65,7 +63,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # | `np.ndarray.dtype`    | le type des éléments |
 # | `np.ndarray.itemsize` | la taille en octet d'un élément |
 # | `np.ndarray.nbytes`   | la taille totale du tableau sous-jacent en octet |
-# | `np.ndarray.astype`   | copie tableau avec autre taille des éléments |
+# | `np.ndarray.astype`   | copie tableau avec autre type pour les éléments |
 #
 # <br>
 #
@@ -324,7 +322,7 @@ print(mat.ndim, len(mat.shape))
 #
 # <br>
 #     
-# Combien faut-il d'octets, au minimum, pour stocker des entiers entre $-128$ et $127$ ?  
+# Combien faut-il d'octets, au minimum, pour stocker des entiers entre `-128` et `127` ?  
 # un seul octet
 #
 # <br>
@@ -344,7 +342,7 @@ print(mat.ndim, len(mat.shape))
 # on peut donc utiliser le type  
 #
 # * `numpy.int8` pour le type des entiers signés sur 8 bits  
-#   $256$ valeurs de $-128$ à $127$
+#   `256` valeurs de `-128` à `127`
 #
 # * le type correspondant sera `numpy.int8` (entier signé sur 8 bits)
 #     
@@ -470,7 +468,7 @@ print(    mat     )
 # ```
 # <br>
 #     
-# multiplions les éléments du tableau `mat` par $100$
+# multiplions les éléments du tableau `mat` par `100`
 #     
 # <br>
 #     
@@ -492,7 +490,7 @@ print(    mat     )
 # ```
 # <br>
 #     
-# multiplions les éléments du tableau `mat` par $100$
+# multiplions les éléments du tableau `mat` par `100`
 #     
 # <br>
 #     
@@ -781,7 +779,7 @@ np.random.randn(2, 3, 1)
 # np.random.randint?
 # ```
 #
-# 1. construisez une image de $10 \times 10$ pixels en format RBG  
+# 1. construisez une image de `10 x 10` pixels en format RBG  
 # i.e. chaque pixel est composé de 3 valeurs entières entre 0 et 255 inclus
 #
 #

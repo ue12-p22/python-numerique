@@ -81,7 +81,7 @@ from matplotlib import pyplot as plt
 # <br>
 #     
 # par exemple  
-# un `numpy.ndarray` de $12$ éléments 
+# un `numpy.ndarray` de `12` éléments 
 #
 # <div class="memory">
 #
@@ -93,9 +93,9 @@ from matplotlib import pyplot as plt
 #     
 # peut être indexé sous différentes dimensions et formes
 #
-# * dimension 1, par exemple $(12,)$
-# * dimension 2, par exemple $(1, 12)$ $(6, 2)$ $(3, 4)$ $(4, 3)$
-# * dimension 3, par exemple $(2, 3, 2)$...
+# * dimension 1, par exemple `(12,)`
+# * dimension 2, par exemple `(1, 12)` `(6, 2)` `(3, 4)` `(4, 3)`
+# * dimension 3, par exemple `(2, 3, 2)`...
 
 # %% [markdown]
 # ***
@@ -201,7 +201,7 @@ tab1[0].dtype, tab1[0]
 #     
 # <br>
 #     
-# remarque  en dimension $\ge2$  
+# remarque  en dimension >= 2
 # les deux dernières dimensions sont les lignes et les colonnes
 #
 # * ainsi le nombre de lignes c'est `tab.shape[-2]`
@@ -252,7 +252,7 @@ np.arange(2, 62, 2).reshape((2, 5, 3))[0, 1, 2]
 # %% [markdown] {"cell_style": "center"}
 # **exercice**
 #
-# 1. faites un `np.ndarray` de forme $(3, 2, 5, 4)$  
+# 1. faites un `np.ndarray` de forme `(3, 2, 5, 4)`  
 #    avec des nombre aéatoires entiers entre 0 et 100
 #    
 #    
@@ -396,8 +396,8 @@ vec
 #
 # <br>
 #
-# on crée un `numpy.ndarray` en dimension 4, de forme $(2, 3, 4, 5)$  
-# on l'initialise avec les $120$  premiers entiers
+# on crée un `numpy.ndarray` en dimension 4, de forme `(2, 3, 4, 5)`  
+# on l'initialise avec les `120`  premiers entiers
 #     
 # ```python
 # tab = np.arange(120).reshape(2, 3, 4, 5)
@@ -449,8 +449,8 @@ print(    tab[0, 1, :, 3]    )
 # ### slicing en dimension > à 1 (b)
 # <br>
 #
-# on crée un `numpy.ndarray` en dimension 4, de forme $(2, 3, 4, 5)$  
-# on l'initialise avec les $120$  premiers entiers
+# on crée un `numpy.ndarray` en dimension 4, de forme `(2, 3, 4, 5)`  
+# on l'initialise avec les `120`  premiers entiers
 #     
 # ```python
 # tab = np.arange(120).reshape(2, 3, 4, 5)
@@ -737,7 +737,7 @@ colonnes
 # %% [markdown]
 # vous remarquerez que dans le tableau qui s'appelle `lignes`, la valeur dans le tableau correspond au numéro de ligne; dit autrement :
 #
-# * `lignes[i, j] == i` pour tous les $(i, j)$,
+# * `lignes[i, j] == i` pour tous les `(i, j)`,
 #     
 # et dans l'autre sens bien sûr 
 #
@@ -766,10 +766,10 @@ M
 # ### les rayures
 
 # %% [markdown]
-# Écrivez une fonction `zebre`, qui prend en argument un entier *n* et qui fabrique un tableau carré de coté $n$, formé d'une alternance de colonnes de 0 et de colonnes de 1.
+# Écrivez une fonction `zebre`, qui prend en argument un entier *n* et qui fabrique un tableau carré de coté `n`, formé d'une alternance de colonnes de 0 et de colonnes de 1.
 
 # %% [markdown]
-# par exemple pour $n=4$ on s'attend à ceci
+# par exemple pour `n=4` on s'attend à ceci
 #
 # ```console
 # 0 1 0 1 
@@ -781,7 +781,7 @@ M
 # %% [markdown]
 # ### le damier
 #
-# Écrivez une fonction *checkers*, qui prend en argument la taille *n* du damier, et un paramètre optionnel qui indique la valeur de la case (0, 0), et qui crée un tableau `numpy` carré de coté $n$, et le remplit avec des 0 et 1 comme un damier (0 pour les cases noires et 1 pour les cases blanches).
+# Écrivez une fonction *checkers*, qui prend en argument la taille *n* du damier, et un paramètre optionnel qui indique la valeur de la case (0, 0), et qui crée un tableau `numpy` carré de coté `n`, et le remplit avec des 0 et 1 comme un damier (0 pour les cases noires et 1 pour les cases blanches).
 #
 #
 # https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w7/w7-s05-x1-checkers
@@ -794,12 +794,12 @@ M
 #
 # **Variante** écrivez une fonction `super_checkers` qui crée 
 #
-# * un damier de coté $k.n \times k.n$ 
-# * composé de blocs de $k\times k$ homogènes (tous à 0 ou tous à 1)
+# * un damier de coté `k*n x k*n` 
+# * composé de blocs de `k x k` homogènes (tous à 0 ou tous à 1)
 # * eux mêmes en damiers
 # * on décide que le premier bloc (en 0,0) vaut 0
 #
-# c'est-à-dire par exemple pour $n=4$ et $k=3$ cela donnerait ceci :
+# c'est-à-dire par exemple pour `n=4` et `k=3` cela donnerait ceci :
 #
 # ```
 # 0 0 0 1 1 1 0 0 0 1 1 1 

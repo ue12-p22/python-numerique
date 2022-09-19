@@ -435,8 +435,8 @@ mat.nbytes
 #
 # </div>    
 #
-# ${0 \leq i \leq 4}$  
-# ${0 \leq j \leq 5}$
+# 0 <= i <= 4
+# 0 <= j <= 5
 
 # %% [markdown]
 # ***

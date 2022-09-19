@@ -156,10 +156,10 @@ from matplotlib import pyplot as plt
 # Pour passer en sépia les valeurs R, G et B d'un pixel  
 # (encodées ici sur un entier non-signé 8 bits)  
 #
-# 1. on transforme les valeurs $R$, $G$ et $B$ par la transformation  
-# $0.393\, R + 0.769\, G + 0.189\, B$  
-# $0.349\, R + 0.686\, G + 0.168\, B$  
-# $0.272\, R + 0.534\, G + 0.131\, B$  
+# 1. on transforme les valeurs `R`, `G` et `B` par la transformation  
+# `0.393 * R + 0.769 * G + 0.189 * B`  
+# `0.349 * R + 0.686 * G + 0.168 * B`  
+# `0.272 * R + 0.534 * G + 0.131 * B`  
 # (attention les calculs doivent se faire en flottants pas en uint8  
 # pour ne pas avoir, par exemple, 256 devenant 0)  
 # 1. puis on seuille les valeurs qui sont plus grandes que `255` à `255`

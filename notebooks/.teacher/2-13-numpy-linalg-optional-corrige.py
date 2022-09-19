@@ -137,7 +137,7 @@ A
 #
 # <br>
 #     
-# une **matrice** de $m$ lignes et $n$ colonnes
+# une **matrice** de `m` lignes et `n` colonnes
 #
 # * est un tableau `numpy.ndarray`
 # * de dimension `2`  
@@ -158,7 +158,7 @@ A
 #  
 # ----------------------------------
 #     
-# un **vecteur** de taille $n$
+# un **vecteur** de taille `n`
 #
 # * est un `np.ndarray`
 # * de dimension `1`

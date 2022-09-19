@@ -534,7 +534,7 @@ MyAudio(
 #
 # en effet on sait que, puisque c'est toujours le même intervalle,  
 # un demi-ton correspond à un rapport constant entre les (fréquences des) notes  
-# qu'on va appeler $alpha$
+# qu'on va appeler $\alpha$
 #
 # $$
 # \frac{do\sharp}{do} = 
