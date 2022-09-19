@@ -16,8 +16,6 @@ html:
   extra_footer: |
     <p>Licence CC BY-NC-ND</p>
 
-###
-
 only_build_toc_files: true
 
 execute:
@@ -39,4 +37,4 @@ sphinx:
 parse:
   myst_enable_extensions:
     - html_image
-
+    - dollarmath
