@@ -441,6 +441,9 @@ print(    np.unravel_index(tab.argmax(), tab.shape)    )
 
 # %% {"tags": ["level_advanced"]}
 # votre code ici
+def unravel_index(index, shape):
+    pass
+
 
 # %% {"tags": ["level_advanced"]}
 # prune-cell
@@ -457,4 +460,4 @@ def unravel_index(index, shape):
 
 # %% {"tags": ["level_advanced"]}
 # devrait retourner [1, 2, 0, 4]
-np.unravel_index(104, (2, 3, 4, 5))
+unravel_index(104, (2, 3, 4, 5))
