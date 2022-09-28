@@ -93,7 +93,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # 1. Transformez le en tableau jaune (en un seul slicing) et affichez-le
 # 1. Affichez les valeurs RGB du premier pixel de l'image, et du dernier
 # 1. Faites un quadrillage d'une ligne bleue, toutes les 10 lignes et colonnes et affichez-le
-# 1. Affichez les valeurs RGB du premier et du dernier pixel de l'image
 
 # %%
 # votre code

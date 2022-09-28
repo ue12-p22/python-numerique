@@ -99,7 +99,6 @@ from matplotlib import pyplot as plt
 # 1. Transformez le en tableau jaune (en un seul slicing) et affichez-le
 # 1. Affichez les valeurs RGB du premier pixel de l'image, et du dernier
 # 1. Faites un quadrillage d'une ligne bleue, toutes les 10 lignes et colonnes et affichez-le
-# 1. Affichez les valeurs RGB du premier et du dernier pixel de l'image
 
 # %%
 # votre code
@@ -110,17 +109,21 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # 1.
-img = np.empty(shape=(91, 91, 3), dtype=np.uint8)*255 # RGB
+img = np.empty(shape=(91, 91, 3), dtype=np.uint8) # RGB
 plt.imshow(img)
 plt.show()
 
 # 2.
 img[:, :, :] = 0
+# ou encore
+img[...] = 0
 plt.imshow(img)
 plt.show()
 
 # 3.
 img[:, :, 0:2] = 255
+# ou encore
+img[:, :] = (255, 255, 0)
 plt.imshow(img)
 plt.show()
 
