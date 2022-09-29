@@ -43,10 +43,10 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown]
 # ## import des librairies et des données
 #
-# 1. Importez les librairies `pandas`et `numpy`
+# 1. importez les librairies `pandas`et `numpy`
 # <br>
 #
-# 1. Importez la librairie `matplotlib.pyplot`  
+# 1. importez la librairie `matplotlib.pyplot`  
 # <br>
 #
 # 1. lors de la lecture du fichier de données `titanic.csv`  
@@ -64,9 +64,9 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #    1. plotez avec le paramètre `'rs'` la colonne des ages en fonctions des index  
 #    (`r` pour rouge et `s` pour le style de point ici square)  
 #    1. plotez avec paramètre `'b.'` et sans indiquer les abscisses, la colonne des ages
-#    1. Que constatez-vous ?
+#    1. que constatez-vous ?
 #    <br>
-#    1. Si vous n'indiquez pas l'axe des abscisses de votre dessin que choisit `plt` ? 
+#    1. si vous n'indiquez pas l'axe des abscisses de votre dessin que choisit `plt` ? 
 #
 # <br>
 
@@ -103,12 +103,12 @@ plt.plot(df['Age'], 'b.');
 # %% [markdown]
 # ## tri des lignes d'une dataframe
 #
-# Le but de cet exercice est d'organiser les lignes d'une dataframe suivant l'ordre d'une ou de plusieurs colonnes.
+# le but de cet exercice est d'organiser les lignes d'une dataframe suivant l'ordre d'une ou de plusieurs colonnes.
 #
-# Utilisez la méthode `df.sort_values()`
+# utilisez la méthode `df.sort_values()`
 #
 # 1. pour créer une **nouvelle** dataframe  
-# dont les lignes sont triées dans l'ordre croisant des classes des passagers  
+# dont les lignes sont triées dans l'ordre croissant des classes des passagers  
 # on veut être sûr d'avoir une nouvelle dataframe sans considération de ce que retourne la fonction `sort_values`
 # <br>
 #
@@ -157,29 +157,29 @@ plt.plot(range(len(df_sorted)), df_sorted['Age'], 'r.');
 # %% [markdown]
 # ## tri des lignes *égales* au sens d'un premier critère d'une dataframe
 #
-# On reprend la dataframe d'origine
+# on reprend la dataframe d'origine
 #
-# 1. Affichez les ages des passagers d'index `673` et `746`  
-# Que constatez-vous ?
+# 1. affichez les ages des passagers d'index `673` et `746`  
+# que constatez-vous ?
 # <br>
 #
-# 1. Utilisez le paramètre `by` de `df.sort_values()`  
+# 1. utilisez le paramètre `by` de `df.sort_values()`  
 # afin d'indiquer aussi une seconde colonne - par exemple `Fare`  
 # pour trier les lignes identiques au sens de la première colonne  
 # rangez dans une nouvelle dataframe
 # <br>
 #
-# 1. Sélectionnez, dans la nouvelle dataframe, la sous-dataframe dont les ages ne sont pas définis  
+# 1. sélectionnez, dans la nouvelle dataframe, la sous-dataframe dont les ages ne sont pas définis  
 # <br>
 #
-# 1. Combien manque-il d'ages ?
+# 1. combien manque-il d'ages ?
 # <br>
 #
-# 1. Où sont placés ces passagers dans la data-frame triée ?  
+# 1. où sont placés ces passagers dans la data-frame triée ?  
 # en début (voir avec `head`) ou en fin (voir avec `tail`) de dataframe ?
 # <br>
 #
-# 1. Trouvez le paramètre de `sort_values()`  
+# 1. trouvez le paramètre de `sort_values()`  
 # qui permet de mettre ces lignes en début de dataframe lors du tri
 # <br>
 #

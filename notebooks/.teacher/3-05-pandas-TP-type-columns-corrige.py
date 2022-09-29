@@ -11,7 +11,7 @@
 #       extension: .py
 #       format_name: percent
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 #   language_info:
@@ -58,7 +58,7 @@ import matplotlib.pyplot as plt
 # %%
 # prune-cell 2. et 3.
 df = pd.read_csv('iris.csv')
-print(   df.head(3)   )
+df.head(3)
 
 # %% [markdown]
 # ## le type `object` `str`
@@ -88,6 +88,7 @@ print(   df.head(3)   )
 #  * cet attribut permet d'accéder aux méthodes classiques des `str` (comme par exemple `upper()`)
 #  * ces fonctions sont naturellement vectorisées  
 #    i.e. elles s'appliquent à toute la série (sans for-python)  
+# <br>
 #   
 # 1. observer la valeur de la colonne `Name` dans la dataframe originale  
 #    a-t-elle été modifiée ?  
@@ -113,7 +114,7 @@ print('après', df.loc[0, 'Name'])
 # sur la dataframe précédente
 #
 # 1. utilisez la fonction `pandas.Series.unique` pour afficher la liste des noms d'iris  
-# combien avez vous de noms différents ?  
+# combien avez-vous de noms différents ?  
 # <br>
 #
 # 1. inspectez les types des colonnes  
