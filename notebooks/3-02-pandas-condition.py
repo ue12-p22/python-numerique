@@ -367,6 +367,7 @@ df.isna()
 # pour souligner une différence avec `numpy`: comparez le comportement
 # * de `array.sum()`
 # * et `df.sum()`
+#
 # </div>
 #
 # <br>
@@ -463,8 +464,6 @@ df.isna().sum(axis=1)
 # il y a `866` valeurs manquantes dans toute la data-frame
 #
 # <div class=note>
-#
-# <br>
 #     
 # remarque: contrairement à ce qu'on avait vu en `numpy`, ici on ne pourrait pas faire `df.isna().sum(axis=(0, 1))`
 #     
