@@ -654,7 +654,16 @@ grp+mat
 #    False
 # ```
 
-# %% {"scrolled": true}
+# %%
+# à vous
+def test_compatibility(s1, s2):
+    pass
+
+def are_broadcast_compatible(s1, s2):
+    pass
+
+
+# %% {"scrolled": true, "tags": ["raises-exception"]}
 # pour corriger votre code
 
 s1 = (1, 2)
