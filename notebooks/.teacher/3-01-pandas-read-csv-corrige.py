@@ -592,7 +592,8 @@ df.head(1)
 #     326                             Young, Miss. Marie Grice
 #     396                                  Johansson, Mr. Erik
 #     832                      Richards, Master. George Sibley
-# ```
+#    ```
+#    
 # <br>
 #
 # * toutes les colonnes de la dataframe partagent **le même index**  
