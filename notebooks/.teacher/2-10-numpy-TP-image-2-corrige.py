@@ -30,8 +30,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # suite du TP simple avec des images
 #
@@ -428,6 +426,7 @@ plt.imshow(
 # > `dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])`
 #
 # dans notre cas:
+#
 # * a.dim = 3 (`a.shape = lines, cols, 3`), et 
 # * b.dim = 2, (`b.shape = 3, 3`), ce qui donne
 #

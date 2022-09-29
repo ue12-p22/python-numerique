@@ -29,8 +29,6 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
-
-
 # %% [markdown]
 # # TP - un peu de musique
 
@@ -110,9 +108,11 @@ la_1seconde = ...
 # 2. pour t variant de 0 à 1, la fonction est tout simplement  
 #    $f(t) = sin(2\pi t * 440)$
 # 3. il reste juste à 
+#
 #   * créer en entrée un tableau qui représente le temps en secondes  
 #     avec `np.linspace()` pour modéliser l'intervalle de temps de 0 à 1s  
 #     et en lui demandant de créer 44_100 points dans cet intervalle
+#
 #   * et à lui appliquer la formule ci-dessus
 
 # %%

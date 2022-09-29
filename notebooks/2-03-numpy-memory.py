@@ -144,6 +144,7 @@ mat.nbytes
 # <br>
 #     
 # pourquoi ces **contraintes** ?  
+#
 # * pour que `numpy` soit le plus rapide possible dans ses manipulations de tableaux
 # * grâce à ces contraintes, passer d'une case du tableau à une autre  est très rapide
 
