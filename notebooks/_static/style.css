@@ -53,3 +53,8 @@ div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
     font-size: 180%;
     line-height: 1.2;
 }
+
+/* outline cell outputs when checking for execution */
+div.cell div.cell_output .output pre {
+    background-color: #fee;
+}    
