@@ -2,7 +2,18 @@
 .note {
     font-style: italic;
     font-size: 80%;
+    border-left: 1px dotted #ccc;
+    border-radius: 5px;
+    padding: 5px 0px 0px 10px;
 }
+.note p {
+    line-height: 1.3;
+}
+.note>p:first-child::before {
+    content: "note : ";
+    font-weight: 900;
+}
+
 
 .grey {
     background-color: #eee;
@@ -57,4 +68,4 @@ div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
 /* outline cell outputs when checking for execution */
 div.cell div.cell_output .output pre {
     background-color: #fee;
-}    
+}
