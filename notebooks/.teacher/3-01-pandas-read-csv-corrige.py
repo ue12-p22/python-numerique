@@ -61,7 +61,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #
 # <br>
 #
-# format de fichier, le plus simple, pour stoquer ces tables ? 
+# format de fichier, le plus simple, pour stocker ces tables ? 
 #
 # * une observation par ligne
 # * dans chaque ligne, les informations séparées par un caractère choisi au préalable  
@@ -125,9 +125,8 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 #
 # <br>
 #
-# `pandas` repose entièrement sur `numpy`  
-# i.e. aujourd'hui, les données manipulées par `pandas`
-# sont implémentées comme des tableaux `numpy.ndarray`  
+# `pandas` repose entièrement sur `numpy` (aujourd'hui en tous cas)  
+# i.e. les données manipulées par `pandas` sont implémentées comme des tableaux `numpy.ndarray`  
 #
 
 # %% [markdown]
@@ -185,15 +184,23 @@ pd.__version__
 # -> pandas.core.frame.DataFrame
 # ```
 #
-# `pandas.core.frame.DataFrame` est le même type que `pandas.DataFrame`.
+# (`pandas.core.frame.DataFrame` est le même type que `pandas.DataFrame`)
 #
 # <br>
 #
-# méthode `pandas.DataFrame.head` affiche les qq premières lignes
+# la méthode `df.head()` affiche les qq premières lignes
 #
 # ```python
 # df.head(2)
 # ```
+#
+# <div class=note>
+#
+# quand on écrit "la méthode `df.head`", ça se lit comme:   
+# l'attribut `head` recherché à partir de l'objet `df`  
+# comme `df` est une dataframe, on trouve la méthode/fonction qui se trouve être aussi `pd.DataFrame.head`
+#     
+# </div>    
 
 # %%
 # le code 
@@ -207,7 +214,7 @@ pd.core.frame.DataFrame is pd.DataFrame
 
 # %%
 # pour afficher les premières lignes
-# à votre avis, comment on voit les derniéres lignes ?
+# à votre avis, comment on voit les dernières lignes ?
 df.head(2)
 
 # %% [markdown] tags=["framed_cell"]
@@ -348,7 +355,8 @@ df['Sex'].describe()
 # <br>
 #
 # `pandas` indexe ses lignes et ses colonnes suivant vos indications  
-# (vos identificateurs)
+# dit autrement, c'est à vous de choisir parmi les colonnes 
+# celle(s) qui peut servir d'identificateur unique pour servir d'index
 
 # %% [markdown]
 # ***
@@ -363,7 +371,7 @@ df['Sex'].describe()
 #
 # * les **colonnes** ont été **indexées par leur nom**
 # * les **lignes** ont été **indexées par leur indice**  
-# i.e. une simple numérotation à partir de 0  
+# i.e. une *simple numérotation à partir de 0*  
 # on y reviendra
 #
 # <br>
@@ -405,7 +413,7 @@ df.columns[0]
 # une table `pandas` est un "dictionnaire"
 #
 # * où les clés sont les noms des colonnes
-# * où les valeurs sont les colonnes (de type `Series`)
+# * où les valeurs sont les colonnes (**de type `Series`**)
 #
 # <br>
 #
@@ -464,9 +472,9 @@ df[['Age', 'Sex']].head()
 #
 # <br>
 #
-# Il faut le voir uniquement comme une **commodité**  
-# Pas forcément recommandé aux débutants  
-# Mais c'est **très utilisé** - il faut savoir le lire
+# Il faut le voir uniquement comme *une commodité*  
+# **Pas forcément recommandé aux débutants**  
+# Mais c'est *très utilisé* - il faut savoir le lire
 #
 # <br>
 #
@@ -475,11 +483,14 @@ df[['Age', 'Sex']].head()
 # -> True
 # ```
 
-# %%
+# %% cell_style="split"
 # le code
 # on peut aussi accéder à une colonne par un attribut
 # qui est une notation plus lisible
 df.Age
+
+# %% cell_style="split"
+df.Age is df['Age']
 
 # %% [markdown] tags=["framed_cell"]
 # ### type des colonnes `pandas.Series`
@@ -493,6 +504,10 @@ df.Age
 # <br>
 #
 # le second type en `pandas` est le type des colonnes, qui sont des `Series`
+#
+#
+# on peut voir la `DataFrame` comme un dictionnaire qui associe  
+# { `nom-de-colonne` $\rightarrow$ `un-objet-series` }
 
 # %%
 # le code
@@ -605,6 +620,18 @@ df['Name']
 # c'est par l'index (552)
 # et non pas par l'indice qui ici serait 0
 df['Name'][552]
+
+# %% [markdown]
+# <div class=note>
+#
+# ici nous avons un index de type entier; lorsqu'on a un index de type, par exemple, `str`, 
+# on peut alors écrire ou bien
+#     
+# * `series[entier]` pour aller chercher l'indice `entier` 
+# * `series[chaine]` pour aller chercher l'index `chaine`
+#
+# mais avec un index de type entier, c'est l'accès **par index** qui est privilégié
+# </div>    
 
 # %% [markdown] tags=["framed_cell"]
 # ### différence entre index et indice
@@ -772,6 +799,7 @@ print(df.shape)
 
 # %% [markdown]
 # Le fichier `petit-titanic.csv` contient les 10 premières lignes de passagers  
+# *Attention* ce n'est **pas exactement** le même format que `titanic.csv`
 
 # %% scrolled=false
 # pour voir le contenu du fichier
@@ -800,7 +828,7 @@ print(df.shape)
 #      **ne contient pas** la liste des noms des colonnes  
 #   1. passez-lui le nom des colonnes puisqu'elles ne sont pas  
 #      mentionnées dans le fichier  
-# spoiler: voyez les paramètres `sep`, `header` et `names`
+#   *spoiler*: voyez les paramètres `sep`, `header` et `names`
 # <br>
 #
 # 1. affichez le nombre de colonnes et de lignes
