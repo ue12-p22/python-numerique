@@ -156,7 +156,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # <br>
 #
 # regardez la version de la librairie installée  
-# https://pandas.pydata.org/docs/whatsnew/index.html.
+# <https://pandas.pydata.org/docs/whatsnew/index.html>
 # ```python
 # pd.__version__
 # ```

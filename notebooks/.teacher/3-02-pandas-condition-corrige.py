@@ -116,8 +116,8 @@ import numpy as np
 # * on utilise `&` (et) `|` (ou) et `~` (non)  
 # ou les `numpy.logical_and`, `numpy.logical_or`, `numpy.logical_not`
 #
-# * et **pas** `and`, `or` et `not` (opérateurs `Python` non vectorisés)
-# * on parenthèse les expressions
+# * et **surtout pas** `and`, `or` et `not` (opérateurs `Python` non vectorisés)
+# * on **parenthèse toujours** les expressions
 #
 # ```python
 # girls = (df['Age'] < 12) & (df['Sex'] == 'female')
@@ -125,12 +125,22 @@ import numpy as np
 # -> 32
 # ```
 #
+# <div class=note>
+#     
+#   c'est **très important** de bien mettre des parenthéses car les opérateurs bitwise (`&` et
+#     autres) ont des  
+#   précédences (priorités) qui sont non intuitives, et très différentes des opérateurs logiques (`and` et autres)
+#     
+# </div>
+#
 # <br>
 #
 # on pourra ensuite utiliser ces tableaux de booléens  
 #
 # * pour leur appliquer des fonctions  
 # * comme des masques pour sélectionner des sous-tableaux
+#
+#
 
 # %%
 # le code
@@ -201,12 +211,12 @@ children.value_counts()
 #
 # <br>
 #
-# NA signifie Non-Available et NaN Not-a-Number
+# `NA` signifie Non-Available et `NaN` Not-a-Number
 #
 # <br>
 #
 # sur les `DataFrame` et les `Series`  
-# la méthode `isna()` rend construit **un masque**  
+# la méthode `isna()` construit **un masque**  
 # du même type (DataFrame ou Series donc), 
 # et à valeurs booléennes  où
 #
@@ -255,7 +265,7 @@ children.value_counts()
 #
 # <br>
 #
-# combien d'ages sont-ils manquants ?
+# combien d'ages sont manquants ?
 #
 # ```python
 # df['Age'].isna().sum()
@@ -273,7 +283,8 @@ df['Age'].isna().sum()
 
 
 # %%
-# on peut aussi utiliser le sum() de np ou de Python
+# remarquez qu'on peut tout aussi bien
+# utiliser le sum() de np ou de Python
 import numpy as np
 np.sum(df['Age'].isna()), sum(df['Age'].isna())
 
@@ -313,7 +324,7 @@ np.sum(df['Age'].isna()), sum(df['Age'].isna())
 #
 # <br>
 #
-# vous remarquez une dataframe de la même taille que `df`
+# vous remarquez une dataframe de la **même taille** que `df`
 
 # %%
 # le code
@@ -351,9 +362,19 @@ df.isna()
 # Embarked      2
 # dtype: int64
 # ```
+# <div class=note>
+#
+# pour souligner une différence avec `numpy`: comparez le comportement
+# * de `array.sum()`
+# * et `df.sum()`
+# </div>
+#
 # <br>
 #
 # nous remarquons des valeurs manquantes dans les colonnes `Cabin`, `Age` et `Embarked`
+
+# %% [markdown] tags=["framed_cell"]
+# ### dans l'autre direction (axis=1)
 #
 # <br>
 #
@@ -440,6 +461,14 @@ df.isna().sum(axis=1)
 # ```
 #
 # il y a `866` valeurs manquantes dans toute la data-frame
+#
+# <div class=note>
+#
+# <br>
+#     
+# remarque: contrairement à ce qu'on avait vu en `numpy`, ici on ne pourrait pas faire `df.isna().sum(axis=(0, 1))`
+#     
+# </div>    
 
 # %%
 df.isna().sum().sum()
@@ -459,24 +488,27 @@ df.isna().to_numpy().sum()
 # %% [markdown]
 # ## **exercice** valeurs uniques
 #
-# 1. Lisez la data-frame du Titanic `df`
+# 1. lisez la data-frame du titanic `df`
 # <br>
 #
-# 1. Utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
+# 1. utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
 # des colonnes `'Survived'`, `'Pclass'`, `'Sex'` et `'Embarked'`  
-# vous pouvez utiliser un for-python pour parcourir la liste `cols` des colonnes choisies
+# vous pouvez utiliser un for-python pour parcourir la liste `cols` des noms des colonnes choisies
 # <br>
 #
-# 1. Utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
+# 1. utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
 # <br>
 #
-# 1. Utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
+# 1. utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
 # <br>
 #
-# 1. Que constatez-vous ?  
-# Quel type serait plus approprié pour ces colonnes ?
+# 1. que constatez-vous ?  
+# quel type serait plus approprié pour ces colonnes ?
 #
 # (1) servez-vous du help `pd.Series.unique?`
+
+# %%
+# à vous
 
 # %%
 # prune-cell 1. et 2.
@@ -497,19 +529,30 @@ for c in cols:
 
 
 # %% [markdown]
+# prune-cell 5.
+#
+# * la colonne Survived pourrait être un booléen
+# * les trois autres colonnes sont des catégories (nombre fini de valeurs possibles)
+
+# %% [markdown]
 # ***
 
 # %% [markdown]
 # ## **exercice** conditions
 #
-# 1. Lisez la data-frame des passagers du titanic
-# 1. Calculez les valeurs manquantes: totales, des colonnes et des lignes
-# 1. Calculez le nombre de classes du bateau
-# 1. Calculez le taux d'hommes et de femmes
-# 1. Calculez le taux de personnes entre 20 et 40 ans
-# 1. Calculez le taux de survie des passagers
-# 1. Calculez le taux de survie des hommes et des femmes par classes  
+# <br>
+#
+# 1. lisez la data-frame des passagers du titanic
+# 1. calculez les valeurs manquantes: totales, des colonnes et des lignes
+# 1. calculez le nombre de classes du bateau
+# 1. calculez le taux d'hommes et de femmes
+# 1. calculez le taux de personnes entre 20 et 40 ans
+# 1. calculez le taux de survie des passagers
+# 1. calculez le taux de survie des hommes et des femmes par classes  
 # on reverra ces décomptes d'une autre manière
+
+# %%
+# à vous
 
 # %%
 # prune-cell 1.
