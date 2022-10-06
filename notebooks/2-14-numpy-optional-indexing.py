@@ -186,7 +186,7 @@ colormap = np.array([
     [255, 0, 0],     # 'red'
     [0, 255, 0],     # 'green'
     [0, 0, 255],     # 'blue'
-    [0, 255, 255],   # 'yellow'
+    [0, 255, 255],   # 'cyan'
     [127, 127, 127], # 'grey background'
     [127, 127, 127], # 'grey background'
 ])
