@@ -4,9 +4,9 @@
 #   jupytext:
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
-#       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
-#       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
-#       -toc
+#       -jupytext.text_representation.format_version, -jupytext.custom_cell_magics,
+#       -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
+#       -language_info.file_extension, -language_info.mimetype, -toc, -vscode
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -486,22 +486,35 @@ df.isna().to_numpy().sum()
 
 # %% [markdown]
 # ## **exercice** valeurs uniques
-#
+
+# %% [markdown]
 # 1. lisez la data-frame du titanic `df`
-# <br>
-#
-# 1. utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
+
+# %% slideshow={"slide_type": ""}
+# à vous
+
+# %% [markdown]
+# 2. utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
 # des colonnes `'Survived'`, `'Pclass'`, `'Sex'` et `'Embarked'`  
 # vous pouvez utiliser un for-python pour parcourir la liste `cols` des noms des colonnes choisies
-# <br>
-#
-# 1. utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
-# <br>
-#
-# 1. utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
-# <br>
-#
-# 1. que constatez-vous ?  
+
+# %%
+# à vous
+
+# %% [markdown]
+# 3. utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
+
+# %%
+# à vous
+
+# %% [markdown]
+# 4. utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
+
+# %%
+# à vous
+
+# %% [markdown]
+# 5. que constatez-vous ?  
 # quel type serait plus approprié pour ces colonnes ?
 #
 # (1) servez-vous du help `pd.Series.unique?`
@@ -514,17 +527,28 @@ df.isna().to_numpy().sum()
 
 # %% [markdown]
 # ## **exercice** conditions
-#
-# <br>
-#
+
+# %% [markdown]
 # 1. lisez la data-frame des passagers du titanic
-# 1. calculez les valeurs manquantes: totales, des colonnes et des lignes
-# 1. calculez le nombre de classes du bateau
-# 1. calculez le taux d'hommes et de femmes
-# 1. calculez le taux de personnes entre 20 et 40 ans
-# 1. calculez le taux de survie des passagers
-# 1. calculez le taux de survie des hommes et des femmes par classes  
-# on reverra ces décomptes d'une autre manière
 
 # %%
 # à vous
+
+# %% [markdown]
+# 2. calculez les valeurs manquantes: totales, des colonnes et des lignes
+
+# %% [markdown]
+# 3. calculez le nombre de classes du bateau
+
+# %% [markdown]
+# 4. calculez le taux d'hommes et de femmes
+
+# %% [markdown]
+# 5. calculez le taux de personnes entre 20 et 40 ans
+
+# %% [markdown]
+# 6. calculez le taux de survie des passagers
+
+# %% [markdown]
+# 7. calculez le taux de survie des hommes et des femmes par classes  
+# on reverra ces décomptes d'une autre manière
