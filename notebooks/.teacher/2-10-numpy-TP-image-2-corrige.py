@@ -5,9 +5,9 @@
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     cell_metadata_json: true
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
-#       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
-#       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
-#       -toc
+#       -jupytext.text_representation.format_version, -jupytext.custom_cell_magics,
+#       -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
+#       -language_info.file_extension, -language_info.mimetype, -toc, -vscode
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -82,37 +82,6 @@ from matplotlib import pyplot as plt
 # ```
 # Le nom de la couleur est suivi des 3 valeurs de ses codes `R`, `G` et `B`  
 # Lisez cette table en `Python` et rangez-la dans la structure qui vous semble adéquate.
-# <br>
-#
-# 1. Affichez, à partir de votre structure, les valeurs rgb entières des couleurs suivantes  
-# `'Red'`, `'Lime'`, `'Blue'`
-# <br>
-#
-# 1. Faites une fonction `patchwork` qui  
-#
-#    * prend une liste de couleurs et la structure donnant le code des couleurs RGB
-#    * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
-#    * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  
-#    si besoin de compléter l'image mettez du blanc  
-#    (`numpy.indices` peut être utilisé)
-# <br>
-# <br>   
-# 1. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
-# <br>
-#
-# 1. Sélectionnez toutes les couleurs à base de blanc et affichez leur patchwork  
-# même chose pour des jaunes  
-# <br>
-#
-# 1. Appliquez la fonction à toutes les couleurs du fichier  
-# et sauver ce patchwork dans le fichier `patchwork.jpg` avec `plt.imsave`
-# <br>
-#
-# 1. Relisez et affichez votre fichier  
-#    attention si votre image vous semble floue c'est juste que l'affichage grossit vos pixels
-#    
-# vous devriez obtenir quelque chose comme ceci
-# <img src="patchwork-all.jpg" width="200px">
 
 # %%
 # votre code
@@ -125,6 +94,14 @@ with open('rgb-codes.txt', 'r') as f:
         name, r, g, b = line.split()
         colors_dict[name] = [int(r), int(g), int(b)]
 
+# %% [markdown]
+#
+# 2. Affichez, à partir de votre structure, les valeurs rgb entières des couleurs suivantes  
+# `'Red'`, `'Lime'`, `'Blue'`
+
+# %%
+# votre code
+
 # %%
 # prune-cell 2.
 for c in ['Red', 'Lime', 'Blue']:
@@ -132,7 +109,25 @@ for c in ['Red', 'Lime', 'Blue']:
 
 
 # %% [markdown]
+#
+# 3. Faites une fonction `patchwork` qui  
+#
+#    * prend une liste de couleurs et la structure donnant le code des couleurs RGB
+#    * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
+#    * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  
+#    si besoin de compléter l'image mettez du blanc  
+#    (`numpy.indices` peut être utilisé)
+#
+
+# %%
+# votre code
+
+# %% [markdown]
 # prune-cell 3
+#
+# en version un peu brute, on pourrait utiliser juste la racine carrée; 
+# par exemple avec 5 couleurs créer un carré 3x3 - mais 3x2 c'est quand même mieux !
+#
 #
 # pour calculer le rectangle qui contient n couleurs
 #
@@ -158,47 +153,72 @@ for c in ['Red', 'Lime', 'Blue']:
 
 # %%
 # prune-cell 3
+# this is optional
+# (a rougher approach would always use a square)
 def rectangle_size(n):
-    ''' calcule la taille du rectangle
-        pour ranger n couleurs '''
-    c = int(np.sqrt(n-1))+1 
+    '''
+    computes the optimal size for a square of rectangle
+    to store that many colors;
+    if a rectangle, it will be of the form n-1, n
+    '''
+    c = int(np.sqrt(n-1))+1
     if (c-1)*c >= n:
-        return c-1, c 
+        return c-1, c
     else:
         return c, c
 
 def patchwork (col_list, col_dict, side=5, background='White'):
-    ''' create an image with a patchwork of the col_list colors
-        the image contains l*c patches
-        each patch is a square of side pixels
-        the patchwork can have more patches than colors
-        the color of additional patches will be background (white by defaut) '''
+    '''
+    create an image with a patchwork of the col_list colors
+    the image contains l*c patches
+    each patch is a square of side pixels
+    the patchwork can have more patches than colors
+    the color of additional patches will be background (white by defaut)
+    '''
     # we compute the number of lines and columns of the patchwork
     l, c = rectangle_size(len(col_list))
 
     # we create the ndarray of the colors
     # (each color has an indice from 0 to len(col_list)-1)
-    colormap = np.array([col_dict[background]]*l*c, dtype=np.uint8)
-    # we assign the array with the colors
-    # (additional colors will the backgroud color)
+    # initialized with the background color
+    colormap = np.array(l*c*[col_dict[background]], dtype=np.uint8)
+    # at this point col_tab is of shape (l*c), 3
+    # because col_dict[background itself has 3 values]
+
+    # we assign the array with the resolved colors
     colormap[0:len(col_list)] = [col_dict[k] for k in col_list]
-    
-    # the image is a rectangle of (l*side, c*side) of pixels
+    # if this puzzles you, evaluate 10 * [[255, 0, 0]]
+    print(f"{colormap.shape=}")
+
+    # the final image is a rectangle of (l*side, c*side) of pixels
     # we compute its indices
     i, j = np.indices((l*side, c*side))
     # we pass the indices in the patchwork of l*c patches (i.e. //side)
     I, J = i//side, j//side
-    # c*I+J transforms I and J in the corresponding color indices of colormap
-    # note that we index the colormap array by a bigger array of indices
-    # it is done by vectorization
-    return colormap[c*I+J]
+
+    # c*I + J transforms I and J in the corresponding color indices in the colormap
+    # its shape is the same as the final image
+    print(f"{j[:2]=}")
+    print(f"{J[:2]=}")
+    print(f"{c*I+J=}")
+
+    # so all we are left with is .. a simple array-by-array indexation
+    return colormap[c*I + J]
+
 
 colors = [
     'DarkBlue', 'AntiqueWhite', 'LimeGreen',
     'NavajoWhite', 'Tomato', 'DarkGoldenrod',
     'LightGoldenrodYellow', 'OliveDrab',
 ]
-plt.imshow(patchwork(colors, colors_dict, side=50));
+plt.imshow(patchwork(colors, colors_dict, side=5));
+
+# %% [markdown]
+# 4. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
+#
+
+# %%
+# votre code
 
 # %%
 # prune-cell 4.
@@ -210,6 +230,13 @@ im = patchwork(random.sample(list(colors_dict.keys()), k),
 
 plt.imshow(im);
 
+# %% [markdown]
+# 5. Sélectionnez toutes les couleurs à base de blanc et affichez leur patchwork  
+# même chose pour des jaunes
+
+# %%
+# votre code
+
 # %%
 # prune-cell 5.
 for s in ['white', 'red']: #, 'blue', 'medium', 'light', 'brown'
@@ -218,16 +245,34 @@ for s in ['white', 'red']: #, 'blue', 'medium', 'light', 'brown'
     plt.imshow(patchwork(colors, colors_dict))
     plt.show()
 
+# %% [markdown]
+#
+# 6. Appliquez la fonction à toutes les couleurs du fichier  
+# et sauver ce patchwork dans le fichier `patchwork.png` avec `plt.imsave`
+
+# %%
+# votre code
+
 # %%
 # prune-cell 6.
 im_all = patchwork(list(colors_dict.keys()), colors_dict, side=100)
 plt.imshow(im_all);
 
+# %% [markdown]
+# 7. Relisez et affichez votre fichier  
+#    attention si votre image vous semble floue c'est juste que l'affichage grossit vos pixels
+#
+# vous devriez obtenir quelque chose comme ceci
+# <img src="patchwork-all.jpg" width="200px">
+
+# %%
+# votre code
+
 # %%
 # prune-cell 7.
-plt.imsave('patchwork-all.jpg', im_all)
+plt.imsave('patchwork-all.png', im_all)
 plt.show()
-pat = plt.imread('patchwork-all.jpg')
+pat = plt.imread('patchwork-all.png')
 plt.imshow(pat);
 
 # %% [markdown]
@@ -235,27 +280,6 @@ plt.imshow(pat);
 
 # %% [markdown]
 # 0. Lisez l'image `les-mines.jpg`
-#
-# 1. Créez un nouveau tableau `numpy.ndarray` en sommant **avec l'opérateur `+`** les valeurs RGB des pixels de votre image  
-#
-# 2. Affichez l'image (pas terrible), son maximum et son type
-#
-# 3. Créez un nouveau tableau `numpy.ndarray` en sommant **avec la fonction d'agrégation `np.sum`** les valeurs RGB des pixels de votre image
-#
-# 4. Affichez l'image, son maximum et son type
-#
-# 5. Pourquoi cette différence ? Utilisez le help `np.sum?`
-#
-# 6. Passez l'image en niveaux de gris de type entiers non-signés 8 bits  
-# (de la manière que vous préférez)
-#
-# 7. Remplacez dans l'image en niveaux de gris,   
-# les valeurs >= à 127 par 255 et celles inférieures par 0  
-# Affichez l'image avec une carte des couleurs des niveaux de gris  
-# vous pouvez utilisez la fonction `numpy.where`
-#
-# 8. avec la fonction `numpy.unique`  
-# regardez les valeurs différentes que vous avez dans votre image en noir et blanc
 
 # %%
 # votre code
@@ -267,17 +291,35 @@ from matplotlib import pyplot as plt
 
 im = plt.imread('les-mines.jpg')
 
-# 1.
+# %% [markdown]
+# 1. Créez un nouveau tableau `numpy.ndarray` en sommant **avec l'opérateur `+`** les valeurs RGB des pixels de votre image  
 
-# NOT GOOD !
+# %%
+# votre code
+
+# %%
+# prune-cell 1.
+# en faisant comme demandé ce n'est pas très élégant
 gr0 = im[:, :, 0] + im[:, :, 1] + im[:, :, 2]
 
+# %% [markdown]
+# 2. Affichez l'image (pas terrible), son maximum et son type
 
-# 2.
+# %%
+# votre code
+
+# %%
+# prune-cell 2.
 print(f"type={gr0.dtype}, max={gr0.max()}") # uint8 -> overflow
 # image pas correcte à cause des overflows
 plt.imshow(gr0, cmap='gray')
 plt.show()
+
+# %% [markdown]
+# 3. Créez un nouveau tableau `numpy.ndarray` en sommant **avec la fonction d'agrégation `np.sum`** les valeurs RGB des pixels de votre image
+
+# %%
+# votre code
 
 # %%
 # prune-cell 3.
@@ -289,10 +331,23 @@ plt.show()
 
 gr1 = (np.sum(im, axis=2))
 
+# %% [markdown]
+# 4. Affichez l'image, son maximum et son type
+
+# %%
+# votre code
+
+# %%
 # prune-cell 4.
 print(f"type={gr1.dtype}, max={gr1.max()}") # int64 ok
 
+# %% [markdown]
+# 5. Pourquoi cette différence ? Utilisez le help `np.sum?`
 
+# %%
+# votre code
+
+# %%
 # prune-cell 5.
 # # np.sum?
 # dtype : dtype, optional
@@ -302,32 +357,57 @@ print(f"type={gr1.dtype}, max={gr1.max()}") # int64 ok
 #     integer.  In that case, if `a` is signed then the platform integer
 #     is used while if `a` is unsigned then an unsigned integer of the
 #     same precision as the platform integer is used.
-    
-# 6.
+
+# %% [markdown]
+# 6. Passez l'image en niveaux de gris de type entiers non-signés 8 bits  
+# (de la manière que vous préférez)
+
+# %%
+# votre code
+
+# %%
+# prune-cell 6.
 plt.imshow(gr1/3, cmap='gray')
 plt.show()
 
-# %% {"scrolled": false}
+# %%
 # prune-cell 6.bis
 
 gr2 = (im[:, :, 0]/3 + im[:, :, 1]/3 + im[:, :, 1]/3).astype(np.uint8)
 plt.imshow(gr2, cmap='gray')
 plt.show()
 
+# %% [markdown]
+# 7. Remplacez dans l'image en niveaux de gris,   
+# les valeurs >= à 127 par 255 et celles inférieures par 0  
+# Affichez l'image avec une carte des couleurs des niveaux de gris  
+# vous pouvez utilisez la fonction `numpy.where`
+
+# %%
+# votre code
+
+# %%
 # prune-cell 7.
 gr3 = gr2.copy()
 gr3[gr3>=127] = 255
 gr3[gr3<127] = 0
 
+# %%
 # prune-cell 7. avec where
 gr3 = np.where(gr2>128, 255, 0)
 plt.imshow(gr3, cmap='gray')
 plt.show()
 
+# %% [markdown]
+# 8. avec la fonction `numpy.unique`  
+# regardez les valeurs différentes que vous avez dans votre image en noir et blanc
+
+# %%
+# votre code
+
+# %% {"scrolled": false}
 # prune-cell 8.
 print(np.unique(gr3))
-
-
 
 # %% [markdown]
 # ## Image en sépia
@@ -346,19 +426,6 @@ print(np.unique(gr3))
 # 1. naturellement l'image doit être ensuite remise dans un format correct  
 # (uint8 ou float entre 0 et 1)
 
-# %% [markdown]
-# **Exercice**
-#
-# 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
-# la fonction `numpy.dot` doit être utilisée (si besoin, voir l'exemple ci-dessous) 
-#
-# 1. Passez votre patchwork de couleurs en sépia  
-# Lisez le fichier `patchwork-all.jpg` si vous n'avez pas de fichier perso
-# 2. Passez l'image `les-mines.jpg` en sépia   
-
-# %%
-# votre code
-
 # %% {"scrolled": true}
 # INDICE:
 
@@ -373,6 +440,16 @@ C = A.dot(B)
 # or C = np.dot(A, B)
 
 A.shape, B.shape, C.shape
+
+# %% [markdown]
+# **Exercice**
+
+# %% [markdown]
+# 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
+# la fonction `numpy.dot` doit être utilisée (si besoin, voir l'exemple ci-dessous) 
+
+# %%
+# votre code
 
 # %%
 # prune-cell 1. pas à pas
@@ -434,12 +511,25 @@ plt.imshow(
 #   = sum(image[i, j, :] * SEPIA[:, canal])`  
 #   cqfd $\diamond$
 
+# %% [markdown]
+# 2. Passez votre patchwork de couleurs en sépia  
+# Lisez le fichier `patchwork-all.jpg` si vous n'avez pas de fichier perso
+
+# %%
+# votre code
+
 # %% {"cell_style": "center"}
 # prune-cell 2.
 
 file = 'patchwork-all.jpg'
 im = plt.imread(file)
 plt.imshow(sepia(im));
+
+# %% [markdown]
+# 3. Passez l'image `les-mines.jpg` en sépia   
+
+# %%
+# votre code
 
 # %%
 # prune-cell 3.
@@ -454,53 +544,87 @@ plt.imsave('les-mines-sepia.jpg', im_sepia)
 # %% [markdown]
 # 1. Importez la librairie `Image`de `PIL` (pillow)   
 # (vous devez peut être installer PIL dans votre environnement)
-# 1. Quelle est la taille du fichier 'les-mines.jpg' sur disque ?
-# 1. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
-#
-# 3. Vérifiez que les valeurs contenues dans les deux objets sont proches
-#
-# 4. Sauvez (toujours avec de nouveaux noms de fichiers)  
-# l'image lue par `imread` avec `plt.imsave`  
-# l'image lue par `Image.open` avec `save` et une `quality=100`  
-# (`save` s'applique à l'objet créé par `Image.open`)
-#
-# 5. Quelles sont les tailles de ces deux fichiers sur votre disque ?  
-# Que constatez-vous ?
-#
-# 6. Relisez les deux fichiers créés et affichez avec `plt.imshow` leur différence  
-
-# %%
-# votre code
 
 # %%
 # prune-cell 1.
 from PIL import Image
 
+# %%
+# votre code
+
+# %% [markdown]
+# 2. Quelle est la taille du fichier `les-mines.jpg` sur disque ?
+
+# %%
 file = "les-mines.jpg"
 
+# %%
+# votre code
+
+# %%
 # prune-cell 2. - en bash
 # %ls -l $file
 
+# %%
 # prune-cell 2. - en Python pour cross-platform
 from pathlib import Path
 print(f"{file} {Path(file).stat().st_size} bytes")
 
+# %% [markdown]
+# 3. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
+
+# %%
+# votre code
+
+# %%
 # prune-cell 3.
 imPLT = plt.imread(file)
 imPIL = Image.open(file)
-np.all(np.isclose(imPLT, imPIL))
+
+# %% [markdown]
+# 4. Vérifiez que les valeurs contenues dans les deux objets sont proches
+
+# %%
+# votre code
 
 # %%
 # prune-cell 4.
+np.all(np.isclose(imPLT, imPIL))
+
+# %% [markdown]
+# 5. Sauvez (toujours avec de nouveaux noms de fichiers)  
+# l'image lue par `imread` avec `plt.imsave`  
+# l'image lue par `Image.open` avec `save` et une `quality=100`  
+# (`save` s'applique à l'objet créé par `Image.open`)
+
+# %%
+# votre code
+
+# %%
+# prune-cell 5.
 plt.imsave(f'{file}-PLT.jpg', imPLT) # no quality
 imPIL.save(f'{file}-PIL.jpg', quality=100)
 
-# prune-cell 5.
+# %% [markdown]
+# 6. Quelles sont les tailles de ces deux fichiers sur votre disque ?  
+# Que constatez-vous ?
+
+# %%
+# votre code
+
+# %%
+# prune-cell 6.
 for ext in ['PLT', 'PIL']:
     print(f"{ext} {Path(f'{file}-{ext}.jpg').stat().st_size} bytes")
 
+# %% [markdown]
+# 7. Relisez les deux fichiers créés et affichez avec `plt.imshow` leur différence  
+
+# %%
+# votre code
+
 # %% {"scrolled": true}
-# prune-cell 6.
+# prune-cell 7.
 imPLT_PLT = plt.imread(f"{file}-PLT.jpg")
 imPLT_PIL = plt.imread(f"{file}-PIL.jpg")
 print(np.all(np.isclose(imPLT_PLT, imPLT_PIL)))

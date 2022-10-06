@@ -5,9 +5,9 @@
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     cell_metadata_json: true
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
-#       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
-#       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
-#       -toc
+#       -jupytext.text_representation.format_version, -jupytext.custom_cell_magics,
+#       -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
+#       -language_info.file_extension, -language_info.mimetype, -toc, -vscode
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -82,35 +82,58 @@ from matplotlib import pyplot as plt
 # ```
 # Le nom de la couleur est suivi des 3 valeurs de ses codes `R`, `G` et `B`  
 # Lisez cette table en `Python` et rangez-la dans la structure qui vous semble adéquate.
-# <br>
+
+# %%
+# votre code
+
+# %% [markdown]
 #
-# 1. Affichez, à partir de votre structure, les valeurs rgb entières des couleurs suivantes  
+# 2. Affichez, à partir de votre structure, les valeurs rgb entières des couleurs suivantes  
 # `'Red'`, `'Lime'`, `'Blue'`
-# <br>
+
+# %%
+# votre code
+
+# %% [markdown]
 #
-# 1. Faites une fonction `patchwork` qui  
+# 3. Faites une fonction `patchwork` qui  
 #
 #    * prend une liste de couleurs et la structure donnant le code des couleurs RGB
 #    * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
 #    * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  
 #    si besoin de compléter l'image mettez du blanc  
 #    (`numpy.indices` peut être utilisé)
-# <br>
-# <br>   
-# 1. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
-# <br>
 #
-# 1. Sélectionnez toutes les couleurs à base de blanc et affichez leur patchwork  
-# même chose pour des jaunes  
-# <br>
+
+# %%
+# votre code
+
+# %% [markdown]
+# 4. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
 #
-# 1. Appliquez la fonction à toutes les couleurs du fichier  
-# et sauver ce patchwork dans le fichier `patchwork.jpg` avec `plt.imsave`
-# <br>
+
+# %%
+# votre code
+
+# %% [markdown]
+# 5. Sélectionnez toutes les couleurs à base de blanc et affichez leur patchwork  
+# même chose pour des jaunes
+
+# %%
+# votre code
+
+# %% [markdown]
 #
-# 1. Relisez et affichez votre fichier  
+# 6. Appliquez la fonction à toutes les couleurs du fichier  
+# et sauver ce patchwork dans le fichier `patchwork.png` avec `plt.imsave`
+
+# %%
+# votre code
+
+# %% [markdown]
+# 7. Relisez et affichez votre fichier  
 #    attention si votre image vous semble floue c'est juste que l'affichage grossit vos pixels
-#    
+#
 # vous devriez obtenir quelque chose comme ceci
 # <img src="patchwork-all.jpg" width="200px">
 
@@ -122,25 +145,57 @@ from matplotlib import pyplot as plt
 
 # %% [markdown]
 # 0. Lisez l'image `les-mines.jpg`
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 1. Créez un nouveau tableau `numpy.ndarray` en sommant **avec l'opérateur `+`** les valeurs RGB des pixels de votre image  
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 2. Affichez l'image (pas terrible), son maximum et son type
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 3. Créez un nouveau tableau `numpy.ndarray` en sommant **avec la fonction d'agrégation `np.sum`** les valeurs RGB des pixels de votre image
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 4. Affichez l'image, son maximum et son type
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 5. Pourquoi cette différence ? Utilisez le help `np.sum?`
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 6. Passez l'image en niveaux de gris de type entiers non-signés 8 bits  
 # (de la manière que vous préférez)
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 7. Remplacez dans l'image en niveaux de gris,   
 # les valeurs >= à 127 par 255 et celles inférieures par 0  
 # Affichez l'image avec une carte des couleurs des niveaux de gris  
 # vous pouvez utilisez la fonction `numpy.where`
-#
+
+# %%
+# votre code
+
+# %% [markdown]
 # 8. avec la fonction `numpy.unique`  
 # regardez les valeurs différentes que vous avez dans votre image en noir et blanc
 
@@ -164,19 +219,6 @@ from matplotlib import pyplot as plt
 # 1. naturellement l'image doit être ensuite remise dans un format correct  
 # (uint8 ou float entre 0 et 1)
 
-# %% [markdown]
-# **Exercice**
-#
-# 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
-# la fonction `numpy.dot` doit être utilisée (si besoin, voir l'exemple ci-dessous) 
-#
-# 1. Passez votre patchwork de couleurs en sépia  
-# Lisez le fichier `patchwork-all.jpg` si vous n'avez pas de fichier perso
-# 2. Passez l'image `les-mines.jpg` en sépia   
-
-# %%
-# votre code
-
 # %% {"scrolled": true}
 # INDICE:
 
@@ -193,25 +235,77 @@ C = A.dot(B)
 A.shape, B.shape, C.shape
 
 # %% [markdown]
+# **Exercice**
+
+# %% [markdown]
+# 1. Faites une fonction qui prend en argument une image RGB et rend une image RGB sépia  
+# la fonction `numpy.dot` doit être utilisée (si besoin, voir l'exemple ci-dessous) 
+
+# %%
+# votre code
+
+# %% [markdown]
+# 2. Passez votre patchwork de couleurs en sépia  
+# Lisez le fichier `patchwork-all.jpg` si vous n'avez pas de fichier perso
+
+# %%
+# votre code
+
+# %% [markdown]
+# 3. Passez l'image `les-mines.jpg` en sépia   
+
+# %%
+# votre code
+
+# %% [markdown]
 # ## Exemple de qualité de compression
 
 # %% [markdown]
 # 1. Importez la librairie `Image`de `PIL` (pillow)   
 # (vous devez peut être installer PIL dans votre environnement)
-# 1. Quelle est la taille du fichier 'les-mines.jpg' sur disque ?
-# 1. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
-#
-# 3. Vérifiez que les valeurs contenues dans les deux objets sont proches
-#
-# 4. Sauvez (toujours avec de nouveaux noms de fichiers)  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 2. Quelle est la taille du fichier `les-mines.jpg` sur disque ?
+
+# %%
+file = "les-mines.jpg"
+
+# %%
+# votre code
+
+# %% [markdown]
+# 3. Lisez le fichier 'les-mines.jpg' avec `Image.open` et avec `plt.imread`  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 4. Vérifiez que les valeurs contenues dans les deux objets sont proches
+
+# %%
+# votre code
+
+# %% [markdown]
+# 5. Sauvez (toujours avec de nouveaux noms de fichiers)  
 # l'image lue par `imread` avec `plt.imsave`  
 # l'image lue par `Image.open` avec `save` et une `quality=100`  
 # (`save` s'applique à l'objet créé par `Image.open`)
-#
-# 5. Quelles sont les tailles de ces deux fichiers sur votre disque ?  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 6. Quelles sont les tailles de ces deux fichiers sur votre disque ?  
 # Que constatez-vous ?
-#
-# 6. Relisez les deux fichiers créés et affichez avec `plt.imshow` leur différence  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 7. Relisez les deux fichiers créés et affichez avec `plt.imshow` leur différence  
 
 # %%
 # votre code
