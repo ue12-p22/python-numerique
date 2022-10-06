@@ -4,9 +4,9 @@
 #   jupytext:
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
-#       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
-#       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
-#       -toc
+#       -jupytext.text_representation.format_version, -jupytext.custom_cell_magics,
+#       -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
+#       -language_info.file_extension, -language_info.mimetype, -toc, -vscode
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -486,46 +486,72 @@ df.isna().to_numpy().sum()
 
 # %% [markdown]
 # ## **exercice** valeurs uniques
-#
+
+# %% [markdown]
 # 1. lisez la data-frame du titanic `df`
-# <br>
-#
-# 1. utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
+
+# %% slideshow={"slide_type": ""}
+# à vous
+
+# %%
+# prune-cell 1.
+
+df = pd.read_csv("titanic.csv")
+
+
+# %% [markdown]
+# 2. utilisez la méthode `pd.Series.unique` (1) pour compter le nombre de valeurs uniques  
 # des colonnes `'Survived'`, `'Pclass'`, `'Sex'` et `'Embarked'`  
 # vous pouvez utiliser un for-python pour parcourir la liste `cols` des noms des colonnes choisies
-# <br>
-#
-# 1. utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
-# <br>
-#
-# 1. utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
-# <br>
-#
-# 1. que constatez-vous ?  
-# quel type serait plus approprié pour ces colonnes ?
-#
-# (1) servez-vous du help `pd.Series.unique?`
 
 # %%
 # à vous
 
 # %%
-# prune-cell 1. et 2.
+# prune-cell 2.
 
 cols = ['Survived', 'Pclass', 'Sex', 'Embarked']
 for c in cols:
     print(f"{c} unique values: {df[c].unique()}")
 
 
+# %% [markdown]
+# 3. utilisez l'expression `df[cols]` pour sélectionner la sous-dataframe réduite à ces 4 colonnes
+
 # %%
-# prune-cell 3. et 4.
+# à vous
+
+# %%
+# prune-cell
+minidf = df[cols]
+
+# %% [markdown]
+# 4. utilisez l'attribut `dtypes` des `pandas.DataFrame` pour afficher le type de ces 4 colonnes
+
+# %%
+# à vous
+
+# %%
+# prune-cell
 # une type de catégorie
-print(df[cols].dtypes)
+minidf.dtypes
 
+
+# %%
+# prune-cell 4.
 # du coup on pourrait faire
-for c in cols:
-    print(f"column {c:>12} has type {df[cols].dtypes[c]} =?= {df[c].dtype}")
+for c in minidf.columns:
+    print(f"column {c:>12} has type {minidf.dtypes[c]} =?= {df[c].dtype}")
 
+
+# %% [markdown]
+# 5. que constatez-vous ?  
+# quel type serait plus approprié pour ces colonnes ?
+#
+# (1) servez-vous du help `pd.Series.unique?`
+
+# %%
+# à vous
 
 # %% [markdown]
 # prune-cell 5.
@@ -538,17 +564,9 @@ for c in cols:
 
 # %% [markdown]
 # ## **exercice** conditions
-#
-# <br>
-#
+
+# %% [markdown]
 # 1. lisez la data-frame des passagers du titanic
-# 1. calculez les valeurs manquantes: totales, des colonnes et des lignes
-# 1. calculez le nombre de classes du bateau
-# 1. calculez le taux d'hommes et de femmes
-# 1. calculez le taux de personnes entre 20 et 40 ans
-# 1. calculez le taux de survie des passagers
-# 1. calculez le taux de survie des hommes et des femmes par classes  
-# on reverra ces décomptes d'une autre manière
 
 # %%
 # à vous
@@ -557,6 +575,9 @@ for c in cols:
 # prune-cell 1.
 df = pd.read_csv('titanic.csv', index_col='PassengerId')
 # df.isna().to_numpy().sum(), df.isna().sum(axis=1), df.isna().sum(axis=0),
+
+# %% [markdown]
+# 2. calculez les valeurs manquantes: totales, des colonnes et des lignes
 
 # %%
 # prune-cell 2.
@@ -568,17 +589,29 @@ print(df.isna().sum(axis=1))
 print(10*'-', 'total')
 print(df.isna().sum().sum())
 
+# %% [markdown]
+# 3. calculez le nombre de classes du bateau
+
 # %%
 # prune-cell 3.
 len(df['Pclass'].unique())
+
+# %% [markdown]
+# 4. calculez le taux d'hommes et de femmes
 
 # %%
 # prune-cell 4.
 df['Sex'].value_counts()/len(df)
 
+# %% [markdown]
+# 5. calculez le taux de personnes entre 20 et 40 ans
+
 # %%
 # prune-cell 5.
 ((df['Age'] >= 20) & (df['Age'] <= 40)).sum()/len(df)
+
+# %% [markdown]
+# 6. calculez le taux de survie des passagers
 
 # %%
 # prune-cell 6.
@@ -586,6 +619,10 @@ print(df['Survived'].value_counts()/len(df))
 
 # le taux de survie
 (df['Survived'].value_counts()/len(df))[1]
+
+# %% [markdown]
+# 7. calculez le taux de survie des hommes et des femmes par classes  
+# on reverra ces décomptes d'une autre manière
 
 # %%
 # prune-cell 7.

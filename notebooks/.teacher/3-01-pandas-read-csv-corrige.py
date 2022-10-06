@@ -4,9 +4,9 @@
 #   jupytext:
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
-#       -jupytext.text_representation.format_version, -language_info.version, -language_info.codemirror_mode.version,
-#       -language_info.codemirror_mode, -language_info.file_extension, -language_info.mimetype,
-#       -toc
+#       -jupytext.text_representation.format_version, -jupytext.custom_cell_magics,
+#       -language_info.version, -language_info.codemirror_mode.version, -language_info.codemirror_mode,
+#       -language_info.file_extension, -language_info.mimetype, -toc, -vscode
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -796,7 +796,7 @@ print(df.ndim)
 print(df.shape)
 
 # %% [markdown]
-# ## exercice
+# ## **exercice** basique
 
 # %% [markdown]
 # Le fichier `petit-titanic.csv` contient les 10 premières lignes de passagers  
@@ -815,39 +815,6 @@ print(df.shape)
 # %% [markdown]
 # 1. lisez le contenu de ce fichier avec les paramètres par défaut de `pandas.read_csv`  
 # affichez les premières lignes avec `pandas.DataFrame.head`  
-# <br>
-# 1. 
-# voyez-vous les trois problèmes ?  
-# essayez de les résoudre en étudiant la doc. de la fonction
-# `pd.read_csv()`  
-# passez à la question 3 pour être aidé
-# <br>
-#
-# 1. 
-#   1. passez le **bon séparateur** à la méthode `pandas.read_csv`  
-#   1. et indiquez lui que la première ligne  
-#      **ne contient pas** la liste des noms des colonnes  
-#   1. passez-lui le nom des colonnes puisqu'elles ne sont pas  
-#      mentionnées dans le fichier  
-#   *spoiler*: voyez les paramètres `sep`, `header` et `names`
-# <br>
-#
-# 1. affichez le nombre de colonnes et de lignes
-# <br>
-#
-# 1. affichez les index des colonnes et des lignes
-# <br>
-#
-# 1. modifiez l'index des colonnes par la liste
-# ```Python
-# columns = ['Identifiant', 'Survécu', 'Pclass', 
-#               'Nom', 'Genre', 'Age', 'SibSp', 'Parch',
-#               'Ticket', 'Tarif', 'Cabine', 'Embarquement']
-# ```
-# <br>
-#
-# 1. modifiez l'index des lignes par la colonne `'PassengerId'`
-#
 
 # %%
 # votre code
@@ -857,6 +824,25 @@ print(df.shape)
 file = 'petit-titanic.csv'
 df = pd.read_csv(file)
 df.head(2)
+
+# %% [markdown]
+# 2. 
+# voyez-vous les trois problèmes ?  
+# essayez de les résoudre en étudiant la doc. de la fonction
+# `pd.read_csv()`  
+# ou passez à la question 3 pour être aidé
+
+# %% [markdown]
+# 3. 
+#   1. passez le **bon séparateur** à la méthode `pandas.read_csv`  
+#   1. et indiquez lui que la première ligne  
+#      **ne contient pas** la liste des noms des colonnes  
+#   1. passez-lui le nom des colonnes puisqu'elles ne sont pas  
+#      mentionnées dans le fichier  
+#   *spoiler*: voyez les paramètres `sep`, `header` et `names`
+
+# %%
+# votre code
 
 # %%
 # prune-cell 3.a 3.b 3.c
@@ -869,13 +855,36 @@ COLUMNS = [
 df = pd.read_csv(file, sep=';', header=None, names=COLUMNS)
 df.head(2)
 
+# %% [markdown]
+# 4. affichez le nombre de colonnes et de lignes
+
+# %%
+# votre code
+
 # %%
 # prune-cell 4.
 len(df.columns), len(df.index), df.shape,
 
+# %% [markdown]
+# 5. affichez les index des colonnes et des lignes
+
+# %%
+# votre code
+
 # %%
 # prune-cell 5.
 df.columns, df.index
+
+# %% [markdown]
+# 6. modifiez l'index des colonnes par la liste
+# ```Python
+# columns = ['Identifiant', 'Survécu', 'Pclass', 
+#            'Nom', 'Genre', 'Age', 'SibSp', 'Parch',
+#            'Ticket', 'Tarif', 'Cabine', 'Embarquement']
+# ```
+
+# %%
+# votre code
 
 # %%
 # prune-cell 6
@@ -887,6 +896,12 @@ columns = ['Identifiant', 'Survécu', 'Pclass',
            'Parch', 'Ticket', 'Tarif', 'Cabine', 'Embarquement']
 df.columns = columns
 df.head(2)
+
+# %% [markdown]
+# 7. modifiez l'index des lignes par la colonne `'Identifiant'`
+
+# %%
+# votre code
 
 # %%
 # prune-cell
