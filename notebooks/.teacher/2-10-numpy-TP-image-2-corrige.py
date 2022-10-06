@@ -178,20 +178,20 @@ def patchwork (col_list, col_dict, side=5, background='White'):
 
     # we create the ndarray of the colors
     # (each color has an indice from 0 to len(col_list)-1)
-    col_tab = np.array([col_dict[background]]*l*c, dtype=np.uint8)
+    colormap = np.array([col_dict[background]]*l*c, dtype=np.uint8)
     # we assign the array with the colors
     # (additional colors will the backgroud color)
-    col_tab[0:len(col_list)] = [col_dict[k] for k in col_list]
+    colormap[0:len(col_list)] = [col_dict[k] for k in col_list]
     
     # the image is a rectangle of (l*side, c*side) of pixels
     # we compute its indices
     i, j = np.indices((l*side, c*side))
     # we pass the indices in the patchwork of l*c patches (i.e. //side)
     I, J = i//side, j//side
-    # c*I+J transforms I and J in the corresponding color indices of col_tab
-    # note that we index the col_tab array by a bigger array of indices
+    # c*I+J transforms I and J in the corresponding color indices of colormap
+    # note that we index the colormap array by a bigger array of indices
     # it is done by vectorization
-    return col_tab[c*I+J]
+    return colormap[c*I+J]
 
 colors = [
     'DarkBlue', 'AntiqueWhite', 'LimeGreen',
