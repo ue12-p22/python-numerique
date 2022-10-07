@@ -2,7 +2,11 @@ SOLUTIONS = $(shell find . -name '*.py' -o -name '*.md' \
   | egrep -- '-corrige\.|-howto\.|\.teacher' \
   | egrep -v '_build|.ipynb_checkpoints')
 
-FLAGS = -v
+#FLAGS = -v
+FLAGS =
 
 prune:
 	nbprune $(FLAGS) $(SOLUTIONS)
+
+prune-force:
+	nbprune -f $(FLAGS) $(SOLUTIONS)
