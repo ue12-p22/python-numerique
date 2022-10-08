@@ -87,11 +87,20 @@ d1
 # on peut faire de l'arithmétique
 # avec ces deux types
 
-t2 = d1 + t1
+# 4 heures après t1
+t2 = t1 + d1
 t2
 
 # %%
+# ajouter, soustraire, multiplier, diviser ...
+
+# 8 haures avant ça, i.e. 4 heures avant d1
 t2 - 2 * d1
+
+# %%
+# combien de fois 10 minutes dans 4 heures
+
+d1 // TimeDelta(minutes=10)
 
 # %% [markdown]
 # #### décomposer
@@ -107,12 +116,17 @@ d1.days, d1.seconds
 
 # %% [markdown]
 # à titre plus anecdotique, on peut aussi appliquer directement un format à un instant dans une f-string  
-# pour une liste des formats, voir *pour en savoir plus* à la fin de ce notebook
 
 # %%
 # # %H c'est pour extraire l'heure
 # il y a toute une série de codes de format...
 f"{t1:%H==%M}"
+
+# %% [markdown]
+# par contre ces formats sont **très utiles** lorsqu'on va vouloir traduire nos fichiers d'entrée en date/heure
+#
+# pour une liste complète des formats, voir
+# <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes>
 
 # %% [markdown]
 # ### la version `numpy`
@@ -141,7 +155,7 @@ f"{t1:%H==%M}"
 # tous ces types sont fabriqués *au dessus* des 2 types de base fournis par `numpy`, et visent principalement à les rendre plus faciles à utiliser
 
 # %% [markdown]
-# ## exercice: `pd.to_datetime()`
+# ## **exercice**: le cours de l'action amazon
 
 # %% [markdown]
 # vous avez peut-être remarqué que `read_csv` propose des (tas d') options pour la gestion des instants (notamment le paramètre `parse_dates`); toutefois j'ai envie de vous conseiller de rester loin de ce genre de features, au moins pour commencer
@@ -150,34 +164,89 @@ f"{t1:%H==%M}"
 # # pd.read_csv?
 
 # %% [markdown]
-# il est sans doute préférable de procéder en deux temps, en combinant `pd.read_csv` et `pd.to_datetime`, ce que je vous invite à faire dans cet exercice
+# il est sans doute préférable de procéder en deux temps, en combinant `pd.read_csv` et `pd.to_datetime`, ce que vous êtes invité à faire dans cet exercice
 
 # %%
 # # pd.to_datetime?
 
 # %% [markdown] tags=["level_basic"]
-# 0. lire le fichier de données `Amazon.csv` avec `read_csv()`  
-# affichez les types des colonnes
+# 1. lire le fichier de données `Amazon.csv` avec `read_csv()`  
+#    attention, le fichier contient 3 premières lignes de commentaires
+#    qu'il convient d'ignorer complètement  
+#    affichez les types des colonnes  
+#    que penser du type de la colonne `Date` ?
 
 # %%
 # à vous
 
+# %% [markdown]
+# ## **exercice**: `pd.to_datetime()`
+
 # %% [markdown] tags=["level_basic"]
-# 1. traduisez la colonne `Date` dans le type adéquat  
+# 2. traduisez la colonne `Date` dans le type adéquat  
 # affichez le nouveau type de la colonne  
 # ça peut être intéressant de regarder à la fois `dtypes` sur la dataframe et `dtype` sur la série
+#
+# en option pour les forts: sauriez-vous passer à `to_datetime` le paramètre `format` qui va bien ?
 
 # %%
 # à vous
 
+# %% [markdown]
+# ## **exercice**: `NaT`
+
 # %% [markdown] tags=["level_basic"]
-# 2. utilisez la colonne `Date` comme index
+# 3. comparez l'affichage de la première ligne avec celui d'avant la conversion  
+#    que remarquez-vous ?  
+#    supprimer les lignes pour lesquelles le champ `Date` est inconnu
+#    
+#   il y a au moins deux façons évidentes de s'y prendre  
+#   essayez de les trouver toutes les deux pour vérifier vos résultats  
+#   le nombre de lignes doit passer de 5852 à 5828
 
 # %%
 # à vous
 
+# %% [markdown]
+# ## **exercice**: l'accessor `.dt`
+
+# %% [markdown]
+# comme on l'a déjà vu avec `.str` et `.cat`, il existe un accesseur `.dt` pour appliquer sur une série de type `Timestamp` des attributs qui lui sont spécifiques
+
 # %% [markdown] tags=["level_basic"]
-# 3. plottez la valeur de l'action au cours du temps
+# 4. en utilisant cet accesseur, ajoutez à la dataframe une colonne qui contient le jour de la semaine, codé comme:
+#
+# | jour | code |
+# |-|-|
+# | lundi | 0 |
+# | mardi | 1 |
+# | mercredi | 2 |
+# | jeudi | 3 |
+# | vendredi | 4 |
+# | samedi | 5 |
+# | dimanche | 6 |
+#
+
+# %% [markdown]
+# ## **exercice**: plotting
+
+# %% [markdown] tags=["level_basic"]
+# 5. utilisez la colonne `Date` comme index  
+#    et triez la dataframe selon cet index
+#    (ça semble être déjà le cas, mais en est-on bien sûr ?)
+#    
+# question subsidiaire (pas de code):  
+# est-ce que le fait de trier va changer quelque chose à l'affichage (scatter plot) ?  
+# est-ce que ça va changer quelque chose lorsqu'on va vouloir sélectionner des plages de temps à base de slicing ?
+
+# %%
+# à vous
+
+# %%
+# df.tail()
+
+# %% [markdown] tags=["level_basic"]
+# 6. plottez la valeur de l'action au cours du temps
 #
 # * sur un même diagramme, les deux cours `High` et `Low`
 # * ensuite sur deux diagrammes séparés
@@ -202,59 +271,220 @@ cols = ['High', 'Low']
 # à vous
 
 # %% [markdown]
-# ## `NaT` = not a time
-#
-# utiliser dropna() pour nettoyer
-
-# %% [markdown]
-# ## l'accessor `.dt`
-
-# %% [markdown]
 # ## slicing
+
+# %% [markdown]
+# c'est très pratique de slicer un index qui contient des `Timestamp`
+#
+# ici par exemple nous avons une granularité de la journée (sauf accident il y a une entrée par jour de la semaine)  
+# mais on peut slicer de manière assez naturelle, voici quelques exemples:
+
+# %% tags=["raises-exception"]
+df.tail()
+
+# %% tags=["raises-exception"]
+# première commodité: on peut utiliser des chaines
+# pas besoin de mettre des objet Timestamp dans le slice
+
+# les entrées entre le 1er avril 2020 et le 30 juin 2020
+# rappel: comme on utilise .loc c'est INCLUS
+df.loc['2020-04-01' : '2020-06-30']
+
+# %% tags=["raises-exception"]
+# mais en fait c'est encore plus simple d'écrire
+# qui signifie, de avril à juin, toujours inclusivement
+df.loc['2020-04' : '2020-06']
+
+# %% [markdown] tags=["level_basic"]
+# 7. si bien que, comment feriez-vous pour filtrer par exemple 
+#    à partir du 1er janvier 2019 jusqu'à la fin des données
+
+# %%
+# à vous
 
 # %% [markdown]
 # ## aggrégations avec `resample()` et `rolling()`
 
 # %% [markdown]
-# ## arrangements avec `shift()`, `asfreq()`
+# ces deux fonctions travaillent de la même façon: elles regroupent les données dans des *bins* (des corbeilles), et toutes les données qui tombent dans une corbeille peuvent ensuite être agrégées (comme d'habitude avec `mean()`, `sum()`, `min()`,…)
 
 # %% [markdown]
-# ## annexes
+# voyons pour commencer comment les corbeilles sont construites par ces deux fonctions
 
 # %% [markdown]
-# ### pour en savoir plus
-#
-# * pour une liste complète des codes de formats disponibles dans les f-strings, voir  
-#   <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes>
-#
-# * la doc sur les type numpy  
-#   <https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.datetime64>
+# ### `resample()`
 
 # %% [markdown]
-# ### les échelles de précision
+# l'idée ici c'est de découper le temps en une partition, chaque corbeille ayant la même durée (sauf éventuellement celles aux extrémités)
+# dans ce modèle:
+# * chaque donnée de départ appartient à exactement une corbeille
+# * le nombre de corbeilles dépend, aux arrondis près, du rapport entre la durée totale et la durée de chaque corbeille
 
 # %% [markdown]
-# un objet `datetime64` est créé avec un paramètre *`unit`*, qui permet d choisir la précision des calculs; et l'intervalle des dates possibles varie bien entendu avec cette précision :
+# ![](media/timeseries-resample.svg)
 
 # %% [markdown]
 # <div class=note>
 #
-# Unit Code |	Meaning |	Time span (relative) |	Time span (absolute) |
-# -----|----------|------------------------|-----------------------|
-# Y |	year | 		+/- 9.2e18 years | 	[9.2e18 BC, 9.2e18 AD]
-# M |	month | 		+/- 7.6e17 years | 	[7.6e17 BC, 7.6e17 AD]
-# W |	week | 		+/- 1.7e17 years | 	[1.7e17 BC, 1.7e17 AD]
-# D |	day | 		+/- 2.5e16 years | 	[2.5e16 BC, 2.5e16 AD]
-#   |      |                       |
-# h |	hour | 		+/- 1.0e15 years | 	[1.0e15 BC, 1.0e15 AD]
-# m |	minute | 	+/- 1.7e13 years | 	[1.7e13 BC, 1.7e13 AD]
-# s |	second | 	+/- 2.9e11 years | 	[2.9e11 BC, 2.9e11 AD]
-# ms| 	millisecond | 	+/- 2.9e8 years | 	[ 2.9e8 BC, 2.9e8 AD]
-# us| 	microsecond | 	+/- 2.9e5 years | 	[290301 BC, 294241 AD]
-# ns| 	nanosecond | 	+/- 292 years  |		[ 1678 AD, 2262 AD]
-# ps| 	picosecond | 	+/- 106 days | 		[ 1969 AD, 1970 AD]
-# fs| 	femtosecond | 	+/- 2.6 hours | 		[ 1969 AD, 1970 AD]
-# as| 	attosecond | 	+/- 9.2 seconds | 	[ 1969 AD, 1970 AD]
-#     
+# dans l'illustration ci-dessus, chaque point bleu illustre **la moyenne** de chaque corbeille  
+# on a choisi d'attacher chaque point bleu au moment correspondant **au début** de chaque corbeille (et bien sûr c'est réglable..)
+#
+# </div>  
+
+# %% [markdown]
+# **exemple d'application**  
+# vous avez un signal échantillonné à 44.100 kHz et vous voulez le ré-échantillonner (littéralement: *resample*) à une fréquence 4 fois plus basse: il suffit de faire un resample avec un durée de corbeille égale à exactement 4 x la période de la fréquence originale
+
+# %% [markdown]
+# ### `rolling()`
+
+# %% [markdown]
+# la fonction `rolling()` fonctionne aussi sur le modèle de corbeilles; 
+# sauf que cette fois-ci, il ne s'agit plus d'une partition, mais de *fenêtre glissante*, comme illustré ci-dessous
+
+# %% [markdown]
+# ![](media/timeseries-rolling.svg)
+
+# %% [markdown]
+# donc cette fois-ci:
+#
+# * une donnée appartient en général à plusieurs corbeilles
+# * on produit un nombre de corbeilles qui est de l'ordre de grandeur  
+#   du nombre de points de départ  
+#   spécifiquement, lorsque la fenêtre est exprimée en temps, le rolling a **la même taille** que l'échantillon de départ
+#
+# <div class=note>
+#
+# note` que ce n'est pas le cas si on indique une fenêtre en nombre d'échantillons, ce qui est possible également
+#
+# ce point va être illustré plus bas    
 # </div>
 
+# %% [markdown]
+# **exemple 1**  
+# vous voulez visualiser l'évolution d'une grandeur "d'une année sur l'autre"  
+#
+#
+# on va faire un rolling avec une période d'un an  
+# si on appelle $f$ la fonction de départ, et $F$ le rolling sur un an  
+# (avec la somme comme agrégation pour simplifier les équations), on va avoir
+#
+# $$
+# F(01/01/2021) = \sum_{j=01/01/2021}^{31/12/2021} f(j) \\
+# \;et\; \\
+# F(02/01/2022) = \sum_{j=02/01/2021}^{01/01/2022} f(j)
+# $$
+#
+# et donc 
+#
+# $$
+# F(02/01/2021) - F(01/01/2021) = f(02/01/20\textbf{22}) - f(01/01/20\textbf{21})
+# $$
+#
+# ce qui signifie que la dérivée de $F$ (la différence d'un jour à l'autre)  
+# c'est l'évolution de $f$ mais **d'une année sur l'autre**
+
+# %% [markdown]
+# **exemple 2: effet lissant**
+
+# %% [markdown]
+# pour bien voir l'effet 'lissant' de la fenêtre glissante, prenons des données synthétiques:
+
+# %%
+import numpy as np
+
+# %% scrolled=true
+# c'est l'occasion de voir comment créer des timeseries
+# par programme
+# ici 100 jours consécutifs
+date_index = pd.date_range('2018-01-01', periods=100)
+
+# un battement
+X = np.arange(100)
+s = pd.Series(10*np.cos(X/10) + 2*np.cos(X), index=date_index)
+
+plt.figure()
+s.plot();
+
+
+# %% [markdown]
+# voici l'effet du rolling avec des fenêtres de 1 semaine et 4 semaines
+
+# %%
+rolling_7 = s.rolling(window=pd.Timedelta(7, 'D'),
+                             center=True).mean()
+rolling_28 = s.rolling(window=pd.Timedelta(28, 'D'),
+                              center=True).mean()
+
+# %% [markdown]
+# ici on a choisi d'attacher le résultat (de la moyenne de la corbeille) au **centre** de la corbeille
+
+# %%
+# pour afficher les 3 courbes à la fois
+
+pd.DataFrame({
+    'original': s,
+    'roll 7D': rolling_7,
+    'roll 28D': rolling_28,
+}).plot();
+
+# %% [markdown]
+# **les bornes**
+#
+# juste pour bien illustrer le comportement aux bornes, voici
+# * le nombre de points dans la rolling: **autant de corbeilles que de points**  
+#   (on le voit déjà ci-dessus)
+# * et le nombre de points par corbeille: **constant, sauf aux extrémités**
+
+# %%
+# exactement autant de corbeilles que de points
+len(s), len(rolling_7)
+
+# %%
+# le nombre de points par corbeille
+count_28 = s.rolling(window=pd.Timedelta(28, 'D'),
+                     center=True).count()
+pd.DataFrame({'points-per-bin-28': count_28}).plot();
+
+# %% [markdown] tags=["level_intermediate"]
+# **exercice / digression**
+#
+#
+
+# %% [markdown] tags=["level_intermediate"]
+# la notion de fenêtre glissante fait du sens pour n'importe quelle donnée, même non-temporelle
+#
+# reproduisez le dessin ci-dessus, mais 
+# * en ne gardant que le rolling sur 4 semaines
+# * en indiquant une **fenêtre en nombre de points**
+#
+# que constatez-vous aux extrémités ?
+
+# %% [markdown]
+# ## **exercice** `resample` et `rolling`
+
+# %% [markdown] tags=["level_basic"]
+# 8. calculez `df2` qui se concentre sur la valeur de `High` sur la période de Juillet 2018 à fin 2019  
+# plottez-la  
+# rangez dans la variable `L` le nombre de lignes
+
+# %%
+# à vous
+
+# %% [markdown] tags=["level_basic"]
+# 9. appliquez à cette série un `resample()` avec la moyenne des données sur une période d'une semaine  
+# plottez le résultat  
+# combien d'entrées on devrait y trouver (en fonction de L) si on compare les fréquences des deux séries ?  
+# pourquoi ça ne tombe pas exactement juste ?  
+# est-ce qu'on pourrait estimer ça autrement ?
+
+# %%
+# à vous
+
+# %% [markdown] tags=["level_basic"]
+# 10. appliquez à cette série un `rolling()` avec une fenêtre de 1 an  
+# plottez le résultat  
+# combien d'entrées on devrait y trouver (en fonction de L) ?
+
+# %%
+# à vous
