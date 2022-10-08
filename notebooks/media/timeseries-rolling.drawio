@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="GY3ORiCnf8cUA9PGGPgR" name="Page-1">
-        <mxGraphModel dx="1193" dy="836" grid="1" gridSize="5" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="994" dy="697" grid="1" gridSize="5" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -25,12 +25,6 @@
                         <mxPoint x="400" y="300" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="9" value="" style="endArrow=none;html=1;" parent="1" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="480" y="320" as="sourcePoint"/>
-                        <mxPoint x="480" y="300" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="14" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="195" y="260" width="10" height="10" as="geometry"/>
                 </mxCell>
@@ -43,7 +37,7 @@
                 <mxCell id="49" value="&lt;font face=&quot;Courier New&quot; style=&quot;font-size: 30px&quot;&gt;rolling&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="240" y="150" width="160" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="the data (white dots) is also gathered into bins&#10;as many bins as points (see text)&#10;one data point often falls into several bins" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontFamily=Comic Sans MS;fontSize=14;fontColor=#1A1A1A;" parent="1" vertex="1">
+                <mxCell id="50" value="the data (white dots) is also gathered into bins&#10;as many bins as points&#10;one data point often falls into several bins" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontFamily=Comic Sans MS;fontSize=14;fontColor=#1A1A1A;" parent="1" vertex="1">
                     <mxGeometry x="115" y="450" width="410" height="47" as="geometry"/>
                 </mxCell>
                 <mxCell id="62" value="" style="endArrow=none;html=1;" edge="1" parent="1">
@@ -62,18 +56,6 @@
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="440" y="320" as="sourcePoint"/>
                         <mxPoint x="440" y="300" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="67" value="" style="endArrow=none;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="520" y="320" as="sourcePoint"/>
-                        <mxPoint x="520" y="300" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="68" value="" style="endArrow=none;html=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="560" y="320" as="sourcePoint"/>
-                        <mxPoint x="560" y="300" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="69" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">

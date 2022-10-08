@@ -60,7 +60,7 @@ import matplotlib.pyplot as plt
 # * `datetime` qui permet de modéliser un instant (par exemple, le 10 octobre 1954 à 10h 32' 15'' - et même plus précis encore si nécessaire)
 # * `timedelta` qui permet de modéliser une durée (par exemple 2 heures 15 minutes, ou 3 ans)
 #
-# **note** on n'utilise pas directement ces deux types en numpy/pandas, mais c'est tout de même la fondation du modèle, donc attardons-nous un tout petit peu
+# **note** on **n'utilise pas directement** ces deux types en pandas, mais c'est tout de même la fondation du modèle, donc attardons-nous un tout petit peu
 
 # %%
 # pour rester cohérent dans le nommage des classes
@@ -146,13 +146,13 @@ f"{t1:%H==%M}"
 # ### la version `pandas`
 
 # %% [markdown]
-# et en effet, du coté `pandas` on dispose de 3 types:
+# **mais** ici encore les types `numpy`, malgré leurs qualités, ont le gros défaut d'être très peu *user-friendly*, aussi `pandas` nous expose sa propre version de essentiellement les mêmes concepts, plus un:
 #
 # * `Timestamp` pour un instant (ça aurait pu/dû s'appeler `Datetime`, mais bon...)
 # * `Timedelta` pour une durée
 # * `Period` pour un intervalle de temps, représenté par un début **et** une durée
 #
-# tous ces types sont fabriqués *au dessus* des 2 types de base fournis par `numpy`, et visent principalement à les rendre plus faciles à utiliser
+# ces types sont fabriqués *au dessus* des 2 types de base fournis par `numpy`, et visent donc principalement à les rendre plus faciles à utiliser
 
 # %% [markdown]
 # ## **exercice**: le cours de l'action amazon
@@ -280,6 +280,10 @@ cols = ['High', 'Low']
 # mais on peut slicer de manière assez naturelle, voici quelques exemples:
 
 # %% tags=["raises-exception"]
+# on recharge pour être sûr
+df = pd.read_csv('Amazon.csv', skiprows=3)
+df['Date'] = pd.to_datetime(df.Date)
+df.set_index('Date', inplace=True)
 df.tail()
 
 # %% tags=["raises-exception"]
