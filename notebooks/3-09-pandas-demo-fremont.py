@@ -33,11 +33,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown]
 # # Les vélos sur le pont de Fremont
 
-# %%
-from IPython.display import HTML
-HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
-
-
 # %% [markdown]
 # voir la version originale de ce TP - par Jake Vanderplas - sur Youtube
 #
@@ -83,11 +78,11 @@ URL = "https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD
 # où chercher/ranger le fichier en local
 local_file = "fremont.csv"
 
-# %%
+# %% tags=["level_intermediate"]
 # ceci nécessite alors
 # # %pip install requests
 
-# %%
+# %% tags=["level_intermediate"]
 from pathlib import Path
 
 if Path(local_file).exists():
@@ -106,13 +101,15 @@ else:
         writer.write(req.text)
 
 # %% scrolled=false
+# si windows: ouvrez le fichier dans vscode pour voir le début
+
 # !head $local_file
 
 # %% [markdown]
 # ## chargement
 
 # %% [markdown]
-# On en fait une dataframe
+# on en fait une dataframe
 
 # %%
 # version naïve

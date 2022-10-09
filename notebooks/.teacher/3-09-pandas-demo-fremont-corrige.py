@@ -33,11 +33,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown]
 # # Les vélos sur le pont de Fremont
 
-# %%
-from IPython.display import HTML
-HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
-
-
 # %% [markdown]
 # voir la version originale de ce TP - par Jake Vanderplas - sur Youtube
 #
@@ -83,11 +78,11 @@ URL = "https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD
 # où chercher/ranger le fichier en local
 local_file = "fremont.csv"
 
-# %%
+# %% tags=["level_intermediate"]
 # ceci nécessite alors
 # # %pip install requests
 
-# %%
+# %% tags=["level_intermediate"]
 from pathlib import Path
 
 if Path(local_file).exists():
@@ -106,13 +101,15 @@ else:
         writer.write(req.text)
 
 # %% scrolled=false
+# si windows: ouvrez le fichier dans vscode pour voir le début
+
 # !head $local_file
 
 # %% [markdown]
 # ## chargement
 
 # %% [markdown]
-# On en fait une dataframe
+# on en fait une dataframe
 
 # %%
 # version naïve
@@ -157,36 +154,37 @@ with open(local_file) as feed:
 # ***
 
 # %%
-# prune-cell
+# prune-begin
+
+# %%
 # la taille avant le nettoyage
 
 before = len(data)
 before
 
 # %%
-# prune-cell
 # le nombre de doublons
 
 dups = sum(data.duplicated());
 dups
 
 # %%
-# prune-cell
 # pour nettoyer on peut faire
 
 data.drop_duplicates(inplace=True)
 
 # %%
-# prune-cell
 # la taille après le nettoyage
 
 after = len(data)
 
 # %%
-# prune-cell
 # pour vérifier
 
 after + dups == before
+
+# %%
+# prune-end
 
 # %% [markdown]
 # ## parser les dates
@@ -279,48 +277,48 @@ data.head()
 # ***
 # ***
 
+# %%
+# prune-begin
+
 # %% cell_style="split"
-# prune-cell
 # les lignes 
 
 data[data.Total.isna()]
 
 # %% cell_style="split"
-# prune-cell
 # ou encore si on préfère
 
 data[data.isna().any(axis=1)]
 
 # %%
-# prune-cell
-
 to_remove = len(data[data.Total.isna()])
 to_remove
 
 # %%
-# prune-cell
-
 before = len(data)
 before
 
 # %%
-# prune-cell
 # pour supprimer les lignes 
 
 data.dropna(how='any', inplace=True)
 
 # %%
-# prune-cell
 # pour vérifier
 
 after = len(data)
 after + to_remove == before
 
+# %%
+# prune-end
+
 # %% [markdown]
 # ***
 
 # %%
-# prune-cell
+# prune-begin
+
+# %%
 # pour remplir les trous
 
 # on commence par repartir d'une dataframe intacte
@@ -330,23 +328,22 @@ del data['Date']
 data.columns = ['Total',  'East', 'West',]
 
 # %%
-# prune-cell
-
 before = len(data)
 before
 
 # %%
-# prune-cell
 # pour remplir les nan par 0
 
 data.fillna(0)
 
 # %%
-# prune-cell
 # pour vérifier
 
 after = len(data)
 after == before
+
+# %%
+# prune-end
 
 # %% [markdown]
 # ## à quoi ça ressemble
