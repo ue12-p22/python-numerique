@@ -3,6 +3,7 @@ pandas
 matplotlib
 scipy # for reading/writing wav files
 pillow
+seaborn
 
 # tooling
 jupyter
