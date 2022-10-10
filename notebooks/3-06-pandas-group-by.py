@@ -802,10 +802,10 @@ df = pd.read_csv('titanic.csv')
 # plusieurs values
 df2 = ...
 
-# %% {"cell_style": "center"}
+# %% {"cell_style": "center", "tags": ["raises-exception"]}
 df2.columns
 
-# %%
+# %% {"tags": ["raises-exception"]}
 df2.index
 
 # %%
@@ -813,10 +813,10 @@ df2.index
 # plusieurs columns
 df3 = ...
 
-# %%
+# %% {"tags": ["raises-exception"]}
 df3.columns
 
-# %%
+# %% {"tags": ["raises-exception"]}
 df3.index
 
 # %%
@@ -824,10 +824,10 @@ df3.index
 # plusieurs index
 df4 = ...
 
-# %%
+# %% {"tags": ["raises-exception"]}
 df4.columns
 
-# %%
+# %% {"tags": ["raises-exception"]}
 df4.index
 
 # %% [markdown]
@@ -882,7 +882,7 @@ df.head()
 # le code
 by_sex.groups
 
-# %% {"tags": ["level_intermediate"]}
+# %% {"tags": ["level_intermediate", "raises-exception"]}
 # le code
 for group, indexes in by_sex.groups.items():
     print(group, df.loc[indexes[:3], 'Name'])

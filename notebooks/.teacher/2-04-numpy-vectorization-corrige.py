@@ -296,9 +296,7 @@ np.power
 # 3. créez un `np.ndarray` de scalaires et appliquez-lui la fonction
 #
 #
-# 4. que se passe-t-il ?(2)
-#
-# (2) une `ValueError`
+# 4. que se passe-t-il ?
 
 # %%
 # votre code ici
@@ -378,18 +376,18 @@ except ValueError as e:
 # -> array([10. , 30. , 56.5])    
 # ```
 
-# %%
+# %% tags=["raises-exception"]
 # le code
 absolute_vect = np.vectorize(absolute)
 
-# %%
+# %% tags=["raises-exception"]
 # le code
 absolute_vect(tab)
 
-# %% [markdown]
+# %% [markdown] tags=["raises-exception"]
 # elle fonctionne aussi sur une `list` `python`
 
-# %%
+# %% tags=["raises-exception"]
 absolute_vect([-10, -20, 30])
 
 

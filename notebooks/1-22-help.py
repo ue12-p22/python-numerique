@@ -103,7 +103,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %%
 # !cat foobar.py
 
-# %%
+# %% tags=["raises-exception"]
 # décommenter pour tester plus de cas
 
 import foobar

@@ -814,7 +814,7 @@ df[df.Sex == 'female'].head()
 # %%
 # votre code
 
-# %%
+# %% tags=["raises-exception"]
 len(selection)
 
 # %% [markdown]

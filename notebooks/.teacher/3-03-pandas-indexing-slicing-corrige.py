@@ -843,7 +843,7 @@ selection
 # %%
 # votre code
 
-# %%
+# %% tags=["raises-exception"]
 len(selection)
 
 # %% [markdown]
