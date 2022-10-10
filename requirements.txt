@@ -16,6 +16,7 @@ ipythontutor
 nbautoeval
 nb-courselevels
 
-rise
+# no longer relevant
+# rise
 
 nbprune
