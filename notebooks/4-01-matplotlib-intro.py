@@ -80,11 +80,48 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %%
 from matplotlib import pyplot as plt
-# si les dessins s'affichent en dehors du notebook
-# %matplotlib inline
+
+# pour l'instant on va utiliser le mode par défaut
+# #%matplotlib inline
+
+# pour changer la taille par défaut
+plt.rcParams['figure.figsize'] = (4, 2)
 
 import numpy as np
 import pandas as pd
+
+# %% [markdown] {"tags": ["framed_cell"]}
+# ## plusieurs *drivers*
+#
+# dans ce premier notebook nous allons utiliser le driver `inline` - qui est le défaut
+#
+# en fait il en existe plusieurs autres, et notamment pour les notebooks le driver notebook` - qui s'utilise en faisant
+#
+# ```python
+# %matplotlib notebook
+# ```
+#
+# et pour bien voir les différences je vous invite à consulter les deux notebooks suivants
+#
+# * `4-01-matplotlib-z1-notebook.py`
+# * `4-01-matplotlib-z2-notebook.py`
+#
+# à retenir principalement, c'est que si on voulait être complètement propre,
+# on ferait pour chaque figure
+#   * un appel à `plt.figure()` au début
+#   * un appel à `plt.show()` à la fin
+#   
+# toutefois c'est trop de *boilerplate*, surtout quand il s'agit simplement de plotter une fonction !
+#
+# du coup il est fréquent qu'on élude tout ce qui est possible, 
+# et là ça devient potentiellement confusant, car
+# * en mode `inline`, ce n'est pas nécessaire de créer les figures avec `plt.figure()`
+#   mais il faut utiliser `plt.show()` si on veut afficher plusieurs figures dans la même cellule
+# * mais en mode `notebook` c'est un peu le contraire, 
+#   on est incité/obligé d'utiliser `plt.figure()` à chaque fois, et pas vraiment besoin de `plt.show()`
+#
+# enfin, vous noterez que `df.plot()` fait un appel à `plt.figure()` ! bref c'est un peu le bazar...
+#
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## tracer une courbe avec `plt.plot`
@@ -198,8 +235,8 @@ plt.plot(x, y, 'r-') # ligne rouge continue
 plt.show()
 plt.plot(x, y, 'b.') # ligne bleue pointillée
 plt.show()
-plt.plot(x, y, 'g--') # ligne bleue pointillée
-;
+plt.plot(x, y, 'g--'); # ligne verte pointillée
+
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## attention aux valeurs manquantes
@@ -432,8 +469,11 @@ plt.scatter(x, z);
 #
 # avec la fonction `plt.legend` vous affichez la légende  
 # constituée des étiquettes  
-# le paramètre `loc` permet de positionner la légende `'upper right'`, `'best'`, `'center'`...  
-# Quel est la valeur par défaut de `loc` ?
+# le paramètre `loc` permet de positionner la légende `'upper right'`, `'best'`, `'center'`... 
+#
+# <br>
+#
+# **note** le même effet est obtenu lorsqu'on plotte directement une dataframe plutôt que des tableaux `numpy` - on y reviendra
 
 # %%
 x = np.linspace(0, 2*np.pi, 50)
@@ -550,7 +590,7 @@ plt.figure(figsize=(10, 2))
 plt.plot(x, np.sin(x))
 
 # %% [markdown]
-# ## exercice de plot
+# ## **exercice** de plot
 
 # %% [markdown]
 # **exercice**
@@ -561,7 +601,7 @@ plt.plot(x, np.sin(x))
 # 1. afficher la courbe $3*x^2+1$ avec un label en latex  
 # 1. afficher la légende de la courbe au centre
 # 1. affichez un titre au plot à droite
-# 1. affichez uniquement les deux valeurs extrèmes en abscisse et en ordonnée
+# 1. affichez uniquement les deux valeurs extrêmes en abscisse et en ordonnée
 # 1. indice `np.linspace` et `np.power`
 
 # %%
