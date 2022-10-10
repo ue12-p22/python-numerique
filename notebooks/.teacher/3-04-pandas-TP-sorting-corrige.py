@@ -270,6 +270,7 @@ df = pd.DataFrame(np.random.randint(0, 100, 20).reshape(4, 5),
 # 2. affichez la dataframe
 
 # %% {"tags": ["level_intermediate"]}
+# prune-cell
 df
 
 # %% [markdown] {"tags": ["level_intermediate"]}
