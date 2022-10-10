@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # ---
 # jupyter:
+#   celltoolbar: Edit Metadata
 #   jupytext:
 #     cell_metadata_filter: all,-hidden,-heading_collapsed,-run_control,-trusted
 #     notebook_metadata_filter: all, -jupytext.text_representation.jupytext_version,
@@ -348,7 +349,7 @@ def random_json():
     pass
 
 
-# %%
+# %% tags=["raises-exception"]
 from check_random_json import check_random_json
 
 check_random_json(random_json)
