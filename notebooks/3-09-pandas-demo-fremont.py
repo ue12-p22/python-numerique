@@ -71,8 +71,10 @@ import seaborn as sns
 URL = "https://data.seattle.gov/api/views/65db-xm6k/rows.csv?accessType=DOWNLOAD"
 
 # %% [markdown]
-# le fichier de données est peut-être distribué avec le notebook; toutefois si on ne l'a pas ou plus, on peut utiliser par exemple ce code
-# pour aller chercher la donnée
+# le fichier de données est distribué avec le notebook
+#
+# toutefois pour votre information, voici le code qu'on a utilisé pour aller chercher la donnée  
+# l'idée est d'aller sur le réseau seulement quand le fichier n'est pas là (notion de *mise en cache*)
 
 # %%
 # où chercher/ranger le fichier en local
@@ -135,13 +137,14 @@ with open(local_file) as feed:
         if '01/01/2014 12:00:00 AM' in line:
             print(line, end="")
 
-# %% [markdown]
+# %% [markdown] tags=["level_basic"]
 # **exercice**
 #
 # cherchez dans les méthodes de la dataframe pour
 #
 # * compter le nombre de lignes dupliquées
 # * éliminer les doublons de la dataframe
+# * afficher la taille de départ et la taille finale, vérifier que la taille finale correspond à la taille de départ moins les doublons
 #
 # **indice** le mot clé c'est `duplicate` 
 
@@ -166,11 +169,13 @@ data.dtypes
 
 # %% [markdown]
 # bref le point ici c'est que les dates sont **des chaines**, alors qu'**on veut des dates**
+#
+# question subsidiaire: pourquoi les décomptes sont des flottants ?
 
 # %% [markdown]
 # ### la version lente
 #
-# la première idée aurait été de demander à parser les dates *directement au chargement*
+# pour traduire les dates, la première idée aurait été de demander à parser les dates *directement au chargement*
 #
 # ```python
 # data = pd.read_csv(local_file, index_col='Date', parse_dates=True); data.head()
@@ -185,36 +190,54 @@ data.dtypes
 # consiste à indiquer le format qui a été utilisé pour stocker les dates
 #
 # pour cette étape on peut utiliser `pd.to_datetime()` qui se comporte un peu comme `pd.as_type()`
+
+# %%
+data.Date.head(2)
+
+# %% [markdown] tags=["level_basic"]
+# **exercice**
 #
-# et dans le même mouvement on va choisir cette (nouvelle) colonne de date comme l'index de la table
+# * premier travail, déterminez si les dates sont `jj/mm` ou `mm/jj`
+# * traduisez la colonne `Date` dans le type adéquat
+# * adoptez cette colonne comme index
 
 # %%
-# si on veut améliorer les performances 
-# il vaut mieux fournir le format des dates
-data.index = pd.to_datetime(data.Date, format="%m/%d/%Y %I:%M:%S %p")
+# à vous
 
-# on n'a plus besoin de la colonne qui contient les chaines de caractères
-del data['Date']
+# commencez par rechercher la page web qui donne le détail des formats possibles
+# avec par exemple les mots-clé 'python datetime string format'
 
-# ce qui nous donne
-data.head()
+# %% [markdown]
+# ***
+# ***
+# ***
+
+# %% [markdown]
+# ## tri
+
+# %% [markdown] tags=["level_basic"]
+# **exercice**
+#
+# c'est le moment de trier les données dans l'ordre chronologique
 
 # %%
-data
-
-# %%
-data.groupby(data.index.time).mean()
+# à vous
 
 # %% [markdown]
 # ## renommons les colonnes
 
+# %% [markdown] tags=["level_basic"]
+# **exercice**
+#
+# on va se simplifier la vie et renommer les colonnes avec les noms suivants
+
 # %%
 # les noms de colonne ne sont pas pratiques du tout
-data.columns = ['Total',  'East', 'West',]
+new_names = ['Total',  'East', 'West',]
 
 
 # %%
-data.head()
+# à vous
 
 # %% [markdown]
 # ## données manquantes et extension types
@@ -224,20 +247,32 @@ data.head()
 #
 # et ça c'est parce qu'il y a eu quelques interruptions de service, apparemment, avec le système de récolte de l'information
 #
-# en effet dans ces cas-là, la table contient un 'NaN'; et par défaut pandas choisit de représenter la colonne avec des *flottants* parce que dans le type flottant il y a une valeur `nan`
+# en effet dans ces cas-là, la table contient un 'NaN'; et par défaut `pandas` choisit de représenter la colonne avec des *flottants* parce que dans le type flottant il y a une valeur `nan`
 #
 # **note** dans les versions récentes de pandas, il y a des *extension types* qui permettraient de manipuler des colonnes contenant des entiers et des *nan*, mais dans le cas présent on préfère purement et simplement ignorer ces lignes
 
-# %% [markdown]
+# %% [markdown] tags=["level_basic"]
 # **exercice**
 #
 # * trouvez le nombre de lignes de la table qui contiennent au moins une donnée manquante
 # * trouvez la phrase qui permet d'enlever de la table toutes ces lignes
-# * en repartant des donnnées du départ (voyez *Cell -> Run All Above*), remplacez les valeurs manquantes par des 0
+# * en repartant des donnnées du départ, remplacez les valeurs manquantes par des 0
+#
+# **indices**
+#
+# les méthodes `isna`, `dropna` et `fillna`
 #
 
 # %%
-# votre code
+# votre code pour enlever les données manquantes
+
+# %%
+# votre code pour recharger la dataframe
+# lire, enlever les doublons, indexer par la date
+# trier, renommer les colonnes
+
+# %%
+# votre code pour remplir les données manquantes
 
 # %% [markdown]
 # ***
@@ -256,10 +291,11 @@ data.head()
 # on va utiliser seaborn pour faire les affichages, et on fixe une taille de figure par défaut
 
 # %%
-# %matplotlib inline
+# %matplotlib notebook
 
+# %%
 plt.style.use('seaborn')
-sns.set(rc={'figure.figsize': (12, 4)})
+sns.set(rc={'figure.figsize': (8, 4)})
 #plt.rcParams["figure.figsize"] = (12, 4)
 
 # %% [markdown]
@@ -278,6 +314,18 @@ data[['East', 'West']].plot();
 # on aurait pu choisir la somme aussi bien sûr, qui est en général 7 fois plus importante, 
 # sauf dans le cas des données manquantes (mais c'est un détail ici)
 
+# %% [markdown] tags=["level_basic"]
+# question: quelle méthode utiliser pour cela ?
+
+# %% [markdown]
+# ***
+
+# %% [markdown]
+# ***
+
+# %% [markdown]
+# ***
+
 # %%
 # c'est plus lisible avec seulement un point par semaine
 # on pourrait faire la moyenne aussi bien sûr,
@@ -292,13 +340,13 @@ data.resample('W').mean().plot();
 #
 # (un détail à noter aussi, les données de la vidéo ne contenaient pas la colonne 'total' à l'époque...)
 
-# %%
-# c'est facile de couper, la date correpond à l'index de la df
-# et grâce au type 'datetime' on peut simplement faire une comparaison
-data = data[data.index.year <= 2017]
+# %% [markdown] tags=["level_basic"]
+# **exercice**
+#
+# ne conserver que les données jusqu'à fin 2017
 
-# %%
-data.tail(3)
+# %% [markdown]
+# ce qui nous donne ce graphique
 
 # %%
 data.resample('W').sum().plot();
@@ -307,7 +355,7 @@ data.resample('W').sum().plot();
 # ## `resample()` ?
 
 # %% [markdown]
-# décortiquons un peu cette histoire de `resample()`
+# petite digression, mais décortiquons un peu cette histoire de `resample()`, pour vérifier notre intuition concernant le nombre d'entrées dans le résultat du `resample`
 
 # %%
 data.shape
@@ -335,30 +383,28 @@ full / resampled , 7 * 24
 data.resample('1W').mean().plot();
 
 # %% [markdown]
-# ### fenêtre tournante
+# ### fenêtre glissante
 
 # %% [markdown]
 # si maintenant on veut voir les évolutions sur le temps plus long, on peut avoir recours à une **fenêtre glissante**
 
 # %%
-# la somme sur une fenêtre tournante d'un an
+# la somme sur une fenêtre glissante d'un an
 
 # mais : méfiez-vous de l'échelle des Y
 
 data.resample('1D').mean().rolling(365).sum().plot();
 
+# %% [markdown] tags=["level_basic"]
+# **exercice**: 
+#
+# * cherchez la documentation de `rolling` - par défaut, la valeur d'une corbeille est affectée à quel point (début, milieu, fin ?)
+# * comparez la date du premier point dans les données, avec la date du premier point dans le graphe
+
 # %% [markdown]
 # ici on va afficher la somme sur un an du trafic moyen journalier
 #
-# spécifiquement, la plus ancienne valeur dans la table originale est le *3 octobre 2012*  
-#
-# du coup dans la dataframe issue de `rolling()`:
-#
-# * la première valeur disponible correspond au *2 oct 2013*
-# * et pour cette date on calcule la somme de tous les trafics (moyens) journaliers sur l'année 3/10/2012 → 2/10/2013
-#
 # si bien que si on regarde, dans cette table, la différence entre deux jours consécutifs, ce qu'on obtient c'est en réalité la différence d'une année sur l'autre
-#
 
 # %% [markdown]
 # ### attention aux Y
@@ -395,10 +441,12 @@ ax.set_ylim(0, None);
 data.groupby(data.index.time).mean().plot();
 
 # %% [markdown]
-# en fait notre objectif est de voir si on peut classifier - en utilisant uniquement cette information de trafic - les jours entre jour travaillé ou non
+# en fait notre objectif est de voir si on peut **classifier**  
+# en utilisant uniquement cette information de trafic  
+# **les jours entre jour travaillé ou non**
 #
-# du coup pour y voir un peu mieux on veut afficher les jours 
-# **individuellement** les uns des autres - 
+# du coup pour y voir un peu mieux, on veut afficher les jours 
+# **individuellement** les uns des autres 
 #
 # on veut donc dessiner 
 #
@@ -439,8 +487,10 @@ pivoted.plot(legend=False, alpha=0.01);
 # %% [markdown]
 # ou on distingue bien deux sortes de jours:
 #
-# * une grosse majorité qui ont 2 bosses bien marquées, le matin et le soir, on se dit que ce sont des jours travaillés
-# * une deuxième classe, minoritaire mais bien présente, avec un trafic moindre, et une unique bosse en milieu de journée, on se dit que ce sont les jours de repos
+# * une grosse majorité qui ont 2 bosses bien marquées, le matin et le soir,  
+#   on se dit que ce sont des **jours travaillés**
+# * une deuxième classe, minoritaire mais bien présente, avec un trafic moindre,  
+#   et une unique bosse en milieu de journée, on se dit que ce sont les **jours de repos**
 
 # %% [markdown]
 # ## classification
@@ -448,7 +498,7 @@ pivoted.plot(legend=False, alpha=0.01);
 # %% [markdown]
 # ici il s'agit de classifier les jours en deux familles, qu'on voit très distinctement sur la figure
 #
-# il s'agit de faire une ACP sur un tableau qui aurait 
+# et donc on va faire une ACP sur un tableau qui aurait 
 #
 # * 24 colonnes correspondant aux heures de la journée
 # * autant de lignes que de jours
@@ -479,17 +529,18 @@ coords = PCA(2, svd_solver='full').fit_transform(pca_in)
 #            ^ le 2 est ici
 
 # %%
-# toujorus autant de jours, mais 
+# toujours autant de jours, mais 
 # on a gardé seulement 2 vecteurs propres
 coords.shape
 
 # %%
 # on voit effectivement que cet ACP semble bien séparer deux clusters
 
+plt.figure()
 plt.scatter(coords[:, 0], coords[:, 1]);
 
 # %%
-# pour les trouver ces deux clusters, Jake utilise une GaussianMixture
+# pour trouver ces deux clusters, Jake utilise une GaussianMixture
 
 from sklearn.mixture import GaussianMixture
 gmm = GaussianMixture(2)
@@ -511,6 +562,7 @@ labels.shape, labels
 # label=0 correspond aux points en bleu
 # label=1 correspond aux points en rouge et 
 
+plt.figure()
 plt.scatter(coords[:, 0], coords[:, 1], c=labels, cmap='rainbow')
 plt.colorbar();
 
@@ -562,19 +614,20 @@ dayofweek
 # qu'on va utiliser pour mettre les jours en couleur
 # les jours de weekend sont en orange et rouge
 
+plt.figure()
 plt.scatter(coords[:, 0], coords[:, 1], c=dayofweek, cmap='rainbow')
 # pour la légende
 plt.colorbar();
 
 # %% [markdown]
-# CQFD: majoritairement, les jours de la semaine (bleu/vert/jaune) sont bien dans le nuage rouge de tout à l'heure, ils correspondent donc bien à `label==1` tel que produit par le mélange de gaussiennes
+# **CQFD**: majoritairement, les jours de la semaine (bleu/vert/jaune) sont bien dans le nuage inférieur, ils correspondent donc bien à `label==1` tel que produit par le mélange de gaussiennes
 
 # %% [markdown]
 # ### les moutons noirs
 
 # %% [markdown]
-# enfin pas complétement tout à fait complétement non plus, il y a quelques exceptions  
-# des jours de la semaine (bleu/vert/jaune) dans le nuage de gauche
+# enfin pas complétement tout à fait non plus, il y a quelques exceptions  
+# on remarque des jours de la semaine (bleu/vert/jaune) dans le nuage de gauche
 #
 # vérifions qu'il s'agit de jours fériés au milieu de la semaine
 
