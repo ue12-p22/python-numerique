@@ -163,9 +163,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # %% [markdown] {"tags": ["level_intermediate"]}
 # 2. affichez la dataframe
 
-# %% {"tags": ["level_intermediate"]}
-df
-
 # %% [markdown] {"tags": ["level_intermediate"]}
 # 3. triez la dataframe en place dans l'ordre de la ligne d'index `trois`
 
