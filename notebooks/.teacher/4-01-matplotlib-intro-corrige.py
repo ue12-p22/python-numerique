@@ -599,11 +599,12 @@ x = np.linspace(0, 2*np.pi, 50)
 plt.figure(figsize=(10, 2))
 plt.plot(x, np.sin(x))
 
-# %% [markdown]
+# %% [markdown] {"tags": ["level_basic", "framed_cell"]}
 # ## **exercice** de plot
-
-# %% [markdown]
+#
 # **exercice**
+#
+# en une seule figure:
 #
 # 1. construisez un tableau de `nb` valeurs entre `x_min` et `x_max` (non compris)  
 # par exemple `x_min` à 0 et `x_max` à 10 et `nb` à 50
@@ -613,6 +614,11 @@ plt.plot(x, np.sin(x))
 # 1. affichez un titre au plot à droite
 # 1. affichez uniquement les deux valeurs extrêmes en abscisse et en ordonnée
 # 1. indice `np.linspace` et `np.power`
+#
+# on utilise ici le driver `matplotlib` pour s'entrainer un peu
+
+# %%
+# %matplotlib notebook
 
 # %%
 # votre code ici
@@ -620,6 +626,7 @@ plt.plot(x, np.sin(x))
 # %%
 # prune-cell
 
+plt.figure(figsize=(5, 3))
 x_min, x_max, nb = 0, 10, 50
 x = np.linspace(x_min, x_max, nb)
 y = np.power(x, 3)
@@ -631,41 +638,26 @@ plt.yticks([min(y.min(), z.min()), max(y.max(), z.max())])
 plt.title('deux courbes', loc='right')
 plt.legend(loc='center');
 
-# %% [markdown]
-# ## **exercice** sauver une figure dans un fichier (sans clic-droit)
-
-# %% [markdown]
-# **exercice**
+# %% [markdown] {"tags": ["framed_cell"]}
+# ## **exercice** sauver une figure dans un fichier
 #
-# dans un notebook, un clic-droit sur une figure  
-# permet de la sauver dans un fichier
+# **exercice**
 #
 # 1. faites une figure quelconque  
 # par exemple $f(x) = x^2$ entre $-10$ et $10$
-# <br>
-#
 # 1. mettez lui un titre, des labels aux abscisses et aux ordonnées, une légende, des couleurs...
-# <br>
-#
 # 1. en utilisant `plt.savefig`  sauver la figure  dans un fichier  
 # dans un format au choix (*jpg*, *pdf*, *png*, *svg*...) 
-# <br>
-#
-# 1. pour voir les résultats pour `jpg`, `png`, `svg` mettez dans une cellule markdown de votre notebook
-# ```
-# <img src='foo.ext'>
-# ```
-# en remplaçant naturellement `foo.ext` par le nom de votre fichier et l'extension choisie
-# <br>
-#
-# 1. pour voir le pdf mettez dans une cellule markdown  
-# ```
-# [ma belle figure](foo.pdf)
-# ```
-# et cliquez dessus...
+# 1. pour voir les résultats pour `jpg`, `png`, `svg`  
+#    mettez dans une cellule markdown de votre notebook `<img src='foo.ext'>`  
+#    ou encore `![](foo.ext)`  
+#    en remplaçant naturellement `foo.ext` par le bon nom de fichier
+# 1. pour voir le pdf mettez dans une cellule markdown `[ma belle figure](foo.pdf)` et cliquez dessus...
 
 # %%
 # prune-cell
+
+plt.figure(figsize=(4, 4))
 x = np.linspace(-10, 10, 50)
 y = np.power(x, 2)
 
@@ -690,3 +682,6 @@ plt.savefig('foo.pdf')
 # prune-cell
 #
 # [ma belle figure](foo.pdf)
+
+# %% [markdown]
+# ***
