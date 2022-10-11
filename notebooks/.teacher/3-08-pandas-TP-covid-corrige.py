@@ -29,14 +29,19 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
+# %% [markdown]
+# # TP sur les données coronavirus
+
 # %%
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import IPython
 
 # %% [markdown]
-# # TP sur les données coronavirus
+# ce sujet vise à acquérir et mettre en forme les données du COVID pour pouvoir produire facilement des diagrammes comme celui-ci, dans lequel on a choisi une liste de pays, une liste de mesures, et une plage de temps spécifique
+
+# %% [markdown]
+# ![](media/covid-example.svg)
 
 # %% [markdown] tags=["framed_cell"]
 # ## les données de Johns Hopkins
@@ -56,7 +61,7 @@ import IPython
 official_url = "https://github.com/CSSEGISandData/COVID-19"
 
 # %% [markdown] tags=["framed_cell"]
-# ## autre jeu de donnée intéressant
+# ## autre jeu de données intéressant
 #
 # <br>
 #
@@ -682,9 +687,12 @@ global_df.dtypes
 #    **variante** on peut aussi utiliser `set_index()`  
 #    pour aboutir au même résultat
 #    
+# rangez votre résultat dans une variable `clean_df`   
 
 # %%
 # votre code
+
+clean_df = ...
 
 # %%
 # prune-cell
@@ -776,10 +784,11 @@ clean_df.loc[['France', 'Italy']]
 #
 # <br>
 #
-# tout ça fonctionne très bien, sauf pour la création de `time_slice`  
-# qui, pour de sombres raisons de syntaxe, ne peut pas se faire ici  
-# avec la notation `start:stop` (parce que pas dans des `[]`)  
-# du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
+# tout ça fonctionne très bien,  
+# **sauf pour** la création de `time_slice` qui, pour de sombres raisons de syntaxe,  
+# ne **peut pas** se faire ici avec la notation `start:stop`  
+# (parce que pas dans des `[]`)  
+# et du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
 
 # %% tags=["level_intermediate", "raises-exception"]
 # ce qui nous donne le code suivant
@@ -978,8 +987,9 @@ df6
 # que du coup il n'y a plus qu'à plotter
 df6.plot(figsize=(12, 5));
 
+
 # %% [markdown] tags=["level_intermediate", "framed_cell"]
-# ### extra
+# ### bonus
 #
 # les rapides peuvent écrire une fonction `extract()` qui prend en paramètres 
 #
@@ -988,3 +998,37 @@ df6.plot(figsize=(12, 5));
 # * et en option pour les plus forts, les dates de début et de fin
 #
 # et qui retourne une dataframe prête à être affichée comme on l'a fait plus haut
+
+# %%
+# prune-begin
+
+# %%
+def extract(countries, measures, 
+            begin: np.datetime64=None,
+            end: np.datetime64=None):
+    time_slice = slice(begin, end)
+    # c'est l'étage 'country' du multiindex (donc le level 0)
+    # qui doit changer passer de la dimension des index à la dimension des columns
+    return clean_df.loc[(countries, time_slice), measures].unstack(level=0)
+
+
+# %%
+extract(['Italy', 'Germany'], ['deaths', 'confirmed']).head()
+
+# %%
+extract(['Italy', 'Germany'], ['deaths', 'confirmed']).plot();
+
+# %%
+begin = pd.to_datetime('2020-10-30')
+
+extract(['Italy', 'Germany'], ['deaths', 'confirmed'], begin).plot();
+
+# %%
+end = pd.to_datetime('2021-01-31')
+
+extract(['Italy', 'Germany'], ['deaths', 'confirmed'], 
+        begin, end).plot();
+plt.savefig('media/covid-example.svg')
+
+# %%
+# prune-end

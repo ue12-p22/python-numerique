@@ -29,14 +29,19 @@
 from IPython.display import HTML
 HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/notebooks/_static/style.html")
 
+# %% [markdown]
+# # TP sur les données coronavirus
+
 # %%
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import IPython
 
 # %% [markdown]
-# # TP sur les données coronavirus
+# ce sujet vise à acquérir et mettre en forme les données du COVID pour pouvoir produire facilement des diagrammes comme celui-ci, dans lequel on a choisi une liste de pays, une liste de mesures, et une plage de temps spécifique
+
+# %% [markdown]
+# ![](media/covid-example.svg)
 
 # %% [markdown] tags=["framed_cell"]
 # ## les données de Johns Hopkins
@@ -56,7 +61,7 @@ import IPython
 official_url = "https://github.com/CSSEGISandData/COVID-19"
 
 # %% [markdown] tags=["framed_cell"]
-# ## autre jeu de donnée intéressant
+# ## autre jeu de données intéressant
 #
 # <br>
 #
@@ -583,9 +588,12 @@ pd.to_datetime('15 july 2021 08:00')
 #    **variante** on peut aussi utiliser `set_index()`  
 #    pour aboutir au même résultat
 #    
+# rangez votre résultat dans une variable `clean_df`   
 
 # %%
 # votre code
+
+clean_df = ...
 
 # %% [markdown] tags=["framed_cell"]
 # ### accéder via un *MultiIndex*
@@ -636,10 +644,11 @@ pd.to_datetime('15 july 2021 08:00')
 #
 # <br>
 #
-# tout ça fonctionne très bien, sauf pour la création de `time_slice`  
-# qui, pour de sombres raisons de syntaxe, ne peut pas se faire ici  
-# avec la notation `start:stop` (parce que pas dans des `[]`)  
-# du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
+# tout ça fonctionne très bien,  
+# **sauf pour** la création de `time_slice` qui, pour de sombres raisons de syntaxe,  
+# ne **peut pas** se faire ici avec la notation `start:stop`  
+# (parce que pas dans des `[]`)  
+# et du coup on utilise la fonction *builtin* `slice()` pour créer `time_slice`
 
 # %% tags=["level_intermediate", "raises-exception"]
 # ce qui nous donne le code suivant
@@ -822,7 +831,7 @@ df6
 df6.plot(figsize=(12, 5));
 
 # %% [markdown] tags=["level_intermediate", "framed_cell"]
-# ### extra
+# ### bonus
 #
 # les rapides peuvent écrire une fonction `extract()` qui prend en paramètres 
 #
