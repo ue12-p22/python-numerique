@@ -12,10 +12,10 @@ ouvrez ce document dans vs-code, et visualisez la version "rendue", ce sera plus
 ## modalités
 
 * créez un dépôt git
-* traitez l'exercice dans un notebook que vous appelez `exos-semaine1.ipynb`
+* traitez l'exercice dans un notebook que vous appelez `numpy-exos-cadre.ipynb`
 * et commitez les versions intermédiaires de votre travail
   (typiquement, quand vous avez fini chaque exercice)
-* une fois terminé, pour le rendu, allez créer sur github un nouveau dépôt; appelez-le `pe-exos1`  
+* une fois terminé, pour le rendu, allez créer sur github un nouveau dépôt; appelez-le `pe-devoirs`  
   vous avez le choix de le créer public ou privé; si vous souhaitez le garder privé, il vous faudra m'inviter dans ce repo (je suis `parmentelat` chez github) pour que je puisse vous lire
 * et suivez les instructions pour uploader (pousser) votre dépôt
 
@@ -40,7 +40,8 @@ ouvrez ce document dans vs-code, et visualisez la version "rendue", ce sera plus
 
   **NOTE** pour cet exercice vous avez deux possibilités: soit vous modifiez *en place* le tableau qu'on vous passe,
   soit vous retournez une copie; ici le plus simple est de modifier le tableau, c'est ce qu'on va faire  
-  **bonus**: pour les forts: faites en sorte que votre fonction puisse avoir les deux comportements, 
+
+  **bonus**: pour les forts: faites en sorte que votre fonction puisse avoir les deux comportements,
   en acceptant un paramètre optionnel `inplace=True` comme on le trouve dans plein de fonctions numpy.
 
 
