@@ -58,6 +58,9 @@ Y2 = np.cos(X)
 # %% [markdown]
 # ## un plot = une figure
 
+# %% [markdown]
+# l'apport principal de ce driver, c'est qu'on peut "naviguer" dans le graphe - zoomer et se déplacer, sauver la figure, etc... avec **la palette d'outils** située par défaut en bas; on peut cliquer sur le carré bleu en haut à droite de la figure pour la rendre 'inactive'
+
 # %% cell_style="split"
 # on peut avoir l'impression 
 # que ce n'est pas la peine 
