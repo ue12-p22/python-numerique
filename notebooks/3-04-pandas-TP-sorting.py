@@ -176,7 +176,6 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 
 # %% [markdown] {"tags": ["level_intermediate"], "cell_style": "center"}
 # 1. créez et affichez cette dataframe  
-#    par contre cette fois créez des colonnes dans un ordre non alphabétique, par exemple `dbace`
 
 # %% [markdown] {"tags": ["level_intermediate"], "cell_style": "center"}
 # 2. trier la dataframe par index de ligne croissant  

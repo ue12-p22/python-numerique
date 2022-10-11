@@ -290,12 +290,11 @@ df.sort_values(by='trois', ascending=True, axis=1)
 
 # %% [markdown] {"tags": ["level_intermediate"], "cell_style": "center"}
 # 1. créez et affichez cette dataframe  
-#    par contre cette fois créez des colonnes dans un ordre non alphabétique, par exemple `dbace`
 
 # %% {"tags": ["level_intermediate"]}
 # prune-cell
 df = pd.DataFrame(np.random.randint(0, 100, 20).reshape(4, 5),
-                  columns=list('dbace'),
+                  columns=['a', 'b', 'c', 'd', 'e'],
                   index = ['un', 'deux', 'trois', 'quatre'])
 print(df)
 
