@@ -734,16 +734,19 @@ begin, end
 # prune-begin
 
 # %%
-# xxx quels paramètres pour obtenir moins d'entrées ?
 df_rol = df2.rolling(window='365D').mean()
 
 df_rol.plot();
 
 # %%
-# xxx
+# autant d'entrées que dans la source
+
 print(f"{L=} {len(df_rol)=}")
 expected = L
 expected, len(df_rol)
+
+# %%
+# prune-end
 
 # %% [markdown] tags=["level_intermediate"]
 # ## annexe

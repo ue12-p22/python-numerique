@@ -492,3 +492,35 @@ pd.DataFrame({'points-per-bin-28': count_28}).plot();
 
 # %%
 # à vous
+
+# %% [markdown] tags=["level_intermediate"]
+# ## annexe
+
+# %% [markdown] tags=["level_intermediate"]
+# ### les échelles de précision
+
+# %% [markdown] tags=["level_intermediate"]
+# un objet `datetime64` est créé avec un paramètre *`unit`*, qui permet de choisir la précision des calculs; et l'intervalle des dates possibles varie bien entendu avec cette précision :
+
+# %% [markdown] tags=["level_intermediate"]
+# <div class=note>
+#
+# Unit Code |	Meaning |	Time span (relative) |	Time span (absolute) |
+# -----|----------|------------------------|-----------------------|
+# Y |	year | 		+/- 9.2e18 years | 	[9.2e18 BC, 9.2e18 AD]
+# M |	month | 		+/- 7.6e17 years | 	[7.6e17 BC, 7.6e17 AD]
+# W |	week | 		+/- 1.7e17 years | 	[1.7e17 BC, 1.7e17 AD]
+# D |	day | 		+/- 2.5e16 years | 	[2.5e16 BC, 2.5e16 AD]
+#   |      |                       |
+# h |	hour | 		+/- 1.0e15 years | 	[1.0e15 BC, 1.0e15 AD]
+# m |	minute | 	+/- 1.7e13 years | 	[1.7e13 BC, 1.7e13 AD]
+# s |	second | 	+/- 2.9e11 years | 	[2.9e11 BC, 2.9e11 AD]
+# ms| 	millisecond | 	+/- 2.9e8 years | 	[ 2.9e8 BC, 2.9e8 AD]
+# us| 	microsecond | 	+/- 2.9e5 years | 	[290301 BC, 294241 AD]
+# ns| 	nanosecond | 	+/- 292 years  |		[ 1678 AD, 2262 AD]
+# ps| 	picosecond | 	+/- 106 days | 		[ 1969 AD, 1970 AD]
+# fs| 	femtosecond | 	+/- 2.6 hours | 		[ 1969 AD, 1970 AD]
+# as| 	attosecond | 	+/- 9.2 seconds | 	[ 1969 AD, 1970 AD]
+#     
+# </div>
+
