@@ -1,5 +1,5 @@
 SOLUTIONS = $(shell find . -name '*.py' -o -name '*.md' \
-  | egrep -- '-corrige\.|-howto\.|\.teacher' \
+  | egrep -- '-corrige(-nb)?\.|-howto(-nb)?\.|\.teacher' \
   | egrep -v '_build|.ipynb_checkpoints')
 
 #FLAGS = -v
