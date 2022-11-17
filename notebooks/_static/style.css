@@ -1,3 +1,25 @@
+/*
+ * jupyter has its own way to render lists
+ * which, let's just say, is not optimal
+ * let's cancel that
+ */
+ .rendered_html * + ol,
+ .rendered_html * + ul {
+     margin-top: initial !important;
+ }
+
+
+ /*
+  * jupyter-book: outline cell outputs
+  * for a more legible book
+  * and it is also easier to check for proper execution
+  */
+div.cell div.cell_output .output pre {
+    background-color: #fee;
+}
+
+
+/* minimal layout tooling */
 .column {
     display: flex;
     flex-direction: column;
@@ -10,9 +32,25 @@
     flex-direction: row;
 }
 
+
+/* colors */
+.grey {
+    background-color: #eee;
+}
+.blue {
+    background-color: rgb(223, 235, 251);
+}
+.red {
+    background-color: rgb(234, 125, 110);
+}
+.pink {
+    background-color: pink;
+}
+
+
+/* notes */
 .note {
     font-style: italic;
-    font-size: 80%;
     border-left: 1px dotted #ccc;
     border-radius: 5px;
     padding: 5px 0px 0px 10px;
@@ -25,28 +63,16 @@
     font-weight: 900;
 }
 
+
+/*
+ * manually add a frame - maybe look at nb-courselevels instead ?
+ */
 .frame {
     border: 1px solid blue;
     padding: 5px;
     border-radius:5px
 }
 
-/* colors */
-.grey {
-    background-color: #eee;
-}
-
-.blue {
-    background-color: rgb(223, 235, 251);
-}
-
-.red {
-    background-color: rgb(234, 125, 110);
-}
-
-.pink {
-    background-color: pink;
-}
 
 /*
  * leveraging nb-courselevels
@@ -64,25 +90,12 @@ div.cell[data-tag-frame=true]>div.inner_cell>div.rendered_html>h4:first-child {
         text-decoration-style: double;
 }
 
-/*
- * jupyter has its own way to render lists
- * which, let's just say, is not optimal
- * cancelling that tweaking would
- * amount to do the following
- */
-.rendered_html * + ol,
-.rendered_html * + ul {
-    margin-top: initial !important;
-}
 
-/* ----------- specific to this course */
-/* used in the notebook on memory layout */
+/*
+ * ----------- specific to this course
+ * used in the notebook on memory layout
+ */
 .memory {
     font-size: 180%;
     line-height: 1.2;
-}
-
-/* outline cell outputs when checking for execution */
-div.cell div.cell_output .output pre {
-    background-color: #fee;
 }
