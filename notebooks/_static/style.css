@@ -48,7 +48,7 @@ div.cell div.cell_output .output pre {
 }
 
 
-/* notes */
+/* notes and warning */
 .note {
     font-style: italic;
     border-left: 1px dotted #ccc;
@@ -61,6 +61,19 @@ div.cell div.cell_output .output pre {
 .note>p:first-child::before {
     content: "note : ";
     font-weight: 900;
+}
+
+.outline {
+    background-color:#ddd;
+    border-radius: 6px;
+    margin:12px;
+    padding: 12px;
+}
+
+.red-pill {
+    background-color:red;
+    padding:4px;
+    border-radius: 4px;
 }
 
 
