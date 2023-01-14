@@ -16,14 +16,20 @@ html:
 
 only_build_toc_files: true
 
+exclude_patterns:
+  - "**/.teacher/*"
+
 execute:
   execute_notebooks: cache
-  exclude_patterns: [ ".teacher/*" ]
+  exclude_patterns:
+    - "**/*-corrige*"
+    - "**/.teacher/*"
 
 parse:
   myst_enable_extensions:
     - html_image    # for raw <img> tags in markdown
     - dollarmath    # for mathjax
+    - strikethrough
 
 sphinx:
   config:
@@ -33,4 +39,4 @@ sphinx:
         - fmt: py:percent
     html_show_copyright: false
     # not quite convincing but...
-    html_extra_path: [ 'media' ]
+    html_extra_path: ['media']
