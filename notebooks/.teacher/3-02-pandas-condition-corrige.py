@@ -580,6 +580,9 @@ df = pd.read_csv('titanic.csv', index_col='PassengerId')
 # 2. calculez les valeurs manquantes: totales, des colonnes et des lignes
 
 # %%
+# à vous
+
+# %%
 # prune-cell 2.
 
 print(10*'-', 'par colonne')
@@ -593,11 +596,17 @@ print(df.isna().sum().sum())
 # 3. calculez le nombre de classes du bateau
 
 # %%
+# à vous
+
+# %%
 # prune-cell 3.
 len(df['Pclass'].unique())
 
 # %% [markdown]
 # 4. calculez le taux d'hommes et de femmes
+
+# %%
+# à vous
 
 # %%
 # prune-cell 4.
@@ -607,11 +616,17 @@ df['Sex'].value_counts()/len(df)
 # 5. calculez le taux de personnes entre 20 et 40 ans
 
 # %%
+# à vous
+
+# %%
 # prune-cell 5.
 ((df['Age'] >= 20) & (df['Age'] <= 40)).sum()/len(df)
 
 # %% [markdown]
 # 6. calculez le taux de survie des passagers
+
+# %%
+# à vous
 
 # %%
 # prune-cell 6.
@@ -623,6 +638,9 @@ print(df['Survived'].value_counts()/len(df))
 # %% [markdown]
 # 7. calculez le taux de survie des hommes et des femmes par classes  
 # on reverra ces décomptes d'une autre manière
+
+# %%
+# à vous
 
 # %%
 # prune-cell 7.

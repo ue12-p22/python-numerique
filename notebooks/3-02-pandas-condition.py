@@ -537,18 +537,36 @@ df.isna().to_numpy().sum()
 # %% [markdown]
 # 2. calculez les valeurs manquantes: totales, des colonnes et des lignes
 
+# %%
+# à vous
+
 # %% [markdown]
 # 3. calculez le nombre de classes du bateau
+
+# %%
+# à vous
 
 # %% [markdown]
 # 4. calculez le taux d'hommes et de femmes
 
+# %%
+# à vous
+
 # %% [markdown]
 # 5. calculez le taux de personnes entre 20 et 40 ans
+
+# %%
+# à vous
 
 # %% [markdown]
 # 6. calculez le taux de survie des passagers
 
+# %%
+# à vous
+
 # %% [markdown]
 # 7. calculez le taux de survie des hommes et des femmes par classes  
 # on reverra ces décomptes d'une autre manière
+
+# %%
+# à vous
