@@ -294,7 +294,7 @@ new_names = ['Total',  'East', 'West',]
 # %matplotlib notebook
 
 # %%
-plt.style.use('seaborn')
+plt.style.use('seaborn-v0_8')
 sns.set(rc={'figure.figsize': (8, 4)})
 #plt.rcParams["figure.figsize"] = (12, 4)
 
