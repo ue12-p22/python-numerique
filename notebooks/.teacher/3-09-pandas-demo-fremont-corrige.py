@@ -437,7 +437,7 @@ after == before
 # %matplotlib notebook
 
 # %%
-plt.style.use('seaborn')
+plt.style.use('seaborn-v0_8')
 sns.set(rc={'figure.figsize': (8, 4)})
 #plt.rcParams["figure.figsize"] = (12, 4)
 
@@ -697,7 +697,7 @@ pca_in = pivoted.fillna(0).T.to_numpy()
 pca_in.shape
 
 # %%
-# #%pip install sklearn
+# #%pip install scikit_learn
 from sklearn.decomposition import PCA
 
 # %%

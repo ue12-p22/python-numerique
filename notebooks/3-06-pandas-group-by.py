@@ -790,6 +790,7 @@ df.pivot_table(
 #
 # * comme valeur supplémentaire `Age`
 # * comme critère supplémentaire `Sex`  
+#
 # et notamment que pouvez-vous dire des index (en lignes et en colonnes)  
 # du résultat produit par `pivot_table()`
 
@@ -800,35 +801,26 @@ df = pd.read_csv('titanic.csv')
 # %%
 # votre code
 # plusieurs values
-df2 = ...
-
-# %% {"cell_style": "center", "tags": ["raises-exception"]}
-df2.columns
-
-# %% {"tags": ["raises-exception"]}
-df2.index
+# df2 = ...
+# pensez à observer les index du résultat
+# df2.columns
+# df2.index
 
 # %%
 # votre code
 # plusieurs columns
-df3 = ...
-
-# %% {"tags": ["raises-exception"]}
-df3.columns
-
-# %% {"tags": ["raises-exception"]}
-df3.index
+# df3 = ...
+# pensez à observer les index du résultat
+# df3.columns
+# df3.index
 
 # %%
 # votre code
 # plusieurs index
-df4 = ...
-
-# %% {"tags": ["raises-exception"]}
-df4.columns
-
-# %% {"tags": ["raises-exception"]}
-df4.index
+# df4 = ...
+# pensez à observer les index du résultat
+# df4.columns
+# df4.index
 
 # %% [markdown]
 # ### **exercice** sur `pivot_table()`
@@ -877,6 +869,12 @@ df.head()
 # for group, indexes in by_sex.groups.items():
 #     print(group, df.loc[indexes[:3], 'Name'])
 # ```
+
+# %% {"tags": ["level_intermediate"]}
+# on se remet dans le contexte
+
+df = pd.read_csv('titanic.csv', index_col=0)
+by_sex = df.groupby(by='Sex')
 
 # %% {"tags": ["level_intermediate"]}
 # le code

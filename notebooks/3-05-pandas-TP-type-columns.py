@@ -88,7 +88,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # sur la dataframe précédente
 #
 # 1. utilisez la fonction `pandas.Series.unique` pour afficher la liste des noms d'iris  
-# combien avez vous de noms différents ?  
+# combien avez-vous de noms différents ?  
 # <br>
 #
 # 1. inspectez les types des colonnes  

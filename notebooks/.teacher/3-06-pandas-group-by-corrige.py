@@ -463,7 +463,7 @@ for group, subdf in by_class_sex:
 # %%
 # votre code
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell 1.
 len(df['Sex'].unique()) * len(df['Pclass'].unique()) * len(df['Survived'].unique())
 
@@ -474,7 +474,7 @@ len(df['Sex'].unique()) * len(df['Pclass'].unique()) * len(df['Survived'].unique
 # %%
 # votre code
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell 2.
 groups = df.groupby(['Pclass', 'Sex', 'Survived'])
 groups.size()
@@ -485,7 +485,7 @@ groups.size()
 # %%
 # votre code
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell 3.
 groups.get_group((1, 'female', 0))
 
@@ -496,7 +496,7 @@ groups.get_group((1, 'female', 0))
 # %%
 # votre code
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 mask = (df.Pclass == 1) & (df.Sex == 'female') & ~df.Survived
 df[mask]
@@ -517,7 +517,7 @@ df[mask]
 # %%
 # votre code
 
-# %% {"scrolled": false}
+# %% {"scrolled": false, "tags": ["level_basic"]}
 # prune-cell
 D = {}
 groups_sex_class = df.groupby(['Sex', 'Pclass'])
@@ -529,7 +529,7 @@ for group, subdf in groups_sex_class:
 
 D
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell 
 # la même chose en plus court
 D = {}
@@ -537,7 +537,7 @@ for group, subdf in df.groupby(['Sex', 'Pclass']):
     D[group] = subdf.Survived.sum() / len(subdf)
 D
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 # encore plus court avec une compréhension
 # bon bien sûr, ce n'est pas forcément plus lisible...
@@ -551,7 +551,7 @@ D
 #    `pd.Series()` permet de créer des objets par programme  
 #    voyez la documentation avec `pd.Series?`  
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 pd.Series(D, name="taux de survie par genre dans chaque classe")
 
@@ -736,7 +736,7 @@ print("après", df.columns)
 # le code
 df.groupby(['Age-class', 'Survived', ]).size()
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 # utilisez
 df.groupby(['Age-class', 'Pclass', 'Survived']).size()
@@ -822,7 +822,7 @@ df.pivot_table(
 # %%
 # votre code
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 df.pivot_table(
     values='Survived',
@@ -853,6 +853,7 @@ df.pivot_table(
 #
 # * comme valeur supplémentaire `Age`
 # * comme critère supplémentaire `Sex`  
+#
 # et notamment que pouvez-vous dire des index (en lignes et en colonnes)  
 # du résultat produit par `pivot_table()`
 
@@ -863,10 +864,13 @@ df = pd.read_csv('titanic.csv')
 # %%
 # votre code
 # plusieurs values
-df2 = ...
+# df2 = ...
+# pensez à observer les index du résultat
+# df2.columns
+# df2.index
 
-# %% {"cell_style": "center"}
-# prune-cell
+# %% {"cell_style": "center", "tags": ["level_basic"]}
+# prune-begin
 df2 = df.pivot_table(
     values=['Survived', 'Age'],
     index='Pclass',
@@ -874,19 +878,23 @@ df2 = df.pivot_table(
 )
 df2
 
-# %% {"cell_style": "center", "tags": ["raises-exception"]}
+# %% {"cell_style": "center", "tags": ["raises-exception", "level_basic"]}
 df2.columns
 
-# %% {"tags": ["raises-exception"]}
+# %% {"tags": ["raises-exception", "level_basic"]}
+# prune-end
 df2.index
 
 # %%
 # votre code
 # plusieurs columns
-df3 = ...
+# df3 = ...
+# pensez à observer les index du résultat
+# df3.columns
+# df3.index
 
-# %% {"cell_style": "center"}
-# prune-cell
+# %% {"cell_style": "center", "tags": ["level_basic"]}
+# prune-begin
 df3 = df.pivot_table(
     values='Age',
     index='Pclass',
@@ -894,19 +902,23 @@ df3 = df.pivot_table(
 )
 df3
 
-# %% {"tags": ["raises-exception"]}
+# %% {"tags": ["raises-exception", "level_basic"]}
 df3.columns
 
-# %% {"tags": ["raises-exception"]}
+# %% {"tags": ["raises-exception", "level_basic"]}
+# prune-end
 df3.index
 
 # %%
 # votre code
 # plusieurs index
-df4 = ...
+# df4 = ...
+# pensez à observer les index du résultat
+# df4.columns
+# df4.index
 
-# %% {"cell_style": "center"}
-# prune-cell
+# %% {"cell_style": "center", "tags": ["level_basic"]}
+# prune-begin
 df4 = df.pivot_table(
     values='Age',
     index=['Pclass', 'Embarked'],
@@ -914,10 +926,11 @@ df4 = df.pivot_table(
 )
 df4
 
-# %% {"tags": ["raises-exception"]}
+# %% {"tags": ["raises-exception", "level_basic"]}
 df4.columns
 
-# %% {"tags": ["raises-exception"]}
+# %% {"tags": ["raises-exception", "level_basic"]}
+# prune-end
 df4.index
 
 # %% [markdown]
@@ -930,7 +943,7 @@ df.head()
 # %% [markdown]
 # 1. affichez les valeurs min, max, et moyenne, de la colonne 'magnesium'
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 summary = df.magnesium.describe()
 summary
@@ -938,7 +951,7 @@ summary
 # %% [markdown]
 # 2. définissez deux catégories selon que le magnesium est en dessous ou au-dessus de la moyenne (qu'on appelle 'mag-low' et 'mag-high'); rangez le résultat dans une colonne 'mag-cat'
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 
 df['mag-cat'] = pd.cut(
@@ -952,7 +965,7 @@ df.head()
 #
 # ![](media/pivot-table-expected.png)
 
-# %%
+# %% {"tags": ["level_basic"]}
 # prune-cell
 
 df.pivot_table(values=('color-intensity', 'flavanoids', 'magnesium'),
@@ -988,6 +1001,12 @@ df.pivot_table(values=('color-intensity', 'flavanoids', 'magnesium'),
 # for group, indexes in by_sex.groups.items():
 #     print(group, df.loc[indexes[:3], 'Name'])
 # ```
+
+# %% {"tags": ["level_intermediate"]}
+# on se remet dans le contexte
+
+df = pd.read_csv('titanic.csv', index_col=0)
+by_sex = df.groupby(by='Sex')
 
 # %% {"tags": ["level_intermediate"]}
 # le code

@@ -4,7 +4,7 @@ matplotlib
 scipy # for reading/writing wav files
 pillow
 seaborn
-sklearn
+scikit_learn
 
 # tooling
 jupyter

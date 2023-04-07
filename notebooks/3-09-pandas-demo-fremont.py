@@ -519,7 +519,7 @@ pca_in = pivoted.fillna(0).T.to_numpy()
 pca_in.shape
 
 # %%
-# #%pip install sklearn
+# #%pip install scikit_learn
 from sklearn.decomposition import PCA
 
 # %%
