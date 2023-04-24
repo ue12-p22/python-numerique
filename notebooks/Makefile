@@ -10,3 +10,5 @@ include Makefile.style
 include Makefile.norm
 
 include Makefile.prune
+
+include Makefile.toc

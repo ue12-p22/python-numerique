@@ -1,0 +1,11 @@
+# update the jb toc from nbhosting
+toc: _toc.yml
+
+ifeq ($(TOCDIR),)
+TOCDIR = notebooks
+endif
+
+# update jupyter book toc from the nbhosting one
+# (need to remove the 'notebooks/' part from the nbhosting toc)
+_toc.yml: ../.nbhosting/nbhosting.yaml
+	$$HOME/git/nbhosting/scripts/nbh-to-jb-toc.py -p '$(TOCDIR)/->' $< $@

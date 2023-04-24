@@ -4,8 +4,9 @@ tracks:
     description: "calcul scientifique et data en Python"
     id: python-num
     sections:
+      # do not mention 1-99 in this output
       - name: rappels Python
-        notebooks: [ "notebooks/1-[0-9]*.py"]
+        notebooks: [ "notebooks/1-[12]*.py"]
       - name: numpy
         notebooks: [ "notebooks/2-[0-9]*.py"]
       - name: pandas
@@ -14,8 +15,9 @@ tracks:
         notebooks: [ "notebooks/4-[0-9]*.py"]
       - name: cheatsheets
         notebooks: [ "cheatsheets/cheatsheets.md" ]
-      - name: petit test Python
-        notebooks: [ "notebooks/5-[0-9]*.py"]
+      # no longerrelevant
+      # - name: petit test Python
+      #   notebooks: [ "notebooks/5-[0-9]*.py"]
 
 builds:
   - id: handouts

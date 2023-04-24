@@ -1,19 +1,18 @@
 format: jb-book
-root: 0-00-intro
 parts:
-- caption: "rappels Python"
+- caption: rappels Python
   chapters:
-  # do not mention 1-99 in this output
   - glob: 1-[12]*
-- caption: "numpy"
+- caption: numpy
   chapters:
-  - glob: 2-*
-- caption: "pandas"
+  - glob: 2-[0-9]*
+- caption: pandas
   chapters:
-  - glob: 3-*
-- caption: "matplotlib"
+  - glob: 3-[0-9]*
+- caption: matplotlib
   chapters:
-  - glob: 4-*
-- caption: "autotest Python"
+  - glob: 4-[0-9]*
+- caption: cheatsheets
   chapters:
-  - glob: 5-*
+  - file: cheatsheets/cheatsheets
+root: 0-00-intro
