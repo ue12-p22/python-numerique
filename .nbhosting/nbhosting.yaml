@@ -6,15 +6,15 @@ tracks:
     sections:
       # do not mention 1-99 in this output
       - name: rappels Python
-        notebooks: [ "notebooks/1-[12]*.py"]
+        notebooks: [ "notebooks/1-[12]*-nb.py"]
       - name: numpy
-        notebooks: [ "notebooks/2-[0-9]*.py"]
+        notebooks: [ "notebooks/2-[0-9]*-nb.py"]
       - name: pandas
-        notebooks: [ "notebooks/3-[0-9]*.py"]
+        notebooks: [ "notebooks/3-[0-9]*-nb.py"]
       - name: matplotlib
-        notebooks: [ "notebooks/4-[0-9]*.py"]
+        notebooks: [ "notebooks/4-[0-9]*-nb.py"]
       - name: cheatsheets
-        notebooks: [ "cheatsheets/cheatsheets.md" ]
+        notebooks: [ "cheatsheets/cheatsheets-nb.md" ]
       # no longerrelevant
       # - name: petit test Python
       #   notebooks: [ "notebooks/5-[0-9]*.py"]
