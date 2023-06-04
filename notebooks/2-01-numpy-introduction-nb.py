@@ -112,7 +112,7 @@ HTML(url="https://raw.githubusercontent.com/ue12-p22/python-numerique/main/noteb
 # #!pip install numpy pandas matplotlib
 
 # %%
-# manière classiques d'importer les librairies de data-science
+# manière classique d'importer les librairies de data-science
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
